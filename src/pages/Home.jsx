@@ -9,23 +9,22 @@ import 'swiper/css/pagination';
 import 'swiper/css/effect-fade';
 
 // Branch 1 Images
-import branch1 from '../assets/images/branch1.jpg';
 import v1 from '../assets/images/v1.jpg';
-import v3 from '../assets/images/v3.jpg';
+import v2 from '../assets/images/v2.jpg';
+import v from '../assets/images/v.jpg';
 
 // Branch 2 Images
-import branch2 from '../assets/images/branch2.webp';
-import s1 from '../assets/images/s1.jpg';
+import s from '../assets/images/s.webp';
 import s2 from '../assets/images/s2.jpg';
-import s6 from '../assets/images/s6.jfif';
+import s3 from '../assets/images/s3.jpg';
 
 // Logo
 import logoImg from '../assets/images/logo.webp';
 
-const branch1Images = [v1, v3];
-const branch2Images = [s1, s2, s6];
-const branch3Images = [branch1, branch2]; // Fallback images for the new branch until specific ones are provided
-const heroSliderImages = [branch1, branch2, branch1, branch2];
+const branch1Images = [v1, v2, v];
+const branch2Images = [s, s2, s3];
+const branch3Images = [v1, s]; // Fallback images for the new branch until specific ones are provided
+const heroSliderImages = [v1, s, v2, s2];
 
 const ImageSlider = ({ images }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
