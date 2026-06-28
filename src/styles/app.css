@@ -387,8 +387,7 @@ body {
 
 .reviews-swiper {
   width: 100%;
-  padding-top: 20px;
-  padding-bottom: 40px;
+  padding: 20px 5% 40px;
 }
 
 .review-swiper-slide {
@@ -1011,7 +1010,7 @@ body {
   }
   .slider-container,
   .image-placeholder {
-    height: 200px;
+    height: 250px;
   }
   
   .branch-header-split {
