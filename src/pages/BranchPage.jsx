@@ -3,8 +3,8 @@ import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { menuData, branchData } from '../data/MenuData';
 
-import branch1Img from '../assets/images/branch1.jpg';
-import branch2Img from '../assets/images/branch2.webp';
+import branch1Img from '../assets/images/v1.jpg';
+import branch2Img from '../assets/images/s.webp';
 
 const fadeUpVariant = {
   hidden: { opacity: 0, y: 40 },
