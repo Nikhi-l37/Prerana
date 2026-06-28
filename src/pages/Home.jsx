@@ -22,8 +22,9 @@ import s6 from '../assets/images/s6.jfif';
 // Logo
 import logoImg from '../assets/images/logo.webp';
 
-const branch1Images = [branch1, v1, v3];
-const branch2Images = [branch2, s1, s2, s6];
+const branch1Images = [v1, v3];
+const branch2Images = [s1, s2, s6];
+const branch3Images = [branch1, branch2]; // Fallback images for the new branch until specific ones are provided
 const heroSliderImages = [branch1, branch2, branch1, branch2];
 
 const ImageSlider = ({ images }) => {
@@ -190,14 +191,13 @@ const Home = () => {
             </div>
           </motion.div>
 
-          <motion.div variants={fadeUpVariant} className="branch-card">
-            <div className="image-placeholder soon-placeholder">
-              <span>More goodness coming...</span>
-            </div>
+          <motion.div variants={fadeUpVariant} whileHover={{ y: -5 }} whileTap={{ scale: 0.98 }} className="branch-card clickable-card" onClick={() => window.open('https://www.google.com/maps/place/PRERANA+FIREWOOD+BIRYANI/@13.0584264,77.6324632,15.81z/data=!4m6!3m5!1s0x3bae17001224ce7b:0xd9aa1c0b3e1b8793!8m2!3d13.0581084!4d77.6330806!16s%2Fg%2F11z999f39k!18m1!1e1', '_blank')}>
+            <ImageSlider images={branch3Images} />
             <div className="branch-card-content">
-              <span className="branch-badge soon">Opening Soon</span>
-              <h3>Third Branch</h3>
-              <p>Stay tuned for our new location announcement!</p>
+              <span className="branch-badge active">Now Open</span>
+              <h3>Nagavara Branch</h3>
+              <p>PRERANA Firewood Biryani - Nagavara, Bengaluru</p>
+              <button className="view-branch-btn">View on Maps</button>
             </div>
           </motion.div>
         </motion.div>
@@ -245,16 +245,15 @@ const Home = () => {
             </div>
           </SwiperSlide>
 
-          {/* BRANCH 3: Opening Soon */}
-          <SwiperSlide className="branch-swiper-slide">
-            <div className="branch-card">
-              <div className="image-placeholder soon-placeholder">
-                <span>More goodness coming...</span>
-              </div>
+          {/* BRANCH 3: Nagavara */}
+          <SwiperSlide className="branch-swiper-slide" onClick={() => window.open('https://www.google.com/maps/place/PRERANA+FIREWOOD+BIRYANI/@13.0584264,77.6324632,15.81z/data=!4m6!3m5!1s0x3bae17001224ce7b:0xd9aa1c0b3e1b8793!8m2!3d13.0581084!4d77.6330806!16s%2Fg%2F11z999f39k!18m1!1e1', '_blank')}>
+            <div className="branch-card clickable-card">
+              <ImageSlider images={branch3Images} />
               <div className="branch-card-content">
-                <span className="branch-badge soon">Opening Soon</span>
-                <h3>Third Branch</h3>
-                <p>Stay tuned for our new location announcement!</p>
+                <span className="branch-badge active">Now Open</span>
+                <h3>Nagavara Branch</h3>
+                <p>PRERANA Firewood Biryani - Nagavara</p>
+                <button className="view-branch-btn">View on Maps</button>
               </div>
             </div>
           </SwiperSlide>
@@ -301,7 +300,7 @@ const Home = () => {
         {/* MOBILE SWIPER VIEW */}
         <Swiper
           slidesPerView={'auto'}
-          centeredSlides={false}
+          centeredSlides={true}
           loop={true}
           spaceBetween={20}
           autoplay={{
