@@ -332,6 +332,28 @@ const Home = () => {
               <p className="review-author">- Ankit V.</p>
             </div>
           </SwiperSlide>
+          {/* Duplicated slides to ensure Swiper loop works flawlessly on auto-play */}
+          <SwiperSlide className="review-swiper-slide">
+            <div className="review-card">
+              <div className="stars">★★★★★</div>
+              <p className="review-text">"Absolutely the best authentic firewood biryani I have ever tasted! The aroma is incredible and the meat is so tender."</p>
+              <p className="review-author">- Rahul S.</p>
+            </div>
+          </SwiperSlide>
+          <SwiperSlide className="review-swiper-slide">
+            <div className="review-card">
+              <div className="stars">★★★★★</div>
+              <p className="review-text">"Great ambiance and mouth-watering starters. Highly recommend the Guntur Chicken Dry!"</p>
+              <p className="review-author">- Priya M.</p>
+            </div>
+          </SwiperSlide>
+          <SwiperSlide className="review-swiper-slide">
+            <div className="review-card">
+              <div className="stars">★★★★★</div>
+              <p className="review-text">"The true taste of tradition. I drive from across town just for their Dum Biryani. Worth every penny."</p>
+              <p className="review-author">- Ankit V.</p>
+            </div>
+          </SwiperSlide>
         </Swiper>
       </section>
 
