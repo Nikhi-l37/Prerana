@@ -508,6 +508,11 @@ body {
   color: #d84315;
 }
 
+.branch-badge.closed {
+  background: rgba(17, 17, 17, 0.1);
+  color: #555;
+}
+
 .branch-card h3 {
   font-size: 1.5rem;
   margin-bottom: 1rem;
@@ -1119,6 +1124,11 @@ body {
     max-width: 400px;
   }
 
+  /* Keep original card styling without the orange border */
+  .branch-swiper-slide .branch-card {
+    position: relative; 
+  }
+
   /* Card image taller on mobile */
   .branch-swiper-slide .slider-container,
   .branch-swiper-slide .image-placeholder {
@@ -1152,5 +1162,93 @@ body {
   .branch-swiper-slide .view-branch-btn {
     font-size: 0.9rem;
     padding: 0.6rem 1.6rem;
+  }
+
+  /* ===== ORANGE THEME - REVIEWS & CONTACT (Mobile Only) ===== */
+
+  /* Alternating warm backgrounds */
+  .reviews-section {
+    background: #ffffff; /* Clean white */
+    padding: 3rem 0;
+  }
+  
+  .contact-section {
+    background: #fdf6f0; /* Warm cream */
+    padding: 4rem 5%;
+  }
+
+  /* Orange underline for section titles */
+  .section-title {
+    position: relative;
+    display: block; /* Fixed alignment issue! */
+    text-align: center;
+    padding-bottom: 0.8rem;
+    margin-bottom: 2rem;
+  }
+
+  .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #ff6b35, #d84315);
+    border-radius: 2px;
+  }
+
+  /* Review cards styling */
+  .review-card {
+    border-top: 4px solid #d84315; /* Top border fits rounded corners perfectly */
+    border-left: none;
+    background: #fff;
+    box-shadow: 0 8px 25px rgba(216, 67, 21, 0.08);
+  }
+
+  .stars {
+    color: #ff8f00; /* Richer orange-yellow for stars */
+  }
+
+  /* Contact Form orange theme */
+  .contact-info {
+    background: linear-gradient(135deg, #ff6b35 0%, #d84315 100%);
+    box-shadow: 0 4px 20px rgba(216, 67, 21, 0.3);
+  }
+
+  .submit-btn {
+    background: linear-gradient(135deg, #ff6b35 0%, #d84315 100%);
+    box-shadow: 0 4px 15px rgba(216, 67, 21, 0.4);
+  }
+
+  .submit-btn:hover {
+    background: linear-gradient(135deg, #e65100 0%, #bf360c 100%);
+  }
+
+  .menu-search-input:focus {
+    border-color: #d84315;
+    box-shadow: 0 4px 15px rgba(216, 67, 21, 0.15);
+  }
+
+  /* ===== ORANGE THEME - DEEPENING THE INTEGRATION (Mobile Only) ===== */
+
+  /* Make 'View Menu' button use the orange gradient */
+  .branch-swiper-slide .view-branch-btn {
+    background: linear-gradient(135deg, #ff6b35 0%, #d84315 100%);
+    color: #fff;
+    border: none;
+    box-shadow: 0 4px 15px rgba(216, 67, 21, 0.3);
+  }
+
+  .branch-swiper-slide .view-branch-btn:hover {
+    background: linear-gradient(135deg, #e65100 0%, #bf360c 100%);
+  }
+
+  /* Add subtle warm background tint to contact inputs on focus */
+  .contact-form input:focus, .contact-form textarea:focus {
+    outline: none;
+    border-color: #d84315;
+    background-color: #fffcf8;
+    box-shadow: 0 0 0 3px rgba(216, 67, 21, 0.1);
   }
 }
