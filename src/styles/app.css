@@ -391,8 +391,6 @@ body {
 }
 
 .review-swiper-slide {
-  width: 85%;
-  max-width: 350px;
   opacity: 0.5;
   transform: scale(0.9);
   transition: all 0.4s ease;
