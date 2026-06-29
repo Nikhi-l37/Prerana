@@ -1,30 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { menuData, branchData } from '../data/MenuData';
 
 import branch1Img from '../assets/images/v1.jpg';
-import branch2Img from '../assets/images/s.webp';
-import branch2Img2 from '../assets/images/s2.jpg';
-import branch2Img3 from '../assets/images/s3.jpg';
 import branch2Img4 from '../assets/images/s10.webp';
-
-const branch2SliderImages = [branch2Img, branch2Img2, branch2Img3, branch2Img4];
-
-const SimpleSlider = ({ images, alt }) => {
-  const [current, setCurrent] = React.useState(0);
-  React.useEffect(() => {
-    const timer = setInterval(() => setCurrent(i => (i + 1) % images.length), 3000);
-    return () => clearInterval(timer);
-  }, [images.length]);
-  return (
-    <div style={{ position: 'relative', width: '100%', height: '100%', overflow: 'hidden' }}>
-      {images.map((img, i) => (
-        <img key={i} src={img} alt={alt} style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: i === current ? 1 : 0, transition: 'opacity 0.8s ease-in-out' }} />
-      ))}
-    </div>
-  );
-};
 
 const fadeUpVariant = {
   hidden: { opacity: 0, y: 40 },
@@ -39,13 +19,14 @@ const staggerContainer = {
 const BranchPage = () => {
   const { branchId } = useParams();
   const branch = branchData[branchId];
+  const navigate = useNavigate();
   
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
 
   const branchImages = {
     marathahalli: branch1Img,
-    chinnapanahalli: branch2Img
+    chinnapanahalli: branch2Img4
   };
   const currentImage = branchImages[branchId];
 
@@ -82,6 +63,32 @@ const BranchPage = () => {
 
   return (
     <div className="branch-page">
+      <div className="back-button-container" style={{ paddingBottom: '1rem', paddingLeft: '5%', paddingTop: '75px' }}>
+        <button 
+          onClick={() => navigate(-1)} 
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '8px',
+            background: 'none',
+            border: 'none',
+            color: '#d84315',
+            fontWeight: '600',
+            fontSize: '1.1rem',
+            cursor: 'pointer',
+            padding: '8px 0',
+            transition: 'color 0.2s ease',
+          }}
+          onMouseOver={(e) => e.currentTarget.style.color = '#bf360c'}
+          onMouseOut={(e) => e.currentTarget.style.color = '#d84315'}
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M19 12H5M12 19l-7-7 7-7" />
+          </svg>
+          Back
+        </button>
+      </div>
+
       <motion.header 
         className="branch-header-split"
         initial="hidden"
@@ -94,9 +101,7 @@ const BranchPage = () => {
           <motion.a whileTap={{ scale: 0.95 }} href={branch.mapLink} target="_blank" rel="noopener noreferrer" className="map-link-btn">Open in Google Maps</motion.a>
         </motion.div>
         <motion.div className="branch-header-image" variants={fadeUpVariant}>
-          {branchId === 'chinnapanahalli'
-            ? <SimpleSlider images={branch2SliderImages} alt={branch.name} />
-            : currentImage && <img src={currentImage} alt={branch.name} />}
+          {currentImage && <img src={currentImage} alt={branch.name} />}
         </motion.div>
       </motion.header>
 

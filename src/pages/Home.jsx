@@ -174,7 +174,7 @@ const Home = () => {
           <motion.h1 className="product-hero-title" variants={fadeUpVariant}>Prerana Firewood Biryani</motion.h1>
           <motion.p className="product-hero-subtitle" variants={fadeUpVariant}>Cooked on firewood. Experience the rich, traditional flavors crafted with passion.</motion.p>
           <motion.div className="hero-actions" variants={fadeUpVariant}>
-            <Link to="/#locations" className="product-hero-btn primary">Find a Branch</Link>
+            <Link to="/branches" className="product-hero-btn primary">Find a Branch</Link>
             <Link to="/#reviews" className="product-hero-btn secondary">Read Reviews</Link>
           </motion.div>
         </motion.div>
@@ -200,27 +200,29 @@ const Home = () => {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
         >
-          <motion.div variants={fadeUpVariant} whileHover={{ y: -5 }} whileTap={{ scale: 0.98 }} className="branch-card clickable-card" onClick={() => navigate('/branch/marathahalli')}>
-            <ImageSlider images={branch1Images} />
+          <motion.div variants={fadeUpVariant} whileHover={{ y: -5 }} whileTap={{ scale: 0.98 }}>
+            <div className="branch-card">
+              <ImageSlider images={branch1Images} />
               <div className="branch-card-content">
                 <span className={`branch-badge ${isOpen ? 'active' : 'closed'}`}>
                   {isOpen ? 'Now Open' : 'Opens at 11:00 AM'}
                 </span>
                 <h3>Marathahalli Branch</h3>
-              <p>182, Service Rd, Manjunatha Layout, Marathahalli, Bengaluru, Karnataka 560037</p>
-              <button className="view-branch-btn">View Menu & Details</button>
+                <p>182, Service Rd, Manjunatha Layout, Marathahalli, Bengaluru, Karnataka 560037</p>
+              </div>
             </div>
           </motion.div>
 
-          <motion.div variants={fadeUpVariant} whileHover={{ y: -5 }} whileTap={{ scale: 0.98 }} className="branch-card clickable-card" onClick={() => navigate('/branch/chinnapanahalli')}>
-            <ImageSlider images={branch2Images} />
+          <motion.div variants={fadeUpVariant} whileHover={{ y: -5 }} whileTap={{ scale: 0.98 }}>
+            <div className="branch-card">
+              <ImageSlider images={branch2Images} />
               <div className="branch-card-content">
                 <span className={`branch-badge ${isOpen ? 'active' : 'closed'}`}>
                   {isOpen ? 'Now Open' : 'Opens at 11:00 AM'}
                 </span>
                 <h3>Chinnapanahalli Branch</h3>
-              <p>PRERANA Firewood Biryani - Chinnapanahalli, Bengaluru</p>
-              <button className="view-branch-btn">View Menu & Details</button>
+                <p>PRERANA Firewood Biryani - Chinnapanahalli, Bengaluru</p>
+              </div>
             </div>
           </motion.div>
 
@@ -239,10 +241,9 @@ const Home = () => {
         {/* MOBILE SWIPER VIEW */}
         <Swiper
           effect={'creative'}
-          grabCursor={true}
           centeredSlides={true}
           slidesPerView={'auto'}
-          loop={true}
+          loop={false}
           creativeEffect={{
             limitProgress: 2,
             prev: {
@@ -256,17 +257,10 @@ const Home = () => {
           }}
           modules={[EffectCreative, Pagination]}
           className="branches-swiper mobile-only"
-          onClick={(swiper, event) => {
-            const card = event.target.closest('.clickable-card');
-            if (card) {
-              const path = card.getAttribute('data-path');
-              if (path) navigate(path);
-            }
-          }}
         >
           {/* BRANCH 1: Marathahalli */}
           <SwiperSlide className="branch-swiper-slide">
-            <div data-path="/branch/marathahalli" className="branch-card clickable-card" style={{ display: 'block', textDecoration: 'none', color: 'inherit', cursor: 'pointer' }}>
+            <div className="branch-card" style={{ display: 'flex', flexDirection: 'column', textDecoration: 'none', color: 'inherit' }}>
               <ImageSlider images={branch1Images} />
               <div className="branch-card-content">
                 <span className={`branch-badge ${isOpen ? 'active' : 'closed'}`}>
@@ -274,14 +268,13 @@ const Home = () => {
                 </span>
                 <h3>Marathahalli Branch</h3>
                 <p>182, Service Rd, Manjunatha Layout, Marathahalli</p>
-                <button className="view-branch-btn">View Menu</button>
               </div>
             </div>
           </SwiperSlide>
 
           {/* BRANCH 2: Chinnapanahalli */}
           <SwiperSlide className="branch-swiper-slide">
-            <div data-path="/branch/chinnapanahalli" className="branch-card clickable-card" style={{ display: 'block', textDecoration: 'none', color: 'inherit', cursor: 'pointer' }}>
+            <div className="branch-card" style={{ display: 'flex', flexDirection: 'column', textDecoration: 'none', color: 'inherit' }}>
               <ImageSlider images={branch2Images} />
               <div className="branch-card-content">
                 <span className={`branch-badge ${isOpen ? 'active' : 'closed'}`}>
@@ -289,7 +282,6 @@ const Home = () => {
                 </span>
                 <h3>Chinnapanahalli Branch</h3>
                 <p>PRERANA Firewood Biryani - Chinnapanahalli</p>
-                <button className="view-branch-btn">View Menu</button>
               </div>
             </div>
           </SwiperSlide>
