@@ -230,8 +230,8 @@ const Home = () => {
             </div>
             <div className="branch-card-content">
               <span className="branch-badge soon">Opening Soon</span>
-              <h3>Third Branch</h3>
-              <p>Stay tuned for our new location announcement!</p>
+              <h3>Thanisandra Branch</h3>
+              <p>SH 104, Ashwath Nagar, Thanisandra, Bengaluru, Karnataka 560077</p>
             </div>
           </motion.div>
         </motion.div>
@@ -295,8 +295,8 @@ const Home = () => {
               </div>
               <div className="branch-card-content">
                 <span className="branch-badge soon">Opening Soon</span>
-                <h3>Third Branch</h3>
-                <p>Stay tuned for our new location announcement!</p>
+                <h3>Thanisandra Branch</h3>
+                <p>SH 104, Ashwath Nagar, Thanisandra, Bengaluru, Karnataka 560077</p>
               </div>
             </div>
           </SwiperSlide>
