@@ -2,11 +2,14 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { Routes, Route, Link, useLocation } from 'react-router-dom';
 import Home from './pages/Home';
 import BranchPage from './pages/BranchPage';
+import BranchesList from './pages/BranchesList';
 import './styles/app.css';
 import logo from './assets/images/logo.webp';
 
 function App() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isNavVisible, setIsNavVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
   const location = useLocation();
   const isHomePage = location.pathname === '/';
 
@@ -49,11 +52,24 @@ function App() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 100);
+      const currentScrollY = window.scrollY;
+      
+      // Update background blur state
+      setIsScrolled(currentScrollY > 100);
+
+      // Hide on scroll down, show on scroll up
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        setIsNavVisible(false);
+      } else {
+        setIsNavVisible(true);
+      }
+      
+      setLastScrollY(currentScrollY);
     };
+
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [lastScrollY]);
 
   const showSplash = splash !== 'done';
 
@@ -74,7 +90,7 @@ function App() {
       )}
 
       {/* GLOBAL NAVBAR */}
-      <nav className={`fixed w-full top-0 z-[100] px-5 md:px-[5%] py-2 md:py-3 flex justify-between items-center transition-all duration-500 ease-in-out ${isScrolled ? 'bg-white/20 backdrop-blur-2xl border-b border-white/20 shadow-sm translate-y-0' : 'bg-transparent translate-y-0'}`} style={{contain: 'layout'}}>
+      <nav className={`fixed w-full top-0 z-[100] px-5 md:px-[5%] py-2 md:py-3 flex justify-between items-center transition-all duration-500 ease-in-out ${isScrolled ? 'bg-white/20 backdrop-blur-2xl border-b border-white/20 shadow-sm' : 'bg-transparent'} ${isNavVisible ? 'translate-y-0' : '-translate-y-full'}`} style={{contain: 'layout'}}>
         <div className="flex items-center">
           <Link to="/" className="flex items-center no-underline">
             <img
@@ -84,9 +100,28 @@ function App() {
             />
           </Link>
         </div>
-        <ul className="hidden md:flex gap-10 list-none m-0 p-0">
+        
+        {/* Mobile View: Dedicated Branches Button */}
+        <div className="md:hidden flex items-center">
+          <Link 
+            to="/branches" 
+            className="header-branches-btn"
+            style={{ opacity: showSplash ? 0 : 1 }}
+          >
+            <span className="header-branches-btn-border"><span className="header-branches-btn-rotator"></span></span>
+            <span className="header-branches-btn-text">Branches</span>
+          </Link>
+        </div>
+
+        {/* Desktop View: Full Navigation */}
+        <ul className="hidden md:flex gap-10 list-none m-0 p-0 items-center">
           <li><Link to="/" className={`font-medium text-base transition-colors no-underline ${isScrolled ? 'text-gray-800 hover:text-[#d84315]' : 'text-white hover:text-gray-300'}`}>Home</Link></li>
-          <li><Link to="/#locations" className={`font-medium text-base transition-colors no-underline ${isScrolled ? 'text-gray-800 hover:text-[#d84315]' : 'text-white hover:text-gray-300'}`}>Our Branches</Link></li>
+          <li>
+            <Link to="/branches" className="header-branches-btn">
+              <span className="header-branches-btn-border"><span className="header-branches-btn-rotator"></span></span>
+              <span className="header-branches-btn-text">Our Branches</span>
+            </Link>
+          </li>
           <li><Link to="/#reviews" className={`font-medium text-base transition-colors no-underline ${isScrolled ? 'text-gray-800 hover:text-[#d84315]' : 'text-white hover:text-gray-300'}`}>Reviews</Link></li>
           <li><Link to="/#contact" className={`font-medium text-base transition-colors no-underline ${isScrolled ? 'text-gray-800 hover:text-[#d84315]' : 'text-white hover:text-gray-300'}`}>Contact</Link></li>
         </ul>
@@ -96,6 +131,7 @@ function App() {
       <div className="page-content">
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/branches" element={<BranchesList />} />
           <Route path="/branch/:branchId" element={<BranchPage />} />
         </Routes>
       </div>
