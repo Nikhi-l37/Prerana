@@ -18,13 +18,16 @@ import s from '../assets/images/s.webp';
 import s2 from '../assets/images/s2.jpg';
 import s3 from '../assets/images/s3.jpg';
 
+// Home Hero Image
+import s10 from '../assets/images/s10.webp';
+
 // Logo
 import logoImg from '../assets/images/logo.webp';
 
 const branch1Images = [v1, v2, v];
 const branch2Images = [s, s2, s3];
 const branch3Images = [v1, s]; // Fallback images for the new branch until specific ones are provided
-const heroSliderImages = [v1, s, v2, s2];
+const heroSliderImages = [v1, s10];
 
 const ImageSlider = ({ images }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
