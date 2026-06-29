@@ -5,6 +5,26 @@ import { menuData, branchData } from '../data/MenuData';
 
 import branch1Img from '../assets/images/v1.jpg';
 import branch2Img from '../assets/images/s.webp';
+import branch2Img2 from '../assets/images/s2.jpg';
+import branch2Img3 from '../assets/images/s3.jpg';
+import branch2Img4 from '../assets/images/s10.webp';
+
+const branch2SliderImages = [branch2Img, branch2Img2, branch2Img3, branch2Img4];
+
+const SimpleSlider = ({ images, alt }) => {
+  const [current, setCurrent] = React.useState(0);
+  React.useEffect(() => {
+    const timer = setInterval(() => setCurrent(i => (i + 1) % images.length), 3000);
+    return () => clearInterval(timer);
+  }, [images.length]);
+  return (
+    <div style={{ position: 'relative', width: '100%', height: '100%', overflow: 'hidden' }}>
+      {images.map((img, i) => (
+        <img key={i} src={img} alt={alt} style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: i === current ? 1 : 0, transition: 'opacity 0.8s ease-in-out' }} />
+      ))}
+    </div>
+  );
+};
 
 const fadeUpVariant = {
   hidden: { opacity: 0, y: 40 },
@@ -74,7 +94,9 @@ const BranchPage = () => {
           <motion.a whileTap={{ scale: 0.95 }} href={branch.mapLink} target="_blank" rel="noopener noreferrer" className="map-link-btn">Open in Google Maps</motion.a>
         </motion.div>
         <motion.div className="branch-header-image" variants={fadeUpVariant}>
-          {currentImage && <img src={currentImage} alt={branch.name} />}
+          {branchId === 'chinnapanahalli'
+            ? <SimpleSlider images={branch2SliderImages} alt={branch.name} />
+            : currentImage && <img src={currentImage} alt={branch.name} />}
         </motion.div>
       </motion.header>
 
