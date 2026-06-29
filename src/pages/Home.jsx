@@ -256,10 +256,17 @@ const Home = () => {
           }}
           modules={[EffectCreative, Pagination]}
           className="branches-swiper mobile-only"
+          onClick={(swiper, event) => {
+            const card = event.target.closest('.clickable-card');
+            if (card) {
+              const path = card.getAttribute('data-path');
+              if (path) navigate(path);
+            }
+          }}
         >
           {/* BRANCH 1: Marathahalli */}
           <SwiperSlide className="branch-swiper-slide">
-            <Link to="/branch/marathahalli" className="branch-card clickable-card" style={{ display: 'block', textDecoration: 'none', color: 'inherit' }}>
+            <div data-path="/branch/marathahalli" className="branch-card clickable-card" style={{ display: 'block', textDecoration: 'none', color: 'inherit', cursor: 'pointer' }}>
               <ImageSlider images={branch1Images} />
               <div className="branch-card-content">
                 <span className={`branch-badge ${isOpen ? 'active' : 'closed'}`}>
@@ -269,12 +276,12 @@ const Home = () => {
                 <p>182, Service Rd, Manjunatha Layout, Marathahalli</p>
                 <button className="view-branch-btn">View Menu</button>
               </div>
-            </Link>
+            </div>
           </SwiperSlide>
 
           {/* BRANCH 2: Chinnapanahalli */}
           <SwiperSlide className="branch-swiper-slide">
-            <Link to="/branch/chinnapanahalli" className="branch-card clickable-card" style={{ display: 'block', textDecoration: 'none', color: 'inherit' }}>
+            <div data-path="/branch/chinnapanahalli" className="branch-card clickable-card" style={{ display: 'block', textDecoration: 'none', color: 'inherit', cursor: 'pointer' }}>
               <ImageSlider images={branch2Images} />
               <div className="branch-card-content">
                 <span className={`branch-badge ${isOpen ? 'active' : 'closed'}`}>
@@ -284,7 +291,7 @@ const Home = () => {
                 <p>PRERANA Firewood Biryani - Chinnapanahalli</p>
                 <button className="view-branch-btn">View Menu</button>
               </div>
-            </Link>
+            </div>
           </SwiperSlide>
 
           {/* BRANCH 3: Opening Soon */}
