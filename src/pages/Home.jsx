@@ -300,7 +300,7 @@ const Home = () => {
 
         {/* MOBILE SWIPER VIEW */}
         <Swiper
-          slidesPerView={'auto'}
+          slidesPerView={1.3}
           centeredSlides={true}
           loop={true}
           spaceBetween={20}
