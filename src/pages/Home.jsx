@@ -144,7 +144,7 @@ const Home = () => {
           initial="hidden"
           animate="visible"
         >
-          <motion.h1 className="product-hero-title" variants={fadeUpVariant}>Hyderabadi Dum Biryani</motion.h1>
+          <motion.h1 className="product-hero-title" variants={fadeUpVariant}>Prerana Firewood Biryani</motion.h1>
           <motion.p className="product-hero-subtitle" variants={fadeUpVariant}>Cooked on firewood. Experience the rich, traditional flavors crafted with passion.</motion.p>
           <motion.div className="hero-actions" variants={fadeUpVariant}>
             <Link to="/#locations" className="product-hero-btn primary">Find a Branch</Link>

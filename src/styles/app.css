@@ -966,7 +966,7 @@ body {
 
   /* Enhance Mobile Hero Image */
   .hero-background-wrapper {
-    background-color: #3b1c14; /* Matches the dark maroon of the sign */
+    background-color: #3b1c14;
   }
 
   .product-hero-media {
@@ -974,20 +974,40 @@ body {
   }
 
   .product-hero {
-    min-height: 65vh;
+    min-height: 80vh;
+    align-items: flex-end;
+    padding-bottom: 1.5rem;
+    padding-left: 5%;
+    padding-right: 5%;
   }
 
   .product-hero-overlay {
-    /* Dark at the very top for the status bar and gap, clear for the sign, dark at the bottom for text */
-    background: linear-gradient(180deg, rgba(17, 17, 17, 0.85) 0%, rgba(17, 17, 17, 0.3) 15%, rgba(17, 17, 17, 0.95) 80%);
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.05) 0%,
+      rgba(0, 0, 0, 0.1) 30%,
+      rgba(0, 0, 0, 0.6) 60%,
+      rgba(0, 0, 0, 0.92) 100%
+    );
+  }
+
+  .product-hero-content {
+    align-items: center;
+    text-align: center;
+    margin-top: 0;
+    width: 100%;
   }
 
   .product-hero-title {
-    font-size: clamp(2.5rem, 8vw, 3.5rem);
+    font-size: clamp(2.2rem, 9vw, 3rem);
+    letter-spacing: -0.5px;
+    margin-bottom: 0.8rem;
   }
 
   .product-hero-subtitle {
-    font-size: 1.1rem;
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    color: rgba(255,255,255,0.85);
   }
 
   .menu-items-grid {
@@ -997,10 +1017,29 @@ body {
   .hero-actions {
     flex-direction: column;
     width: 100%;
+    gap: 0.9rem;
   }
 
   .product-hero-btn {
     width: 100%;
+    padding: 1rem 1.5rem;
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+
+  .product-hero-btn.primary {
+    background: linear-gradient(135deg, #ff6b35 0%, #d84315 100%);
+    box-shadow: 0 6px 25px rgba(216, 67, 21, 0.55);
+    border: none;
+  }
+
+  .product-hero-btn.secondary {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1.5px solid rgba(255, 255, 255, 0.5);
+    color: #fff;
   }
   
   .branch-page {
@@ -1028,5 +1067,90 @@ body {
   
   .menu-title {
     font-size: 2rem;
+  }
+
+  /* Find Us section mobile improvements */
+  .locations-section {
+    padding: 3rem 5% 2rem;
+    align-items: center;
+    text-align: center;
+  }
+
+  .locations-title {
+    font-size: 2.2rem;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 0.6rem;
+  }
+
+  .locations-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #ff6b35, #d84315);
+    border-radius: 2px;
+  }
+
+  /* ===== FIND US SECTION - MOBILE REDESIGN ===== */
+
+  /* Warm background to distinguish section */
+  .locations-section {
+    background: #fdf6f0;
+    padding: 2.5rem 0 2rem;
+  }
+
+  /* Tighter gap between title and cards */
+  .locations-title {
+    margin-bottom: 1.2rem;
+  }
+
+  /* Wider card swiper with proper peek of next card */
+  .branches-swiper {
+    padding-top: 10px !important;
+    padding-bottom: 30px !important;
+  }
+
+  .branch-swiper-slide {
+    width: 88% !important;
+    max-width: 400px;
+  }
+
+  /* Card image taller on mobile */
+  .branch-swiper-slide .slider-container,
+  .branch-swiper-slide .image-placeholder {
+    height: 220px;
+  }
+
+  /* Compact card text area — centered */
+  .branch-swiper-slide .branch-card-content {
+    padding: 1.2rem 1.4rem;
+    align-items: center;
+    text-align: center;
+  }
+
+  .branch-swiper-slide .branch-card-content h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .branch-swiper-slide .branch-card-content p {
+    font-size: 0.88rem;
+    color: #666;
+    margin-bottom: 0.8rem;
+  }
+
+  .branch-swiper-slide .branch-badge {
+    margin-bottom: 0.6rem;
+    font-size: 0.75rem;
+    padding: 0.3rem 0.9rem;
+  }
+
+  .branch-swiper-slide .view-branch-btn {
+    font-size: 0.9rem;
+    padding: 0.6rem 1.6rem;
   }
 }
