@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, EffectCoverflow, Pagination, EffectFade } from 'swiper/modules';
+import { Autoplay, EffectCoverflow, Pagination, EffectFade, EffectCreative } from 'swiper/modules';
 import 'swiper/css';
-import 'swiper/css/effect-coverflow';
+import 'swiper/css/effect-creative';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-fade';
 
@@ -82,8 +82,35 @@ const staggerContainer = {
   visible: { opacity: 1, transition: { staggerChildren: 0.2 } }
 };
 
+const useStoreStatus = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    const checkStatus = () => {
+      const now = new Date();
+      // Use IST time zone
+      const istTime = new Date(now.toLocaleString("en-US", {timeZone: "Asia/Kolkata"}));
+      const hours = istTime.getHours();
+      
+      // Open from 11:00 AM to 11:00 PM (11 to 23)
+      if (hours >= 11 && hours < 23) {
+        setIsOpen(true);
+      } else {
+        setIsOpen(false);
+      }
+    };
+    
+    checkStatus();
+    const interval = setInterval(checkStatus, 60000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return isOpen;
+};
+
 const Home = () => {
   const navigate = useNavigate();
+  const isOpen = useStoreStatus();
   const { hash } = useLocation();
 
   // Scroll to hash elements automatically
@@ -175,9 +202,11 @@ const Home = () => {
         >
           <motion.div variants={fadeUpVariant} whileHover={{ y: -5 }} whileTap={{ scale: 0.98 }} className="branch-card clickable-card" onClick={() => navigate('/branch/marathahalli')}>
             <ImageSlider images={branch1Images} />
-            <div className="branch-card-content">
-              <span className="branch-badge active">Now Open</span>
-              <h3>Marathahalli Branch</h3>
+              <div className="branch-card-content">
+                <span className={`branch-badge ${isOpen ? 'active' : 'closed'}`}>
+                  {isOpen ? 'Now Open' : 'Opens at 11:00 AM'}
+                </span>
+                <h3>Marathahalli Branch</h3>
               <p>182, Service Rd, Manjunatha Layout, Marathahalli, Bengaluru, Karnataka 560037</p>
               <button className="view-branch-btn">View Menu & Details</button>
             </div>
@@ -185,9 +214,11 @@ const Home = () => {
 
           <motion.div variants={fadeUpVariant} whileHover={{ y: -5 }} whileTap={{ scale: 0.98 }} className="branch-card clickable-card" onClick={() => navigate('/branch/chinnapanahalli')}>
             <ImageSlider images={branch2Images} />
-            <div className="branch-card-content">
-              <span className="branch-badge active">Now Open</span>
-              <h3>Chinnapanahalli Branch</h3>
+              <div className="branch-card-content">
+                <span className={`branch-badge ${isOpen ? 'active' : 'closed'}`}>
+                  {isOpen ? 'Now Open' : 'Opens at 11:00 AM'}
+                </span>
+                <h3>Chinnapanahalli Branch</h3>
               <p>PRERANA Firewood Biryani - Chinnapanahalli, Bengaluru</p>
               <button className="view-branch-btn">View Menu & Details</button>
             </div>
@@ -207,19 +238,23 @@ const Home = () => {
 
         {/* MOBILE SWIPER VIEW */}
         <Swiper
-          effect={'coverflow'}
+          effect={'creative'}
           grabCursor={true}
           centeredSlides={true}
           slidesPerView={'auto'}
           loop={true}
-          coverflowEffect={{
-            rotate: 0,
-            stretch: 0,
-            depth: 100,
-            modifier: 2,
-            slideShadows: false,
+          creativeEffect={{
+            limitProgress: 2,
+            prev: {
+              translate: ['-75%', 0, -200],
+              opacity: 0.35,
+            },
+            next: {
+              translate: ['75%', 0, -200],
+              opacity: 0.35,
+            },
           }}
-          modules={[EffectCoverflow, Pagination]}
+          modules={[EffectCreative, Pagination]}
           className="branches-swiper mobile-only"
         >
           {/* BRANCH 1: Marathahalli */}
@@ -227,7 +262,9 @@ const Home = () => {
             <div className="branch-card clickable-card">
               <ImageSlider images={branch1Images} />
               <div className="branch-card-content">
-                <span className="branch-badge active">Now Open</span>
+                <span className={`branch-badge ${isOpen ? 'active' : 'closed'}`}>
+                  {isOpen ? 'Now Open' : 'Opens at 11:00 AM'}
+                </span>
                 <h3>Marathahalli Branch</h3>
                 <p>182, Service Rd, Manjunatha Layout, Marathahalli</p>
                 <button className="view-branch-btn">View Menu</button>
@@ -240,7 +277,9 @@ const Home = () => {
             <div className="branch-card clickable-card">
               <ImageSlider images={branch2Images} />
               <div className="branch-card-content">
-                <span className="branch-badge active">Now Open</span>
+                <span className={`branch-badge ${isOpen ? 'active' : 'closed'}`}>
+                  {isOpen ? 'Now Open' : 'Opens at 11:00 AM'}
+                </span>
                 <h3>Chinnapanahalli Branch</h3>
                 <p>PRERANA Firewood Biryani - Chinnapanahalli</p>
                 <button className="view-branch-btn">View Menu</button>
