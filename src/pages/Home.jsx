@@ -258,8 +258,8 @@ const Home = () => {
           className="branches-swiper mobile-only"
         >
           {/* BRANCH 1: Marathahalli */}
-          <SwiperSlide className="branch-swiper-slide" onClick={() => navigate('/branch/marathahalli')}>
-            <div className="branch-card clickable-card">
+          <SwiperSlide className="branch-swiper-slide">
+            <div className="branch-card clickable-card" onClick={() => navigate('/branch/marathahalli')}>
               <ImageSlider images={branch1Images} />
               <div className="branch-card-content">
                 <span className={`branch-badge ${isOpen ? 'active' : 'closed'}`}>
@@ -273,8 +273,8 @@ const Home = () => {
           </SwiperSlide>
 
           {/* BRANCH 2: Chinnapanahalli */}
-          <SwiperSlide className="branch-swiper-slide" onClick={() => navigate('/branch/chinnapanahalli')}>
-            <div className="branch-card clickable-card">
+          <SwiperSlide className="branch-swiper-slide">
+            <div className="branch-card clickable-card" onClick={() => navigate('/branch/chinnapanahalli')}>
               <ImageSlider images={branch2Images} />
               <div className="branch-card-content">
                 <span className={`branch-badge ${isOpen ? 'active' : 'closed'}`}>
