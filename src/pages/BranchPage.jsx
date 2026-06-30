@@ -184,9 +184,22 @@ const BranchPage = () => {
         <h2 className="menu-title" style={{ marginTop: '2rem' }}>What Our Customers Say</h2>
         <div className="reviews-grid">
           {[
-            { text: "Best firewood biryani in town! The flavor is incredible and the meat is super tender.", author: "Priya S." },
-            { text: "Great ambiance and excellent service. The Dum Biryani is an absolute must-try.", author: "Rahul M." },
-            { text: "Authentic taste! I always bring my family here for the weekends.", author: "Ankit V." }
+            { 
+              text: "If you’re a true biryani lover, this place is a must-visit! The authentic firewood-cooked aroma itself sets the mood... The biryani is perfectly spiced, flavorful, and cooked to perfection. One of the best spots for proper, traditional firewood biryani. 🔥🍗", 
+              author: "Pavan Kalyan Munduru" 
+            },
+            { 
+              text: "Biryani is super delicious worth for the money that you spent. Enough quantity for a single person. Highly recommend to try boneless chicken biryani.", 
+              author: "Harsha Vardhan" 
+            },
+            { 
+              text: "Biryani is nice, maintenance and service is excellent and tasty is 😋", 
+              author: "Sivada Nikhil Reddy" 
+            },
+            { 
+              text: "We ordered guntur briyani it was good and service was fab .", 
+              author: "B Vaishnavi" 
+            }
           ].map((review, idx) => (
             <motion.div 
               key={idx} 
