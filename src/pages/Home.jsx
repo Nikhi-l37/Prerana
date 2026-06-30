@@ -420,7 +420,7 @@ const Home = () => {
             <h3>Contact Information</h3>
             <p><strong>Email:</strong> Preranafirewoodbiryani@gmail.com</p>
             <p><strong>Phone:</strong> 8884523789, 8886097771</p>
-            <p><strong>Open Hours:</strong> 12:00 PM - 11:00 PM</p>
+            <p><strong>Open Hours:</strong> 11:00 AM - 11:00 PM</p>
           </motion.div>
           <motion.form variants={fadeUpVariant} className="contact-form" onSubmit={handleContactSubmit}>
             <input type="text" name="name" placeholder="Your Name" required />
