@@ -1087,7 +1087,7 @@ body {
   .branch-header-image img {
     height: 100%;
     width: 100%;
-    object-fit: cover;
+    object-fit: contain;
     object-position: center; /* Adjust this if the entrance is cut off on left/right */
     background: #fdf6f0;
   }
