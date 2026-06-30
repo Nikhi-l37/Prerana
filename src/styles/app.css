@@ -1096,14 +1096,13 @@ body {
   
   .branch-header-image {
     order: -1; /* Image on top */
-    height: auto;
-    max-height: 300px;
+    height: 250px;
   }
   .branch-header-image img {
-    height: auto;
-    max-height: 300px;
+    height: 100%;
     width: 100%;
-    object-fit: contain;
+    object-fit: cover;
+    object-position: right center; /* Keeps the stairs on the right in view */
     background: #fdf6f0;
   }
   
