@@ -25,9 +25,9 @@ import s10 from '../assets/images/s10.webp';
 import logoImg from '../assets/images/logo.webp';
 
 const branch1Images = [v1, v2, v];
-const branch2Images = [s, s2, s3, s10];
+const branch2Images = [s, s2, s3];
 const branch3Images = [v1, s]; // Fallback images for the new branch until specific ones are provided
-const heroSliderImages = [v1, s10];
+const heroSliderImages = [v1, s];
 
 const ImageSlider = ({ images }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
