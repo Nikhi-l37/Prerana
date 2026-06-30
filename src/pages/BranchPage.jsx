@@ -165,23 +165,25 @@ const BranchPage = () => {
               variants={staggerContainer}
             >
               <motion.h3 className="category-title" variants={fadeUpVariant}>{categoryName}</motion.h3>
-              <div className="menu-items-grid">
-                {items.map((item, idx) => (
-                  <motion.div key={idx} className="menu-item-card" variants={fadeUpVariant}>
-                    <div className="menu-item-info">
-                      <h4>{item.name} - ₹{item.price}</h4>
-                      <ul className="menu-item-desc">
-                        <li>Authentic preparation</li>
-                        <li>Secret spice blend</li>
-                        <li>Fresh ingredients</li>
-                      </ul>
-                    </div>
-                    <div className="menu-item-image-placeholder">
-                      {/* Placeholder for future images */}
-                      <span>{item.name} Image Coming Soon</span>
-                    </div>
-                  </motion.div>
-                ))}
+              <div className="menu-table-container">
+                <table className="menu-table">
+                  <thead>
+                    <tr>
+                      <th>Dish Name</th>
+                      <th>Description</th>
+                      <th className="price-col">Price</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {items.map((item, idx) => (
+                      <motion.tr key={idx} variants={fadeUpVariant}>
+                        <td className="dish-name-cell">{item.name}</td>
+                        <td className="desc-cell">Authentic preparation, secret spice blend, fresh ingredients</td>
+                        <td className="price-cell">₹{item.price}</td>
+                      </motion.tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
             </motion.div>
           ))
