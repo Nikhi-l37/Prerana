@@ -1082,7 +1082,14 @@ body {
   
   .branch-header-image {
     order: -1; /* Image on top */
-    height: 250px;
+    height: auto;
+    max-height: 300px;
+  }
+  .branch-header-image img {
+    height: auto;
+    max-height: 300px;
+    object-fit: contain;
+    background: #fdf6f0;
   }
   
   .branch-header-content {
