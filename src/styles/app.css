@@ -1082,13 +1082,13 @@ body {
   
   .branch-header-image {
     order: -1; /* Image on top */
-    height: auto;
-    max-height: 300px;
+    height: 220px;
   }
   .branch-header-image img {
-    height: auto;
-    max-height: 300px;
-    object-fit: contain;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center; /* Adjust this if the entrance is cut off on left/right */
     background: #fdf6f0;
   }
   
