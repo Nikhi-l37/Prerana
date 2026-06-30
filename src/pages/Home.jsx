@@ -322,21 +322,20 @@ const Home = () => {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
         >
-          <motion.div variants={fadeUpVariant} className="review-card">
-            <div className="stars">★★★★★</div>
-            <p className="review-text">"Absolutely the best authentic firewood biryani I have ever tasted! The aroma is incredible and the meat is so tender."</p>
-            <p className="review-author">- Rahul S.</p>
-          </motion.div>
-          <motion.div variants={fadeUpVariant} className="review-card">
-            <div className="stars">★★★★★</div>
-            <p className="review-text">"Great ambiance and mouth-watering starters. Highly recommend the Guntur Chicken Dry!"</p>
-            <p className="review-author">- Priya M.</p>
-          </motion.div>
-          <motion.div variants={fadeUpVariant} className="review-card">
-            <div className="stars">★★★★★</div>
-            <p className="review-text">"The true taste of tradition. I drive from across town just for their Dum Biryani. Worth every penny."</p>
-            <p className="review-author">- Ankit V.</p>
-          </motion.div>
+          {[
+            { text: "Biryani is nice , maintenance and service is excellent and tasty is 😋", author: "Sivada Nikhil Reddy" },
+            { text: "Biryani is super delicious worth for the money that you spent. Enough quantity for a single person. Highly recommend to try boneless chicken biryani with glass bottle 7up or Pepsi.", author: "Harsha Vardhan" },
+            { text: "If you’re a true biryani lover, this place is a must-visit! The authentic firewood-cooked aroma itself sets the mood before you even take the first bite. The biryani is perfectly spiced, flavorful, and cooked to perfection with tender, juicy pieces. The quantity is satisfying, pricing is reasonable, and the taste feels authentic and homely. The staff is polite and service is quick even during busy hours. One of the best spots in Marathahalli for proper, traditional firewood biryani. Definitely coming back again! 🔥🍗", author: "Pavan Kalyan Munduru" },
+            { text: "We had dinner here and the taste of food was good and budget friendly.", author: "Vinay Kumar" },
+            { text: "We ordered guntur briyani it was good and service was fab .", author: "B Vaishnavi" },
+            { text: "Must Visit for Biryani Lovers. Visited 1st time & its all worth.", author: "Mouneesha P" }
+          ].map((review, idx) => (
+            <motion.div key={idx} variants={fadeUpVariant} className="review-card">
+              <div className="stars">★★★★★</div>
+              <p className="review-text">"{review.text}"</p>
+              <p className="review-author">- {review.author}</p>
+            </motion.div>
+          ))}
         </motion.div>
 
         {/* MOBILE SWIPER VIEW */}
@@ -352,49 +351,22 @@ const Home = () => {
           modules={[Autoplay]}
           className="reviews-swiper mobile-only"
         >
-          <SwiperSlide className="review-swiper-slide">
-            <div className="review-card">
-              <div className="stars">★★★★★</div>
-              <p className="review-text">"Absolutely the best authentic firewood biryani I have ever tasted! The aroma is incredible and the meat is so tender."</p>
-              <p className="review-author">- Rahul S.</p>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide className="review-swiper-slide">
-            <div className="review-card">
-              <div className="stars">★★★★★</div>
-              <p className="review-text">"Great ambiance and mouth-watering starters. Highly recommend the Guntur Chicken Dry!"</p>
-              <p className="review-author">- Priya M.</p>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide className="review-swiper-slide">
-            <div className="review-card">
-              <div className="stars">★★★★★</div>
-              <p className="review-text">"The true taste of tradition. I drive from across town just for their Dum Biryani. Worth every penny."</p>
-              <p className="review-author">- Ankit V.</p>
-            </div>
-          </SwiperSlide>
-          {/* Duplicated slides to ensure Swiper loop works flawlessly on auto-play */}
-          <SwiperSlide className="review-swiper-slide">
-            <div className="review-card">
-              <div className="stars">★★★★★</div>
-              <p className="review-text">"Absolutely the best authentic firewood biryani I have ever tasted! The aroma is incredible and the meat is so tender."</p>
-              <p className="review-author">- Rahul S.</p>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide className="review-swiper-slide">
-            <div className="review-card">
-              <div className="stars">★★★★★</div>
-              <p className="review-text">"Great ambiance and mouth-watering starters. Highly recommend the Guntur Chicken Dry!"</p>
-              <p className="review-author">- Priya M.</p>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide className="review-swiper-slide">
-            <div className="review-card">
-              <div className="stars">★★★★★</div>
-              <p className="review-text">"The true taste of tradition. I drive from across town just for their Dum Biryani. Worth every penny."</p>
-              <p className="review-author">- Ankit V.</p>
-            </div>
-          </SwiperSlide>
+          {[
+            { text: "Biryani is nice , maintenance and service is excellent and tasty is 😋", author: "Sivada Nikhil Reddy" },
+            { text: "Biryani is super delicious worth for the money that you spent. Enough quantity for a single person. Highly recommend to try boneless chicken biryani with glass bottle 7up or Pepsi.", author: "Harsha Vardhan" },
+            { text: "If you’re a true biryani lover, this place is a must-visit! The authentic firewood-cooked aroma itself sets the mood before you even take the first bite. The biryani is perfectly spiced, flavorful, and cooked to perfection with tender, juicy pieces. The quantity is satisfying, pricing is reasonable, and the taste feels authentic and homely. The staff is polite and service is quick even during busy hours. One of the best spots in Marathahalli for proper, traditional firewood biryani. Definitely coming back again! 🔥🍗", author: "Pavan Kalyan Munduru" },
+            { text: "We had dinner here and the taste of food was good and budget friendly.", author: "Vinay Kumar" },
+            { text: "We ordered guntur briyani it was good and service was fab .", author: "B Vaishnavi" },
+            { text: "Must Visit for Biryani Lovers. Visited 1st time & its all worth.", author: "Mouneesha P" }
+          ].map((review, idx) => (
+            <SwiperSlide key={idx} className="review-swiper-slide">
+              <div className="review-card">
+                <div className="stars">★★★★★</div>
+                <p className="review-text">"{review.text}"</p>
+                <p className="review-author">- {review.author}</p>
+              </div>
+            </SwiperSlide>
+          ))}
         </Swiper>
       </section>
 
