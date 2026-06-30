@@ -14,7 +14,7 @@ import s3 from '../assets/images/s3.jpg';
 import s10 from '../assets/images/s10.webp';
 
 const branch1Images = [v1, v2, v];
-const branch2Images = [s, s2, s3];
+const branch2Images = [s, s2, s3, s10];
 
 const fadeUpVariant = {
   hidden: { opacity: 0, y: 40 },
