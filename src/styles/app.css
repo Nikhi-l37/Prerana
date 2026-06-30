@@ -415,6 +415,7 @@ body {
   opacity: 0.5;
   transform: scale(0.9);
   transition: all 0.4s ease;
+  height: auto;
 }
 
 .review-swiper-slide.swiper-slide-active {
@@ -792,6 +793,9 @@ body {
   border-radius: 12px;
   text-align: center;
   box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .stars {
@@ -805,6 +809,7 @@ body {
   color: #555;
   margin-bottom: 1.5rem;
   line-height: 1.6;
+  flex-grow: 1;
 }
 
 .review-author {
