@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { menuData, branchData } from '../data/MenuData';
 
 import branch1Img from '../assets/images/v1.jpg';
-import branch2Img4 from '../assets/images/s10.webp';
+import branch2Img4 from '../assets/images/s11_rotated.webp';
 
 const fadeUpVariant = {
   hidden: { opacity: 0, y: 40 },
