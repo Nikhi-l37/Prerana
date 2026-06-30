@@ -127,15 +127,6 @@ const BranchPage = () => {
         
         {/* Sticky Filter Bar */}
         <div className="menu-filters-container">
-          <div className="search-bar-wrapper">
-            <input 
-              type="text" 
-              className="menu-search-input" 
-              placeholder="Search for a dish... (e.g. Chicken, Paneer)" 
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-          </div>
           <div className="category-chips-wrapper">
             {categories.map(cat => (
               <button 
@@ -170,7 +161,6 @@ const BranchPage = () => {
                   <thead>
                     <tr>
                       <th>Dish Name</th>
-                      <th>Description</th>
                       <th className="price-col">Price</th>
                     </tr>
                   </thead>
@@ -178,7 +168,6 @@ const BranchPage = () => {
                     {items.map((item, idx) => (
                       <motion.tr key={idx} variants={fadeUpVariant}>
                         <td className="dish-name-cell">{item.name}</td>
-                        <td className="desc-cell">Authentic preparation, secret spice blend, fresh ingredients</td>
                         <td className="price-cell">₹{item.price}</td>
                       </motion.tr>
                     ))}

@@ -719,20 +719,14 @@ body {
   font-weight: 700;
   font-size: 1.15rem;
   color: #111 !important;
-  width: 30%;
-}
-
-.desc-cell {
-  color: #666 !important;
-  font-size: 0.95rem;
-  width: 55%;
+  width: 75%;
 }
 
 .price-cell {
   font-weight: 700;
   font-size: 1.2rem;
   color: #d84315 !important;
-  width: 15%;
+  width: 25%;
   text-align: right;
 }
 
