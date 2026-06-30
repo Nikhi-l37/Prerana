@@ -178,6 +178,31 @@ const BranchPage = () => {
           ))
         )}
       </section>
+
+      {/* Branch Reviews Section */}
+      <section className="branch-reviews-section" style={{ paddingBottom: '4rem' }}>
+        <h2 className="menu-title" style={{ marginTop: '2rem' }}>What Our Customers Say</h2>
+        <div className="reviews-grid">
+          {[
+            { text: "Best firewood biryani in town! The flavor is incredible and the meat is super tender.", author: "Priya S." },
+            { text: "Great ambiance and excellent service. The Dum Biryani is an absolute must-try.", author: "Rahul M." },
+            { text: "Authentic taste! I always bring my family here for the weekends.", author: "Ankit V." }
+          ].map((review, idx) => (
+            <motion.div 
+              key={idx} 
+              className="review-card"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-50px" }}
+              variants={fadeUpVariant}
+            >
+              <div className="stars">★★★★★</div>
+              <p className="review-text">"{review.text}"</p>
+              <p className="review-author">- {review.author}</p>
+            </motion.div>
+          ))}
+        </div>
+      </section>
     </div>
   );
 };
