@@ -685,7 +685,6 @@ body {
   width: 100%;
   border-collapse: collapse;
   text-align: left;
-  min-width: 600px; /* forces scroll on small screens */
 }
 
 .menu-table th, .menu-table td {
@@ -866,15 +865,10 @@ body {
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* --- MENU FILTERS (Sticky Bar) --- */
+/* --- MENU FILTERS (Normal flow) --- */
 .menu-filters-container {
-  position: sticky;
-  top: 90px; /* Accounts for navbar height */
-  z-index: 50;
-  background: rgba(248, 249, 250, 0.95);
-  backdrop-filter: blur(10px);
   padding: 1rem 0;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   border-bottom: 1px solid rgba(0,0,0,0.05);
 }
 
