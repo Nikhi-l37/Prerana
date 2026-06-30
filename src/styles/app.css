@@ -777,6 +777,15 @@ body {
   background: #f8f9fa;
 }
 
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  padding: 0 5%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 .review-card {
   background: #f8f9fa;
   padding: 2rem;
