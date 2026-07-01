@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, EffectCoverflow, Pagination, EffectFade, EffectCreative } from 'swiper/modules';
 import 'swiper/css';
@@ -407,47 +407,56 @@ const Home = () => {
       </section>
 
       {/* REVIEW MODAL */}
-      {selectedReview && (
-        <div 
-          className="review-modal-overlay" 
-          style={{
-            position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
-            backgroundColor: 'rgba(0,0,0,0.6)', zIndex: 9999,
-            display: 'flex', justifyContent: 'center', alignItems: 'center',
-            padding: '20px'
-          }}
-          onClick={() => setSelectedReview(null)}
-        >
-          <div 
-            className="review-card"
-            style={{ 
-              maxWidth: '500px', width: '100%', maxHeight: '80vh', overflowY: 'auto',
-              backgroundColor: '#fff', borderRadius: '15px', padding: '30px',
-              position: 'relative', margin: '0'
+      <AnimatePresence>
+        {selectedReview && (
+          <motion.div 
+            className="review-modal-overlay" 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            style={{
+              position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
+              backgroundColor: 'rgba(0,0,0,0.6)', zIndex: 9999,
+              display: 'flex', justifyContent: 'center', alignItems: 'center',
+              padding: '20px'
             }}
-            onClick={(e) => e.stopPropagation()}
+            onClick={() => setSelectedReview(null)}
           >
-            <div className="stars">★★★★★</div>
-            <p className="review-text" style={{ whiteSpace: 'pre-wrap', marginBottom: '20px', flexGrow: 0 }}>
-              "{selectedReview.text}"
-            </p>
-            <p className="review-author" style={{ fontWeight: 'bold' }}>- {selectedReview.author}</p>
-            <div style={{ textAlign: 'center', marginTop: '20px' }}>
-              <button 
-                onClick={() => setSelectedReview(null)}
-                style={{ 
-                  background: 'none', border: 'none', color: '#d84315', 
-                  fontWeight: 'bold', cursor: 'pointer', fontSize: '1rem',
-                  padding: '10px 20px', borderRadius: '5px',
-                  border: '2px solid #d84315'
-                }}
-              >
-                Close
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+            <motion.div 
+              className="review-card"
+              initial={{ scale: 0.8, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.8, opacity: 0, y: 20 }}
+              transition={{ type: "spring", damping: 25, stiffness: 300 }}
+              style={{ 
+                maxWidth: '500px', width: '100%', maxHeight: '80vh', overflowY: 'auto',
+                backgroundColor: '#fff', borderRadius: '15px', padding: '30px',
+                position: 'relative', margin: '0'
+              }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="stars">★★★★★</div>
+              <p className="review-text" style={{ whiteSpace: 'pre-wrap', marginBottom: '20px', flexGrow: 0 }}>
+                "{selectedReview.text}"
+              </p>
+              <p className="review-author" style={{ fontWeight: 'bold' }}>- {selectedReview.author}</p>
+              <div style={{ textAlign: 'center', marginTop: '20px' }}>
+                <button 
+                  onClick={() => setSelectedReview(null)}
+                  style={{ 
+                    background: 'none', color: '#d84315', 
+                    fontWeight: 'bold', cursor: 'pointer', fontSize: '1rem',
+                    padding: '10px 20px', borderRadius: '5px',
+                    border: '2px solid #d84315'
+                  }}
+                >
+                  Close
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }
