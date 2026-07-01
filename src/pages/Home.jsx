@@ -117,8 +117,7 @@ const REVIEWS = [
   { text: "Must Visit for Biryani Lovers. Visited 1st time & its all worth.", author: "Mouneesha P" }
 ];
 
-const ReviewCard = ({ review, isMobile }) => {
-  const [expanded, setExpanded] = useState(false);
+const ReviewCard = ({ review, onMoreClick }) => {
   const MAX_LENGTH = 110;
   const shouldTruncate = review.text.length > MAX_LENGTH;
   
@@ -126,13 +125,13 @@ const ReviewCard = ({ review, isMobile }) => {
     <div className="review-card" style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
       <div className="stars">★★★★★</div>
       <p className="review-text" style={{ flexGrow: 1, whiteSpace: 'pre-wrap' }}>
-        "{expanded ? review.text : (shouldTruncate ? review.text.slice(0, MAX_LENGTH) + "..." : review.text)}"
+        "{shouldTruncate ? review.text.slice(0, MAX_LENGTH) + "..." : review.text}"
         {shouldTruncate && (
           <span 
-            onClick={() => setExpanded(!expanded)} 
+            onClick={() => onMoreClick(review)} 
             style={{ color: '#d84315', cursor: 'pointer', fontWeight: 'bold', marginLeft: '5px' }}
           >
-            {expanded ? "less" : "more"}
+            more
           </span>
         )}
       </p>
@@ -147,6 +146,7 @@ const Home = () => {
   const navigate = useNavigate();
   const isOpen = useStoreStatus();
   const { hash } = useLocation();
+  const [selectedReview, setSelectedReview] = useState(null);
 
   // Scroll to hash elements automatically
   useEffect(() => {
@@ -347,7 +347,7 @@ const Home = () => {
         >
           {REVIEWS.map((review, idx) => (
             <motion.div key={idx} variants={fadeUpVariant} style={{ height: '100%' }}>
-              <ReviewCard review={review} />
+              <ReviewCard review={review} onMoreClick={setSelectedReview} />
             </motion.div>
           ))}
         </motion.div>
@@ -367,7 +367,7 @@ const Home = () => {
         >
           {REVIEWS.map((review, idx) => (
             <SwiperSlide key={idx} className="review-swiper-slide">
-              <ReviewCard review={review} />
+              <ReviewCard review={review} onMoreClick={setSelectedReview} />
             </SwiperSlide>
           ))}
         </Swiper>
@@ -406,6 +406,48 @@ const Home = () => {
         </motion.div>
       </section>
 
+      {/* REVIEW MODAL */}
+      {selectedReview && (
+        <div 
+          className="review-modal-overlay" 
+          style={{
+            position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
+            backgroundColor: 'rgba(0,0,0,0.6)', zIndex: 9999,
+            display: 'flex', justifyContent: 'center', alignItems: 'center',
+            padding: '20px'
+          }}
+          onClick={() => setSelectedReview(null)}
+        >
+          <div 
+            className="review-card"
+            style={{ 
+              maxWidth: '500px', width: '100%', maxHeight: '80vh', overflowY: 'auto',
+              backgroundColor: '#fff', borderRadius: '15px', padding: '30px',
+              position: 'relative', margin: '0'
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="stars">★★★★★</div>
+            <p className="review-text" style={{ whiteSpace: 'pre-wrap', marginBottom: '20px', flexGrow: 0 }}>
+              "{selectedReview.text}"
+            </p>
+            <p className="review-author" style={{ fontWeight: 'bold' }}>- {selectedReview.author}</p>
+            <div style={{ textAlign: 'center', marginTop: '20px' }}>
+              <button 
+                onClick={() => setSelectedReview(null)}
+                style={{ 
+                  background: 'none', border: 'none', color: '#d84315', 
+                  fontWeight: 'bold', cursor: 'pointer', fontSize: '1rem',
+                  padding: '10px 20px', borderRadius: '5px',
+                  border: '2px solid #d84315'
+                }}
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }
