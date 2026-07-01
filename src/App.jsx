@@ -158,6 +158,7 @@ function App() {
           <div className="developer-credit">
             <span className="powered-by">DEVELOPED BY</span>
             <span className="dev-name">SIVADA NIKHIL REDDY</span>
+            <a href="mailto:s.nikhilreddy3446@gmail.com" className="dev-email">s.nikhilreddy3446@gmail.com</a>
           </div>
         </div>
       </footer>

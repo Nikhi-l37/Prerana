@@ -1452,6 +1452,20 @@ body {
   letter-spacing: 0.5px;
 }
 
+.dev-email {
+  font-size: 0.8rem;
+  color: #d84315;
+  text-decoration: none;
+  margin-top: 4px;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.dev-email:hover {
+  color: #bf360c;
+  text-decoration: underline;
+}
+
 @media (max-width: 768px) {
   .footer-bottom {
     flex-direction: column;
@@ -1460,6 +1474,6 @@ body {
   }
   .developer-credit {
     text-align: center;
-    margin-top: 0.5rem;
+    margin-top: 1.5rem;
   }
 }
