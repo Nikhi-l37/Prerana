@@ -171,7 +171,7 @@
 
 body {
   font-family: 'Inter', -apple-system, sans-serif;
-  background-color: #f8f9fa;
+  background-color: #ffebd6; /* A softer, perfect middle-ground light orange */
   color: #111;
   overflow-x: hidden;
 }
@@ -252,20 +252,20 @@ body {
 
 .product-hero-title {
   font-size: clamp(3rem, 6vw, 5rem);
-  color: #ffffff;
+  color: #111111;
   margin-bottom: 1.5rem;
   line-height: 1.1;
   font-weight: 900;
-  text-shadow: 2px 4px 10px rgba(0,0,0,0.3);
+  text-shadow: none;
 }
 
 .product-hero-subtitle {
   font-size: clamp(1.1rem, 2.5vw, 1.4rem);
-  color: #e0e0e0;
+  color: #444444;
   margin-bottom: 3rem;
   line-height: 1.6;
   max-width: 600px;
-  text-shadow: 1px 2px 5px rgba(0,0,0,0.5);
+  text-shadow: none;
 }
 
 .hero-actions {
@@ -317,13 +317,13 @@ body {
 /* --- SECONDARY (Clear glass) --- */
 .product-hero-btn.secondary {
   background: transparent;
-  color: #fff;
-  border: 2px solid #fff;
+  color: #d84315;
+  border: 2px solid #d84315;
 }
 
 .product-hero-btn.secondary:hover {
-  background: #fff;
-  color: #111;
+  background: rgba(216, 67, 21, 0.1);
+  color: #d84315;
   transform: translateY(-2px);
 }
 
@@ -763,7 +763,7 @@ body {
 
 .reviews-section {
   padding: 5rem 0;
-  background: #f0f0f0; /* Darkened from #fafafa for better contrast against white cards */
+  background: transparent;
 }
 
 .reviews-grid {
@@ -775,7 +775,7 @@ body {
 
 .contact-section {
   padding: 6rem 5%;
-  background: #f8f9fa;
+  background: transparent;
 }
 
 .reviews-grid {
@@ -1061,7 +1061,7 @@ body {
   .product-hero-subtitle {
     font-size: 1rem;
     margin-bottom: 2rem;
-    color: rgba(255,255,255,0.85);
+    color: #444444;
   }
 
   .menu-items-grid {
@@ -1089,11 +1089,9 @@ body {
   }
 
   .product-hero-btn.secondary {
-    background: rgba(255, 255, 255, 0.12);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1.5px solid rgba(255, 255, 255, 0.5);
-    color: #fff;
+    background: transparent;
+    border: 2px solid #d84315;
+    color: #d84315;
   }
   
   .branch-page {
@@ -1158,9 +1156,9 @@ body {
 
   /* ===== FIND US SECTION - MOBILE REDESIGN ===== */
 
-  /* Warm background to distinguish section */
+  /* Warm background removed so body color shows */
   .locations-section {
-    background: #fdf6f0;
+    background: transparent;
     padding: 2.5rem 0 2rem;
   }
 
@@ -1222,14 +1220,14 @@ body {
 
   /* ===== ORANGE THEME - REVIEWS & CONTACT (Mobile Only) ===== */
 
-  /* Alternating warm backgrounds */
+  /* Alternating warm backgrounds removed so body color shows */
   .reviews-section {
-    background: #ffffff; /* Clean white */
+    background: transparent;
     padding: 3rem 0;
   }
   
   .contact-section {
-    background: #fdf6f0; /* Warm cream */
+    background: transparent;
     padding: 4rem 5%;
   }
 

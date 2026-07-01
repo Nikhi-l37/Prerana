@@ -146,36 +146,24 @@ const Home = () => {
   return (
     <>
       {/* HERO SECTION */}
-      <header className="product-hero" id="home">
-        <div className="hero-background-wrapper">
-          <Swiper
-            modules={[Autoplay, EffectFade]}
-            effect="fade"
-            autoplay={{ delay: 3500, disableOnInteraction: false }}
-            loop={true}
-            allowTouchMove={false}
-            className="hero-swiper"
-          >
-            {heroSliderImages.map((imgSrc, idx) => (
-              <SwiperSlide key={idx} className="hero-swiper-slide">
-                <img src={imgSrc} alt={`Hero Background ${idx + 1}`} className="product-hero-media" />
-              </SwiperSlide>
-            ))}
-          </Swiper>
-          <div className="product-hero-overlay"></div>
-        </div>
-
+      <header className="product-hero" id="home" style={{ minHeight: '80vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         <motion.div 
           className="product-hero-content"
           variants={staggerContainer}
           initial="hidden"
           animate="visible"
+          style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', marginTop: '4rem' }}
         >
-          <motion.h1 className="product-hero-title" variants={fadeUpVariant}>Prerana Firewood Biryani</motion.h1>
-          <motion.p className="product-hero-subtitle" variants={fadeUpVariant}>Cooked on firewood. Experience the rich, traditional flavors crafted with passion.</motion.p>
-          <motion.div className="hero-actions" variants={fadeUpVariant}>
+          <motion.img 
+            src={logoImg} 
+            alt="Prerana Firewood Biryani Logo" 
+            style={{ width: '70%', maxWidth: '250px', height: 'auto', dropShadow: '0 10px 20px rgba(0,0,0,0.1)', marginBottom: '2rem' }}
+            variants={fadeUpVariant}
+          />
+          <motion.p className="product-hero-subtitle" variants={fadeUpVariant}>Cooked on firewood. Experience the rich, traditional flavors crafted with passion. Discover the authentic taste of true biryani.</motion.p>
+          <motion.div className="hero-actions" variants={fadeUpVariant} style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center', flexWrap: 'wrap' }}>
             <Link to="/branches" className="product-hero-btn primary">Find a Branch</Link>
-            <Link to="/#reviews" className="product-hero-btn secondary">Read Reviews</Link>
+            <Link to="/#contact" className="product-hero-btn secondary">Contact Us</Link>
           </motion.div>
         </motion.div>
       </header>
