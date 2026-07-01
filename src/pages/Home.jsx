@@ -108,6 +108,45 @@ const useStoreStatus = () => {
   return isOpen;
 };
 
+const REVIEWS = [
+  { text: "Biryani is nice , maintenance and service is excellent and tasty is 😋", author: "Sivada Nikhil Reddy" },
+  { text: "Biryani is super delicious worth for the money that you spent. Enough quantity for a single person. Highly recommend to try boneless chicken biryani with glass bottle 7up or Pepsi.", author: "Harsha Vardhan" },
+  { text: "If you’re a true biryani lover, this place is a must-visit! The authentic firewood-cooked aroma itself sets the mood before you even take the first bite. The biryani is perfectly spiced, flavorful, and cooked to perfection with tender, juicy pieces. The quantity is satisfying, pricing is reasonable, and the taste feels authentic and homely. The staff is polite and service is quick even during busy hours. One of the best spots in Marathahalli for proper, traditional firewood biryani. Definitely coming back again! 🔥🍗", author: "Pavan Kalyan Munduru" },
+  { text: "We had dinner here and the taste of food was good and budget friendly.", author: "Vinay Kumar" },
+  { text: "We ordered guntur briyani it was good and service was fab .", author: "B Vaishnavi" },
+  { text: "Must Visit for Biryani Lovers. Visited 1st time & its all worth.", author: "Mouneesha P" }
+];
+
+const ReviewCard = ({ review, isMobile }) => {
+  const [expanded, setExpanded] = useState(false);
+  const MAX_LENGTH = 110;
+  const shouldTruncate = review.text.length > MAX_LENGTH;
+  
+  const content = (
+    <div className="review-card" style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+      <div className="stars">★★★★★</div>
+      <p className="review-text" style={{ flexGrow: 1, whiteSpace: 'pre-wrap' }}>
+        "{expanded ? review.text : (shouldTruncate ? review.text.slice(0, MAX_LENGTH) + "..." : review.text)}"
+        {shouldTruncate && (
+          <span 
+            onClick={() => setExpanded(!expanded)} 
+            style={{ color: '#d84315', cursor: 'pointer', fontWeight: 'bold', marginLeft: '5px' }}
+          >
+            {expanded ? "less" : "more"}
+          </span>
+        )}
+      </p>
+      <p className="review-author" style={{ marginTop: 'auto' }}>- {review.author}</p>
+    </div>
+  );
+
+  if (isMobile) {
+    return <SwiperSlide className="review-swiper-slide">{content}</SwiperSlide>;
+  }
+
+  return <motion.div variants={fadeUpVariant} style={{ height: '100%' }}>{content}</motion.div>;
+};
+
 const Home = () => {
   const navigate = useNavigate();
   const isOpen = useStoreStatus();
@@ -310,18 +349,8 @@ const Home = () => {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
         >
-          {[
-            { text: "Biryani is nice , maintenance and service is excellent and tasty is 😋", author: "Sivada Nikhil Reddy" },
-            { text: "Biryani is super delicious worth for the money that you spent. Enough quantity for a single person. Highly recommend to try boneless chicken biryani with glass bottle 7up or Pepsi.", author: "Harsha Vardhan" },
-            { text: "We had dinner here and the taste of food was good and budget friendly.", author: "Vinay Kumar" },
-            { text: "We ordered guntur briyani it was good and service was fab .", author: "B Vaishnavi" },
-            { text: "Must Visit for Biryani Lovers. Visited 1st time & its all worth.", author: "Mouneesha P" }
-          ].map((review, idx) => (
-            <motion.div key={idx} variants={fadeUpVariant} className="review-card">
-              <div className="stars">★★★★★</div>
-              <p className="review-text">"{review.text}"</p>
-              <p className="review-author">- {review.author}</p>
-            </motion.div>
+          {REVIEWS.map((review, idx) => (
+            <ReviewCard key={idx} review={review} isMobile={false} />
           ))}
         </motion.div>
 
@@ -338,21 +367,8 @@ const Home = () => {
           modules={[Autoplay]}
           className="reviews-swiper mobile-only"
         >
-          {[
-            { text: "Biryani is nice , maintenance and service is excellent and tasty is 😋", author: "Sivada Nikhil Reddy" },
-            { text: "Biryani is super delicious worth for the money that you spent. Enough quantity for a single person. Highly recommend to try boneless chicken biryani with glass bottle 7up or Pepsi.", author: "Harsha Vardhan" },
-            { text: "If you’re a true biryani lover, this place is a must-visit! The authentic firewood-cooked aroma itself sets the mood before you even take the first bite. The biryani is perfectly spiced, flavorful, and cooked to perfection with tender, juicy pieces. The quantity is satisfying, pricing is reasonable, and the taste feels authentic and homely. The staff is polite and service is quick even during busy hours. One of the best spots in Marathahalli for proper, traditional firewood biryani. Definitely coming back again! 🔥🍗", author: "Pavan Kalyan Munduru" },
-            { text: "We had dinner here and the taste of food was good and budget friendly.", author: "Vinay Kumar" },
-            { text: "We ordered guntur briyani it was good and service was fab .", author: "B Vaishnavi" },
-            { text: "Must Visit for Biryani Lovers. Visited 1st time & its all worth.", author: "Mouneesha P" }
-          ].map((review, idx) => (
-            <SwiperSlide key={idx} className="review-swiper-slide">
-              <div className="review-card">
-                <div className="stars">★★★★★</div>
-                <p className="review-text">"{review.text}"</p>
-                <p className="review-author">- {review.author}</p>
-              </div>
-            </SwiperSlide>
+          {REVIEWS.map((review, idx) => (
+            <ReviewCard key={idx} review={review} isMobile={true} />
           ))}
         </Swiper>
       </section>
