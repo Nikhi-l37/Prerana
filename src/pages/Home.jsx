@@ -140,11 +140,7 @@ const ReviewCard = ({ review, isMobile }) => {
     </div>
   );
 
-  if (isMobile) {
-    return <SwiperSlide className="review-swiper-slide">{content}</SwiperSlide>;
-  }
-
-  return <motion.div variants={fadeUpVariant} style={{ height: '100%' }}>{content}</motion.div>;
+  return content;
 };
 
 const Home = () => {
@@ -350,7 +346,9 @@ const Home = () => {
           viewport={{ once: true, margin: "-100px" }}
         >
           {REVIEWS.map((review, idx) => (
-            <ReviewCard key={idx} review={review} isMobile={false} />
+            <motion.div key={idx} variants={fadeUpVariant} style={{ height: '100%' }}>
+              <ReviewCard review={review} />
+            </motion.div>
           ))}
         </motion.div>
 
@@ -368,7 +366,9 @@ const Home = () => {
           className="reviews-swiper mobile-only"
         >
           {REVIEWS.map((review, idx) => (
-            <ReviewCard key={idx} review={review} isMobile={true} />
+            <SwiperSlide key={idx} className="review-swiper-slide">
+              <ReviewCard review={review} />
+            </SwiperSlide>
           ))}
         </Swiper>
       </section>
