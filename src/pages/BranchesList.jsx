@@ -5,16 +5,10 @@ import BranchCard from '../components/BranchCard';
 import logoImg from '../assets/images/logo.webp';
 
 import v1 from '../assets/images/v1.jpg';
-import v2 from '../assets/images/v2.jpg';
-import v from '../assets/images/v.jpg';
-
 import s from '../assets/images/s11_rotated.webp';
-import s2 from '../assets/images/s2.jpg';
-import s3 from '../assets/images/s3.jpg';
-import s10 from '../assets/images/s10.webp';
 
-const branch1Images = [v1, v2, v];
-const branch2Images = [s, s2, s3, s10];
+const branch1Images = [v1];
+const branch2Images = [s];
 
 const fadeUpVariant = {
   hidden: { opacity: 0, y: 40 },
