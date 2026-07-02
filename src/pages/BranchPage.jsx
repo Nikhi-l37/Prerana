@@ -2,9 +2,19 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { menuData, branchData } from '../data/MenuData';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay } from 'swiper/modules';
+import 'swiper/css';
 
-import branch1Img from '../assets/images/v1.jpg';
-import branch2Img4 from '../assets/images/s11_rotated.webp';
+import v1 from '../assets/images/v1.jpg';
+import v2 from '../assets/images/v2.jpg';
+import v from '../assets/images/v.jpg';
+import v10 from '../assets/images/v10.webp';
+
+import s from '../assets/images/s11_rotated.webp';
+import s2 from '../assets/images/s2.jpg';
+import s3 from '../assets/images/s3.jpg';
+import s10 from '../assets/images/s10.webp';
 
 const fadeUpVariant = {
   hidden: { opacity: 0, y: 40 },
@@ -25,10 +35,16 @@ const BranchPage = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
 
   const branchImages = {
-    marathahalli: branch1Img,
-    chinnapanahalli: branch2Img4
+    marathahalli: v1,
+    chinnapanahalli: s
   };
   const currentImage = branchImages[branchId];
+  
+  const branchGalleries = {
+    marathahalli: [v10, v2, v],
+    chinnapanahalli: [s2, s3, s10]
+  };
+  const galleryImages = branchGalleries[branchId];
 
   // Scroll to top on mount
   useEffect(() => {
@@ -121,6 +137,54 @@ const BranchPage = () => {
           className="branch-map-iframe">
         </iframe>
       </motion.section>
+
+      {/* GALLERY SECTION (Swiper Auto-Loop) */}
+      {galleryImages && galleryImages.length > 0 && (
+        <section 
+          className="branch-gallery-section"
+          style={{ 
+            padding: '2rem 0', 
+            background: 'transparent', 
+            maxWidth: '1200px', 
+            margin: '0 auto',
+            paddingBottom: '4rem'
+          }}
+        >
+          <Swiper
+            breakpoints={{
+              0: { slidesPerView: 1, spaceBetween: 15 },
+              768: { slidesPerView: 1.5, spaceBetween: 20 },
+              1024: { slidesPerView: 2.2, spaceBetween: 30 }
+            }}
+            centeredSlides={true}
+            loop={true}
+            autoplay={{
+              delay: 2000,
+              disableOnInteraction: false,
+            }}
+            modules={[Autoplay]}
+            className="branch-gallery-swiper"
+            style={{ padding: '20px 0' }}
+          >
+            {[...galleryImages, ...galleryImages].map((img, idx) => (
+              <SwiperSlide key={idx} className="review-swiper-slide">
+                <img 
+                  src={img} 
+                  alt={`${branch.name} gallery ${idx + 1}`} 
+                  style={{ 
+                    width: '100%', 
+                    height: '340px', 
+                    borderRadius: '15px', 
+                    objectFit: 'cover', 
+                    boxShadow: '0 8px 16px rgba(0,0,0,0.15)',
+                    display: 'block'
+                  }}
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </section>
+      )}
 
       <section className="branch-menu-section">
         <h2 className="menu-title">Our Menu</h2>
