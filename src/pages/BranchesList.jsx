@@ -11,7 +11,7 @@ import new2 from '../assets/images/new2.webp';
 
 const branch1Images = [v1];
 const branch2Images = [s];
-const branch3Images = [new1, new2];
+const branch3Images = [new2];
 
 const fadeUpVariant = {
   hidden: { opacity: 0, y: 40 },

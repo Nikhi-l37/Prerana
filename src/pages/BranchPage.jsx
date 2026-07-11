@@ -40,7 +40,7 @@ const BranchPage = () => {
   const branchImages = {
     marathahalli: v1,
     chinnapanahalli: s,
-    thanisandra: new1
+    thanisandra: new2
   };
   const currentImage = branchImages[branchId];
   

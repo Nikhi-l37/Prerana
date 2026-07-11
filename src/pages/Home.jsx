@@ -30,7 +30,7 @@ import logoImg from '../assets/images/logo.webp';
 
 const branch1Images = [v1];
 const branch2Images = [s];
-const branch3Images = [new1, new2];
+const branch3Images = [new2];
 const heroSliderImages = [v1, s10];
 
 const ImageSlider = ({ images }) => {
