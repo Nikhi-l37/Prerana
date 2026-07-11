@@ -6,9 +6,12 @@ import logoImg from '../assets/images/logo.webp';
 
 import v1 from '../assets/images/v1.jpg';
 import s from '../assets/images/s11_rotated.webp';
+import new1 from '../assets/images/new1.webp';
+import new2 from '../assets/images/new2.webp';
 
 const branch1Images = [v1];
 const branch2Images = [s];
+const branch3Images = [new1, new2];
 
 const fadeUpVariant = {
   hidden: { opacity: 0, y: 40 },
@@ -124,8 +127,10 @@ const BranchesList = () => {
           <motion.div variants={fadeUpVariant}>
             <BranchCard 
               name="Thanisandra Branch"
-              address="SH 104, Ashwath Nagar, Thanisandra, Bengaluru, Karnataka 560077"
-              isComingSoon={true}
+              address="PRERANA FIREWOOD BIRYANI, SH 104, Ashwath Nagar, Thanisandra, Bengaluru, Karnataka 560077"
+              images={branch3Images}
+              path="/branch/thanisandra"
+              isOpen={isOpen}
             />
           </motion.div>
         </motion.div>

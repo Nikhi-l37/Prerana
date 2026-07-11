@@ -16,6 +16,9 @@ import s2 from '../assets/images/s2.jpg';
 import s3 from '../assets/images/s3.jpg';
 import s10 from '../assets/images/s10.webp';
 
+import new1 from '../assets/images/new1.webp';
+import new2 from '../assets/images/new2.webp';
+
 const fadeUpVariant = {
   hidden: { opacity: 0, y: 40 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
@@ -36,13 +39,15 @@ const BranchPage = () => {
 
   const branchImages = {
     marathahalli: v1,
-    chinnapanahalli: s
+    chinnapanahalli: s,
+    thanisandra: new1
   };
   const currentImage = branchImages[branchId];
   
   const branchGalleries = {
     marathahalli: [v10, v2, v],
-    chinnapanahalli: [s2, s3, s10]
+    chinnapanahalli: [s2, s3, s10],
+    thanisandra: [new1, new2]
   };
   const galleryImages = branchGalleries[branchId];
 
