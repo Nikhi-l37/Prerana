@@ -18,6 +18,10 @@ import s from '../assets/images/s11_rotated.webp';
 import s2 from '../assets/images/s2.jpg';
 import s3 from '../assets/images/s3.jpg';
 
+// Branch 3 Images
+import new1 from '../assets/images/new1.webp';
+import new2 from '../assets/images/new2.webp';
+
 // Home Hero Image
 import s10 from '../assets/images/s10.webp';
 
@@ -26,7 +30,7 @@ import logoImg from '../assets/images/logo.webp';
 
 const branch1Images = [v1];
 const branch2Images = [s];
-const branch3Images = [v1, s]; // Fallback images for the new branch until specific ones are provided
+const branch3Images = [new2];
 const heroSliderImages = [v1, s10];
 
 const ImageSlider = ({ images }) => {
@@ -249,14 +253,16 @@ const Home = () => {
             </div>
           </motion.div>
 
-          <motion.div variants={fadeUpVariant} className="branch-card">
-            <div className="image-placeholder soon-placeholder">
-              <span>More goodness coming...</span>
-            </div>
-            <div className="branch-card-content">
-              <span className="branch-badge soon">Opening Soon</span>
-              <h3>Thanisandra Branch</h3>
-              <p>SH 104, Ashwath Nagar, Thanisandra, Bengaluru, Karnataka 560077</p>
+          <motion.div variants={fadeUpVariant} whileHover={{ y: -5 }} whileTap={{ scale: 0.98 }}>
+            <div className="branch-card">
+              <ImageSlider images={branch3Images} />
+              <div className="branch-card-content">
+                <span className={`branch-badge ${isOpen ? 'active' : 'closed'}`}>
+                  {isOpen ? 'Now Open' : 'Opens at 11:00 AM'}
+                </span>
+                <h3>Thanisandra Branch</h3>
+                <p>PRERANA FIREWOOD BIRYANI, SH 104, Ashwath Nagar, Thanisandra, Bengaluru, Karnataka 560077</p>
+              </div>
             </div>
           </motion.div>
         </motion.div>
@@ -309,16 +315,16 @@ const Home = () => {
             </div>
           </SwiperSlide>
 
-          {/* BRANCH 3: Opening Soon */}
+          {/* BRANCH 3: Thanisandra */}
           <SwiperSlide className="branch-swiper-slide">
-            <div className="branch-card">
-              <div className="image-placeholder soon-placeholder">
-                <span>More goodness coming...</span>
-              </div>
+            <div className="branch-card" style={{ display: 'flex', flexDirection: 'column', textDecoration: 'none', color: 'inherit' }}>
+              <ImageSlider images={branch3Images} />
               <div className="branch-card-content">
-                <span className="branch-badge soon">Opening Soon</span>
+                <span className={`branch-badge ${isOpen ? 'active' : 'closed'}`}>
+                  {isOpen ? 'Now Open' : 'Opens at 11:00 AM'}
+                </span>
                 <h3>Thanisandra Branch</h3>
-                <p>SH 104, Ashwath Nagar, Thanisandra, Bengaluru, Karnataka 560077</p>
+                <p>PRERANA FIREWOOD BIRYANI, SH 104, Ashwath Nagar, Thanisandra</p>
               </div>
             </div>
           </SwiperSlide>
