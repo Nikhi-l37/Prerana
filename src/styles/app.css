@@ -1318,6 +1318,35 @@ body {
   }
 }
 
+/* --- DESKTOP NAV LINKS --- */
+.desktop-nav-links {
+  display: none;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .desktop-nav-links {
+    display: flex;
+  }
+}
+
+.desktop-nav-link {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #2c1e16;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  letter-spacing: 0.01em;
+}
+
+.desktop-nav-link:hover {
+  color: #e64a19;
+}
+
 /* --- HEADER BRANCHES BUTTON (Glassmorphism + Moving Orange Border) --- */
 .header-branches-btn {
   display: inline-block;
@@ -1364,6 +1393,12 @@ body {
 .header-branches-btn-text {
   position: relative;
   z-index: 2;
+}
+
+/* Smaller size for the desktop navbar version */
+.header-branches-btn--desktop {
+  padding: 0.45rem 1.1rem;
+  font-size: 0.9rem;
 }
 
 @media (hover: hover) {
