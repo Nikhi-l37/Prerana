@@ -114,16 +114,16 @@ function App() {
         </div>
 
         {/* Desktop View: Full Navigation */}
-        <ul className="hidden md:flex gap-10 list-none m-0 p-0 items-center">
-          <li><Link to="/" className={`font-medium text-base transition-colors no-underline ${isScrolled ? 'text-gray-800 hover:text-[#d84315]' : 'text-white hover:text-gray-300'}`}>Home</Link></li>
+        <ul className="desktop-nav-links">
+          <li><Link to="/" className="desktop-nav-link">Home</Link></li>
           <li>
-            <Link to="/branches" className="header-branches-btn">
+            <Link to="/branches" className="header-branches-btn header-branches-btn--desktop">
               <span className="header-branches-btn-border"><span className="header-branches-btn-rotator"></span></span>
               <span className="header-branches-btn-text">Our Branches</span>
             </Link>
           </li>
-          <li><Link to="/#reviews" className={`font-medium text-base transition-colors no-underline ${isScrolled ? 'text-gray-800 hover:text-[#d84315]' : 'text-white hover:text-gray-300'}`}>Reviews</Link></li>
-          <li><Link to="/#contact" className={`font-medium text-base transition-colors no-underline ${isScrolled ? 'text-gray-800 hover:text-[#d84315]' : 'text-white hover:text-gray-300'}`}>Contact</Link></li>
+          <li><Link to="/#reviews" className="desktop-nav-link">Reviews</Link></li>
+          <li><Link to="/#contact" className="desktop-nav-link">Contact</Link></li>
         </ul>
       </nav>
 
