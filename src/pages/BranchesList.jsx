@@ -75,7 +75,7 @@ const BranchesList = () => {
 
       <section className="locations-section" style={{ padding: '2rem 0', background: 'transparent' }}>
         <motion.div 
-          className="branches-page-grid px-5 md:px-[5%]"
+          className="grid grid-cols-[repeat(auto-fit,minmax(320px,1fr))] gap-10 w-full px-5 md:px-[5%]"
           variants={staggerContainer}
           initial="hidden"
           animate="visible"
