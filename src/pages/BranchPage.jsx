@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { menuData, branchData } from '../data/MenuData';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
 import 'swiper/css';
+import MenuBook from '../components/MenuBook';
 
 import v1 from '../assets/images/v1.jpg';
 import v2 from '../assets/images/v2.jpg';
@@ -32,8 +33,6 @@ const BranchPage = () => {
   const branch = branchData[branchId];
   const navigate = useNavigate();
 
-  const [selectedCategory, setSelectedCategory] = useState('All');
-
   const branchImages = { marathahalli: v1, chinnapanahalli: s, thanisandra: new2 };
   const currentImage = branchImages[branchId];
 
@@ -56,13 +55,6 @@ const BranchPage = () => {
       </div>
     );
   }
-
-  const categories = ['All', ...Object.keys(menuData)];
-
-  const filteredMenu = Object.entries(menuData).map(([categoryName, items]) => {
-    if (selectedCategory !== 'All' && categoryName !== selectedCategory) return [categoryName, []];
-    return [categoryName, items];
-  }).filter(([_, items]) => items.length > 0);
 
   return (
     <div className="pt-[75px] px-[5%] pb-8">
@@ -167,85 +159,9 @@ const BranchPage = () => {
         </section>
       )}
 
-      {/* Menu Section */}
-      <section className="mb-16">
-        <h2 className="text-center text-[2.5rem] mb-12 pb-4 border-b-2 border-gray-200 font-bold" style={{ color: '#a0522d' }}>
-          Our Menu
-        </h2>
-
-        {/* Category Filter Chips */}
-        <div className="mb-4 border-b border-black/5">
-          <div className="flex gap-4 px-[5%] py-2 overflow-x-auto scrollbar-hide" style={{ WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none' }}>
-            {categories.map(cat => (
-              <button
-                key={cat}
-                onClick={() => setSelectedCategory(cat)}
-                className={`px-6 py-2 rounded-badge text-[0.95rem] font-semibold cursor-pointer whitespace-nowrap transition-all duration-300 border flex-shrink-0
-                  ${selectedCategory === cat
-                    ? 'text-white border-transparent shadow-chip-active -translate-y-0.5 scale-[1.05]'
-                    : 'bg-white/85 backdrop-blur-[8px] border-black/5 text-[#555] hover:-translate-y-0.5 hover:scale-[1.05] hover:bg-white shadow-[0_4px_12px_rgba(44,30,22,0.03)]'
-                  }`}
-                style={selectedCategory === cat ? { background: 'linear-gradient(135deg, #d2691e 0%, #a0522d 100%)' } : {}}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Menu Tables */}
-        {filteredMenu.length === 0 ? (
-          <div className="text-center py-16 text-[#666]">
-            <p className="text-[1.2rem] mb-6">No dishes found.</p>
-            <button
-              onClick={() => setSelectedCategory('All')}
-              className="px-6 py-3 bg-[#111] text-white border-none rounded-md font-semibold cursor-pointer hover:bg-[#333] transition-colors"
-            >
-              Show All
-            </button>
-          </div>
-        ) : (
-          filteredMenu.map(([categoryName, items]) => (
-            <motion.div
-              key={categoryName}
-              className="mb-12"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: '-50px' }}
-              variants={staggerContainer}
-            >
-              <motion.h3
-                className="text-[1.8rem] mb-8 pl-4 border-l-4 font-bold"
-                style={{ color: '#2c1e16', borderColor: '#a0522d' }}
-                variants={fadeUpVariant}
-              >
-                {categoryName}
-              </motion.h3>
-              <div className="w-full overflow-x-auto bg-white rounded-card shadow-table mb-8">
-                <table className="w-full border-collapse text-left">
-                  <thead>
-                    <tr>
-                      <th className="px-6 py-5 border-b border-gray-100 font-bold text-[1.05rem] uppercase tracking-[0.5px] text-[#333]" style={{ background: '#fdf6f0' }}>Dish Name</th>
-                      <th className="px-6 py-5 border-b border-gray-100 font-bold text-[1.05rem] uppercase tracking-[0.5px] text-[#333] text-right" style={{ background: '#fdf6f0' }}>Price</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {items.map((item, idx) => (
-                      <motion.tr
-                        key={idx}
-                        className="border-b border-gray-50 transition-all duration-300 hover:bg-[#f9f4ec] hover:translate-x-1"
-                        variants={fadeUpVariant}
-                      >
-                        <td className="px-6 py-5 font-bold text-[1.15rem] w-3/4" style={{ color: '#2c1e16' }}>{item.name}</td>
-                        <td className="px-6 py-5 font-bold text-[1.2rem] w-1/4 text-right" style={{ color: '#a0522d' }}>₹{item.price}</td>
-                      </motion.tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </motion.div>
-          ))
-        )}
+      {/* Interactive 3D Book Menu Section */}
+      <section className="mb-16 mt-8">
+        <MenuBook menuData={menuData} />
       </section>
     </div>
   );
