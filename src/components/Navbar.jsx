@@ -9,11 +9,8 @@ const Navbar = () => {
   const location = useLocation();
   const isHomePage = location.pathname === '/';
 
-  // 'center' = logo visible at center, 'moving' = animating to navbar, 'done' = finished
   const [splash, setSplash] = useState(() => {
-    if (typeof window !== 'undefined' && sessionStorage.getItem('prerana_splash')) {
-      return 'done';
-    }
+    if (typeof window !== 'undefined' && sessionStorage.getItem('prerana_splash')) return 'done';
     return isHomePage ? 'center' : 'done';
   });
 
@@ -21,10 +18,7 @@ const Navbar = () => {
     if (splash === 'done') return;
     document.body.style.overflow = 'hidden';
     const timer = setTimeout(() => setSplash('moving'), 2500);
-    return () => {
-      clearTimeout(timer);
-      document.body.style.overflow = '';
-    };
+    return () => { clearTimeout(timer); document.body.style.overflow = ''; };
   }, [splash]);
 
   const handleAnimationEnd = useCallback((e) => {
@@ -42,11 +36,7 @@ const Navbar = () => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       setIsScrolled(currentScrollY > 100);
-      if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        setIsNavVisible(false);
-      } else {
-        setIsNavVisible(true);
-      }
+      setIsNavVisible(!(currentScrollY > lastScrollY && currentScrollY > 100));
       setLastScrollY(currentScrollY);
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -57,7 +47,7 @@ const Navbar = () => {
 
   return (
     <>
-      {/* SPLASH OVERLAY */}
+      {/* SPLASH OVERLAY — complex animation stays in CSS */}
       {showSplash && (
         <div className={`splash-overlay ${splash === 'moving' || splash === 'fading' ? 'splash-overlay--moving' : ''} ${splash === 'fading' ? 'splash-overlay--fading' : ''}`}>
           <div className={`splash-bg ${splash === 'moving' || splash === 'fading' ? 'splash-bg--hide' : ''}`} />
@@ -70,11 +60,14 @@ const Navbar = () => {
         </div>
       )}
 
-      {/* GLOBAL NAVBAR */}
+      {/* NAVBAR */}
       <nav
-        className={`fixed w-full top-0 z-[100] px-5 md:px-[5%] py-2 md:py-3 flex justify-between items-center transition-all duration-500 ease-in-out ${isScrolled ? 'bg-white/20 backdrop-blur-2xl border-b border-white/20 shadow-sm' : 'bg-transparent'} ${isNavVisible ? 'translate-y-0' : '-translate-y-full'}`}
+        className={`fixed w-full top-0 z-[100] px-5 md:px-[5%] py-2 md:py-3 flex justify-between items-center transition-all duration-500 ease-in-out
+          ${isScrolled ? 'bg-white/90 backdrop-blur-xl border-b border-white/20 shadow-navbar' : 'bg-transparent'}
+          ${isNavVisible ? 'translate-y-0' : '-translate-y-full'}`}
         style={{ contain: 'layout' }}
       >
+        {/* Logo */}
         <div className="flex items-center">
           <Link to="/" className="flex items-center no-underline">
             <img
@@ -85,7 +78,7 @@ const Navbar = () => {
           </Link>
         </div>
 
-        {/* Mobile View: Dedicated Branches Button */}
+        {/* Mobile: Branches Button only */}
         <div className="md:hidden flex items-center">
           <Link
             to="/branches"
@@ -97,17 +90,29 @@ const Navbar = () => {
           </Link>
         </div>
 
-        {/* Desktop View: Full Navigation */}
-        <ul className="desktop-nav-links">
-          <li><Link to="/" className="desktop-nav-link">Home</Link></li>
+        {/* Desktop: Full Nav */}
+        <ul className="hidden md:flex gap-10 list-none m-0 p-0 items-center">
+          <li>
+            <Link to="/" className="font-semibold text-[0.95rem] text-brown-base no-underline transition-colors duration-200 hover:text-terra-base" style={{ color: '#2c1e16' }}>
+              Home
+            </Link>
+          </li>
           <li>
             <Link to="/branches" className="header-branches-btn header-branches-btn--desktop">
               <span className="header-branches-btn-border"><span className="header-branches-btn-rotator"></span></span>
               <span className="header-branches-btn-text">Our Branches</span>
             </Link>
           </li>
-          <li><Link to="/#reviews" className="desktop-nav-link">Reviews</Link></li>
-          <li><Link to="/#contact" className="desktop-nav-link">Contact</Link></li>
+          <li>
+            <Link to="/#reviews" className="font-semibold text-[0.95rem] text-brown-base no-underline transition-colors duration-200 hover:text-terra-base" style={{ color: '#2c1e16' }}>
+              Reviews
+            </Link>
+          </li>
+          <li>
+            <Link to="/#contact" className="font-semibold text-[0.95rem] text-brown-base no-underline transition-colors duration-200 hover:text-terra-base" style={{ color: '#2c1e16' }}>
+              Contact
+            </Link>
+          </li>
         </ul>
       </nav>
     </>
