@@ -116,8 +116,8 @@ const MenuBook = ({ menuData }) => {
       
       <div className="shadow-2xl rounded-lg">
         <HTMLFlipBook
-          width={isMobile ? Math.min(windowWidth - 40, 400) : 450}
-          height={isMobile ? 600 : 680}
+          width={isMobile ? windowWidth - 16 : 480}
+          height={isMobile ? 650 : 720}
           size="stretch"
           minWidth={300}
           maxWidth={550}
@@ -133,26 +133,18 @@ const MenuBook = ({ menuData }) => {
           {/* 0. Front Cover (Right page) */}
           <PageCover />
 
-          {/* 1. Blank inner front cover (Left page) */}
-          <div className="page bg-[#ebd6c5] relative shadow-[inset_0_0_30px_rgba(0,0,0,0.1)]" data-density="hard">
-             <div className="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-black/20 to-transparent"></div>
-          </div>
-
-          {/* 2 to N. Menu Pages (Alternating Right/Left) */}
+          {/* 1 to N. Menu Pages (Alternating Left/Right) */}
           {pages.map((page, index) => (
             <Page 
               key={index} 
               title={page.title} 
               items={page.items} 
               number={page.number} 
-              isLeftPage={index % 2 !== 0} // index 0 is child 2 (Right), index 1 is child 3 (Left)
+              isLeftPage={index % 2 === 0} // index 0 is child 1 (Left), index 1 is child 2 (Right)
             />
           ))}
 
-          {/* N+1. Blank inner back cover (Right page) */}
-          <div className="page bg-[#ebd6c5] relative shadow-[inset_0_0_30px_rgba(0,0,0,0.1)]" data-density="hard">
-            <div className="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-black/20 to-transparent"></div>
-          </div>
+
 
           {/* N+2. Back Cover (Left page) */}
           <BackCover />
