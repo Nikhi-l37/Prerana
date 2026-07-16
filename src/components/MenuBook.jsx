@@ -21,7 +21,7 @@ const PageCover = React.forwardRef((props, ref) => {
 
 const Page = React.forwardRef(({ title, items, number, isLeftPage }, ref) => {
   return (
-    <div className={`page bg-[#fdfaf5] text-[#2c1e16] pt-8 pb-16 ${isLeftPage ? 'pl-6 pr-10 md:pl-8 md:pr-16' : 'pr-6 pl-10 md:pr-8 md:pl-16'} relative overflow-hidden`} ref={ref}>
+    <div className={`page bg-[#fdfaf5] text-[#2c1e16] pt-8 pb-20 ${isLeftPage ? 'pl-6 pr-10 md:pl-8 md:pr-16' : 'pr-6 pl-10 md:pr-8 md:pl-16'} relative overflow-hidden`} ref={ref}>
       {/* Paper texture overlay */}
       <div className="absolute inset-0 opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/aged-paper.png')]" style={{ backgroundSize: '300px' }}></div>
       
@@ -37,7 +37,7 @@ const Page = React.forwardRef(({ title, items, number, isLeftPage }, ref) => {
         
         <div className="flex-grow">
           {items && items.length > 0 ? (
-            <ul className="space-y-4">
+            <ul className="space-y-2">
               {items.map((item, idx) => (
                 <li key={idx} className="flex justify-between items-end border-b border-dashed border-[#2c1e16]/20 pb-1 hover:border-[#d84315]/50 transition-colors">
                   <span className="font-bold text-[1rem] md:text-[1.1rem] bg-[#fdfaf5] pr-2 relative top-[4px]">{item.name}</span>
@@ -52,9 +52,9 @@ const Page = React.forwardRef(({ title, items, number, isLeftPage }, ref) => {
           )}
         </div>
         
-        {/* Absolute positioned footer so it never shifts */}
-        <div className="absolute bottom-6 left-0 right-0 text-center text-sm font-bold text-[#888]">
-          - {number} -
+        {/* Absolute positioned footer on the right side */}
+        <div className={`absolute bottom-6 ${isLeftPage ? 'left-8 md:left-12' : 'right-8 md:right-12'} text-sm font-bold text-[#888]`}>
+          Page {number}
         </div>
       </div>
     </div>
