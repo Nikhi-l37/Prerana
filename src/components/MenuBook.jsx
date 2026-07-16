@@ -21,7 +21,7 @@ const PageCover = React.forwardRef((props, ref) => {
 
 const Page = React.forwardRef(({ title, items, number, isLeftPage }, ref) => {
   return (
-    <div className={`page bg-[#fdfaf5] text-[#2c1e16] py-10 ${isLeftPage ? 'pl-6 pr-10 md:pl-8 md:pr-16' : 'pr-6 pl-10 md:pr-8 md:pl-16'} relative overflow-hidden`} ref={ref}>
+    <div className={`page bg-[#fdfaf5] text-[#2c1e16] pt-8 pb-16 ${isLeftPage ? 'pl-6 pr-10 md:pl-8 md:pr-16' : 'pr-6 pl-10 md:pr-8 md:pl-16'} relative overflow-hidden`} ref={ref}>
       {/* Paper texture overlay */}
       <div className="absolute inset-0 opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/aged-paper.png')]" style={{ backgroundSize: '300px' }}></div>
       
@@ -52,7 +52,8 @@ const Page = React.forwardRef(({ title, items, number, isLeftPage }, ref) => {
           )}
         </div>
         
-        <div className="mt-auto text-center pt-4 text-sm font-semibold text-[#888]">
+        {/* Absolute positioned footer so it never shifts */}
+        <div className="absolute bottom-6 left-0 right-0 text-center text-sm font-bold text-[#888]">
           - {number} -
         </div>
       </div>
@@ -90,12 +91,20 @@ const MenuBook = ({ menuData }) => {
   const pages = [];
   let pageNum = 1;
   
+  const MAX_ITEMS = isMobile ? 11 : 12;
+  
   Object.entries(menuData).forEach(([category, items]) => {
-    // If a category has many items, split it into two pages
-    if (items.length > 11) {
-      const half = Math.ceil(items.length / 2);
-      pages.push({ title: `${category} (1/2)`, items: items.slice(0, half), number: pageNum++ });
-      pages.push({ title: `${category} (2/2)`, items: items.slice(half), number: pageNum++ });
+    if (items.length > MAX_ITEMS) {
+      for (let i = 0; i < items.length; i += MAX_ITEMS) {
+        const chunk = items.slice(i, i + MAX_ITEMS);
+        const partNum = Math.floor(i / MAX_ITEMS) + 1;
+        const totalParts = Math.ceil(items.length / MAX_ITEMS);
+        pages.push({
+          title: totalParts > 1 ? `${category} (${partNum}/${totalParts})` : category,
+          items: chunk,
+          number: pageNum++
+        });
+      }
     } else {
       pages.push({ title: category, items, number: pageNum++ });
     }
@@ -117,7 +126,7 @@ const MenuBook = ({ menuData }) => {
       <div className="shadow-2xl rounded-lg">
         <HTMLFlipBook
           width={isMobile ? windowWidth - 16 : 480}
-          height={isMobile ? 650 : 720}
+          height={isMobile ? 680 : 750}
           size="stretch"
           minWidth={300}
           maxWidth={550}
