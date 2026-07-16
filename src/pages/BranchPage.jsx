@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { menuData, branchData } from '../data/MenuData';
+import { branchMenus, branchData } from '../data/MenuData';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
 import 'swiper/css';
@@ -161,7 +161,7 @@ const BranchPage = () => {
 
       {/* Interactive 3D Book Menu Section */}
       <section className="mb-16 mt-8">
-        <MenuBook menuData={menuData} />
+        <MenuBook menuData={branchMenus[branchId] || branchMenus.marathahalli} />
       </section>
     </div>
   );
