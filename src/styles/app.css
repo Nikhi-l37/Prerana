@@ -345,3 +345,13 @@ body {
     box-shadow: 0 0 0 3px rgba(216,67,21,0.1);
   }
 }
+
+/* ── FLIPBOOK 3D FIXES ─────────────────────────────────────── */
+.stf__item, .page, .page-cover {
+  backface-visibility: hidden !important;
+  -webkit-backface-visibility: hidden !important;
+  transform-style: preserve-3d !important;
+}
+.stf__wrapper {
+  perspective: 2000px !important;
+}
