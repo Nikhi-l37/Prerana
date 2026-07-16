@@ -32,7 +32,7 @@ export const menuBranch1And2 = {
     { name: "Mushroom Pepper Dry", price: "140" },
     { name: "Mushroom Chilli", price: "140" }
   ],
-  "Biryani's": [
+  "Non Veg Biriyani's": [
     { name: "Hyderabad Dum Biryani", price: "180" },
     { name: "Chicken Guntur Biryani", price: "200" },
     { name: "Chicken Kabab Biryani", price: "200" },

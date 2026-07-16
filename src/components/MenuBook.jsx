@@ -5,21 +5,43 @@ import logo from '../assets/images/logo.webp';
 // Physical Page component
 const PageCover = React.forwardRef((props, ref) => {
   return (
-    <div className="page page-cover bg-[#2c1e16] text-white flex flex-col items-center justify-center p-8 relative border border-[#1a110c] shadow-[inset_0_0_50px_rgba(0,0,0,0.8)]" ref={ref} data-density="hard">
-      <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/dark-leather.png')]" style={{ backgroundSize: '200px' }}></div>
-      <div className="absolute left-0 top-0 bottom-0 w-10 bg-gradient-to-r from-black/80 to-transparent z-10"></div>
+    <div className="page page-cover bg-gradient-to-br from-[#fff7ed] via-[#ffedd5] to-[#fed7aa] text-[#2c1e16] flex flex-col items-center justify-center p-6 md:p-10 relative shadow-[inset_0_0_40px_rgba(216,67,21,0.2)]" ref={ref} data-density="hard">
+      {/* Paper texture overlay */}
+      <div className="absolute inset-0 opacity-[0.08] bg-[url('https://www.transparenttextures.com/patterns/aged-paper.png')]" style={{ backgroundSize: '300px' }}></div>
       
-      <div className="relative z-20 flex flex-col items-center justify-center h-full w-full border-2 border-[#e64a19]/30 rounded-lg p-6">
-        <img src={logo} alt="Prerana Logo" className="w-48 md:w-64 mb-12 drop-shadow-2xl" />
-        <h1 className="text-3xl md:text-5xl font-bold tracking-widest text-[#e64a19] uppercase text-center" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>Our Menu</h1>
-        <div className="w-16 h-1 bg-[#e64a19] mt-8 mb-4"></div>
-        <p className="text-[#a0522d] font-semibold tracking-widest uppercase text-sm md:text-base">Authentic Firewood Biryani</p>
+      {/* Spine shadow */}
+      <div className="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-black/20 via-black/5 to-transparent z-10"></div>
+      
+      {/* Elegant Inner Frame */}
+      <div className="relative z-20 flex flex-col items-center justify-center h-full w-full border border-[#d84315]/20 p-2 rounded-sm bg-white/30 backdrop-blur-[2px]">
+        <div className="flex flex-col items-center justify-center h-full w-full border-[3px] border-double border-[#d84315]/40 rounded-sm p-4 md:p-8 text-center relative overflow-hidden">
+          
+          {/* Subtle Glow behind logo */}
+          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-orange-400/20 blur-3xl rounded-full pointer-events-none"></div>
+
+          <img src={logo} alt="Prerana Logo" className="w-48 md:w-64 mb-10 drop-shadow-2xl relative z-10 transition-transform duration-700 hover:scale-105" />
+          
+          <div className="relative z-10 flex flex-col items-center">
+            <p className="text-[#d84315] text-xs md:text-sm tracking-[0.4em] font-bold mb-3 uppercase">Discover</p>
+            <h1 className="text-4xl md:text-5xl font-black tracking-[0.15em] text-[#9a3412] uppercase drop-shadow-md">Our Menu</h1>
+            
+            {/* Elegant flourish separator */}
+            <div className="flex items-center gap-3 mt-8 opacity-80">
+              <div className="w-12 md:w-16 h-[2px] bg-gradient-to-r from-transparent to-[#d84315]"></div>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#d84315" strokeWidth="1.5" className="rotate-45"><rect x="4" y="4" width="16" height="16"/></svg>
+              <div className="w-12 md:w-16 h-[2px] bg-gradient-to-l from-transparent to-[#d84315]"></div>
+            </div>
+            
+            <p className="mt-8 text-[#9a3412] tracking-[0.25em] uppercase text-[0.65rem] md:text-xs font-semibold opacity-90">Authentic & Crafted</p>
+          </div>
+
+        </div>
       </div>
     </div>
   );
 });
 
-const Page = React.forwardRef(({ title, items, number, isLeftPage }, ref) => {
+const Page = React.forwardRef(({ title, items, number, totalPages, isLeftPage }, ref) => {
   return (
     <div className={`page bg-[#fdfaf5] text-[#2c1e16] pt-8 pb-20 ${isLeftPage ? 'pl-6 pr-10 md:pl-8 md:pr-16' : 'pr-6 pl-10 md:pr-8 md:pl-16'} relative overflow-hidden`} ref={ref}>
       {/* Paper texture overlay */}
@@ -30,14 +52,14 @@ const Page = React.forwardRef(({ title, items, number, isLeftPage }, ref) => {
 
       <div className="relative z-20 h-full flex flex-col">
         {title && (
-          <div className="text-center mb-6 pb-4 border-b-2 border-[#d84315]/20">
+          <div className="text-center mb-3 pb-3 border-b-2 border-[#d84315]/20">
             <h2 className="text-2xl md:text-3xl font-bold text-[#d84315] uppercase tracking-wide m-0 leading-tight">{title}</h2>
           </div>
         )}
         
         <div className="flex-grow">
           {items && items.length > 0 ? (
-            <ul className="space-y-2">
+            <ul className="space-y-1">
               {items.map((item, idx) => (
                 <li key={idx} className="flex justify-between items-end border-b border-dashed border-[#2c1e16]/20 pb-1 hover:border-[#d84315]/50 transition-colors">
                   <span className="font-bold text-[1rem] md:text-[1.1rem] bg-[#fdfaf5] pr-2 relative top-[4px]">{item.name}</span>
@@ -51,11 +73,11 @@ const Page = React.forwardRef(({ title, items, number, isLeftPage }, ref) => {
             </div>
           )}
         </div>
-        
-        {/* Absolute positioned footer always on the right side */}
-        <div className="absolute bottom-6 right-8 md:right-12 text-sm font-bold text-[#888] text-right">
-          Page {number}
-        </div>
+      </div>
+      
+      {/* Absolute positioned footer always at the bottom right side */}
+      <div className="absolute bottom-4 right-6 md:bottom-6 md:right-8 text-sm font-bold text-[#888] z-30">
+        {number}/{totalPages}
       </div>
     </div>
   );
@@ -63,13 +85,18 @@ const Page = React.forwardRef(({ title, items, number, isLeftPage }, ref) => {
 
 const BackCover = React.forwardRef((props, ref) => {
   return (
-    <div className="page page-cover bg-[#2c1e16] text-white flex flex-col items-center justify-center p-8 relative border border-[#1a110c] shadow-[inset_0_0_50px_rgba(0,0,0,0.8)]" ref={ref} data-density="hard">
-      <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/dark-leather.png')]" style={{ backgroundSize: '200px' }}></div>
-      <div className="absolute right-0 top-0 bottom-0 w-10 bg-gradient-to-l from-black/80 to-transparent z-10"></div>
+    <div className="page page-cover bg-gradient-to-br from-[#fff7ed] via-[#ffedd5] to-[#fed7aa] text-[#2c1e16] flex flex-col items-center justify-center p-8 relative shadow-[inset_0_0_40px_rgba(216,67,21,0.2)]" ref={ref} data-density="hard">
+      {/* Paper texture overlay */}
+      <div className="absolute inset-0 opacity-[0.08] bg-[url('https://www.transparenttextures.com/patterns/aged-paper.png')]" style={{ backgroundSize: '300px' }}></div>
       
-      <div className="relative z-20 flex flex-col items-center justify-center text-center opacity-50">
-        <img src={logo} alt="Prerana Logo" className="w-32 mb-6 grayscale" />
-        <p className="tracking-widest uppercase text-sm">Thank you for dining with us</p>
+      {/* Spine shadow for back cover (Spine is on the right side of the inner left page) */}
+      <div className="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-black/20 via-black/5 to-transparent z-10"></div>
+      
+      <div className="relative z-20 flex flex-col items-center justify-center h-full w-full border border-[#d84315]/20 p-2 rounded-sm bg-white/30 backdrop-blur-[2px]">
+        <div className="flex flex-col items-center justify-center h-full w-full border-[3px] border-double border-[#d84315]/40 rounded-sm p-4 text-center opacity-80">
+          <img src={logo} alt="Prerana Logo" className="w-32 mb-6" />
+          <p className="tracking-[0.3em] font-semibold text-[#9a3412] uppercase text-sm">Thank you</p>
+        </div>
       </div>
     </div>
   );
@@ -91,7 +118,7 @@ const MenuBook = ({ menuData }) => {
   const pages = [];
   let pageNum = 1;
   
-  const MAX_ITEMS = isMobile ? 11 : 12;
+  const MAX_ITEMS = isMobile ? 10 : 11;
   
   Object.entries(menuData).forEach(([category, items]) => {
     if (items.length > MAX_ITEMS) {
@@ -111,6 +138,7 @@ const MenuBook = ({ menuData }) => {
   });
 
   // CRITICAL: A book must have an EVEN number of inner pages to close properly (left vs right parity).
+  // Total pages = 1 (Front) + EVEN (Inner) + 1 (Back) = EVEN total pages.
   if (pages.length % 2 !== 0) {
     pages.push({ title: "", items: [], number: pageNum++ });
   }
@@ -125,13 +153,13 @@ const MenuBook = ({ menuData }) => {
       
       <div className="shadow-2xl rounded-lg">
         <HTMLFlipBook
-          width={isMobile ? windowWidth - 16 : 480}
-          height={isMobile ? 680 : 750}
+          width={isMobile ? windowWidth - 16 : 560}
+          height={isMobile ? 720 : 800}
           size="stretch"
           minWidth={300}
-          maxWidth={550}
+          maxWidth={650}
           minHeight={500}
-          maxHeight={800}
+          maxHeight={850}
           maxShadowOpacity={0.5}
           showCover={true}
           mobileScrollSupport={true}
@@ -148,12 +176,11 @@ const MenuBook = ({ menuData }) => {
               key={index} 
               title={page.title} 
               items={page.items} 
-              number={page.number} 
+              number={page.number}
+              totalPages={pages.length}
               isLeftPage={index % 2 === 0} // index 0 is child 1 (Left), index 1 is child 2 (Right)
             />
           ))}
-
-
 
           {/* N+2. Back Cover (Left page) */}
           <BackCover />
