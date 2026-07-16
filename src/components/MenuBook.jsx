@@ -52,8 +52,8 @@ const Page = React.forwardRef(({ title, items, number, isLeftPage }, ref) => {
           )}
         </div>
         
-        {/* Absolute positioned footer on the right side */}
-        <div className={`absolute bottom-6 ${isLeftPage ? 'left-8 md:left-12' : 'right-8 md:right-12'} text-sm font-bold text-[#888]`}>
+        {/* Absolute positioned footer always on the right side */}
+        <div className="absolute bottom-6 right-8 md:right-12 text-sm font-bold text-[#888] text-right">
           Page {number}
         </div>
       </div>
