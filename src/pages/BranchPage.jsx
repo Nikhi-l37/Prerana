@@ -98,13 +98,16 @@ const BranchPage = () => {
             Open in Google Maps
           </motion.a>
         </motion.div>
-        <motion.div className="min-h-[300px] md:h-auto order-1 md:order-2" variants={fadeUpVariant}>
+        <motion.div className="min-h-[300px] md:h-auto order-1 md:order-2 overflow-hidden flex items-center justify-center" variants={fadeUpVariant}>
           {currentImage && (
             <img
               src={currentImage}
               alt={branch.name}
-              className="w-full h-full object-cover"
-              style={{ objectPosition: 'right center' }}
+              className={`w-full h-full ${branch.id === 'chinnapanahalli' ? 'object-contain p-4' : 'object-cover'}`}
+              style={{ 
+                objectPosition: 'center center',
+                maxHeight: branch.id === 'chinnapanahalli' ? '280px' : 'none'
+              }}
               loading="lazy"
             />
           )}
