@@ -48,18 +48,28 @@ const Page = React.forwardRef(({ elements, number, totalPages, isLeftPage, onPag
       <div className={`absolute top-0 bottom-0 w-12 z-10 pointer-events-none ${isLeftPage ? 'right-0 bg-gradient-to-l' : 'left-0 bg-gradient-to-r'} from-black/20 to-transparent`}></div>
       
       {/* Frosted inner card */}
-      <div className={`relative z-20 flex flex-col h-full w-full border ${isIndexPage ? 'border-[#d84315]/40 bg-white/90 shadow-[0_0_20px_rgba(216,67,21,0.05)]' : 'border-[#d84315]/20 bg-white/80'} rounded-sm pt-6 pb-16 ${isLeftPage ? 'pl-4 pr-6 md:pl-6 md:pr-10' : 'pr-4 pl-6 md:pr-6 md:pl-10'}`}>
+      <div className={`relative z-20 flex flex-col h-full w-full border border-[#d84315]/40 bg-white/90 shadow-[0_0_20px_rgba(216,67,21,0.05)] rounded-sm pt-6 pb-16 ${isLeftPage ? 'pl-4 pr-6 md:pl-6 md:pr-10' : 'pr-4 pl-6 md:pr-6 md:pl-10'}`}>
         
-        {/* Double border effect matching cover */}
-        <div className={`absolute inset-1 border ${isIndexPage ? 'border-[#d84315]/20' : 'border-[#d84315]/10'} rounded-sm pointer-events-none`}></div>
-        <div className={`absolute inset-2 border ${isIndexPage ? 'border-[#d84315]/10' : 'border-[#d84315]/5'} rounded-sm pointer-events-none`}></div>
+        {/* Premium Elegant Restaurant Border Design */}
+        {/* Main thin inset border */}
+        <div className="absolute inset-2 md:inset-3 border-[1px] border-[#d84315]/30 rounded-sm pointer-events-none"></div>
+        
+        {/* Decorative Corner Brackets */}
+        <div className="absolute top-1.5 left-1.5 md:top-2.5 md:left-2.5 w-4 h-4 md:w-6 md:h-6 border-t-2 border-l-2 border-[#d84315]/50 pointer-events-none"></div>
+        <div className="absolute top-1.5 right-1.5 md:top-2.5 md:right-2.5 w-4 h-4 md:w-6 md:h-6 border-t-2 border-r-2 border-[#d84315]/50 pointer-events-none"></div>
+        <div className="absolute bottom-1.5 left-1.5 md:bottom-2.5 md:left-2.5 w-4 h-4 md:w-6 md:h-6 border-b-2 border-l-2 border-[#d84315]/50 pointer-events-none"></div>
+        <div className="absolute bottom-1.5 right-1.5 md:bottom-2.5 md:right-2.5 w-4 h-4 md:w-6 md:h-6 border-b-2 border-r-2 border-[#d84315]/50 pointer-events-none"></div>
 
-        {isIndexPage && (
-          /* Subtle watermark bg pattern for index page */
-          <div className="absolute inset-0 opacity-[0.04] pointer-events-none flex items-center justify-center">
-            <img src={logo} alt="" className="w-[180px] h-[180px] object-contain" draggable="false" />
-          </div>
-        )}
+        {/* Small Corner Diamonds */}
+        <div className="absolute top-1 left-1 md:top-2 md:left-2 w-1.5 h-1.5 bg-[#d84315]/40 rotate-45 pointer-events-none"></div>
+        <div className="absolute top-1 right-1 md:top-2 md:right-2 w-1.5 h-1.5 bg-[#d84315]/40 rotate-45 pointer-events-none"></div>
+        <div className="absolute bottom-1 left-1 md:bottom-2 md:left-2 w-1.5 h-1.5 bg-[#d84315]/40 rotate-45 pointer-events-none"></div>
+        <div className="absolute bottom-1 right-1 md:bottom-2 md:right-2 w-1.5 h-1.5 bg-[#d84315]/40 rotate-45 pointer-events-none"></div>
+
+        {/* Subtle logo watermark pattern for all pages */}
+        <div className="absolute inset-0 opacity-[0.08] pointer-events-none flex items-center justify-center">
+          <img src={logo} alt="" className="w-[200px] h-[200px] object-contain" draggable="false" />
+        </div>
 
         <div className="relative z-30 h-full flex flex-col justify-between">
           <div className={`relative z-30 flex-grow flex flex-col justify-start ${isIndexPage ? 'gap-1.5 md:gap-2' : 'gap-2.5'}`}>
