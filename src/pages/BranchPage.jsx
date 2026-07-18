@@ -12,13 +12,13 @@ import v2 from '../assets/images/v2.jpg';
 import v from '../assets/images/v.jpg';
 import v10 from '../assets/images/v10.webp';
 import s from '../assets/images/s11_rotated.webp';
-import s2 from '../assets/images/s2.jpg';
-import s3 from '../assets/images/s3.jpg';
 import s10 from '../assets/images/s10.webp';
 import new1 from '../assets/images/new1.webp';
 import new2 from '../assets/images/new2.webp';
 import new5 from '../assets/images/new5.webp';
 import new6 from '../assets/images/new6.webp';
+import sNew1 from '../assets/images/s_new_image1..webp';
+import sNew2 from '../assets/images/s_new_image2..ebp.webp';
 
 const fadeUpVariant = {
   hidden: { opacity: 0, y: 40 },
@@ -40,7 +40,7 @@ const BranchPage = () => {
 
   const branchGalleries = {
     marathahalli: [v10, v2, v],
-    chinnapanahalli: [s2, s3, s10],
+    chinnapanahalli: [sNew1, sNew2, s10],
     thanisandra: [new1, new2, new5, new6]
   };
   const galleryImages = branchGalleries[branchId];
@@ -98,13 +98,16 @@ const BranchPage = () => {
             Open in Google Maps
           </motion.a>
         </motion.div>
-        <motion.div className="min-h-[300px] md:h-auto order-1 md:order-2" variants={fadeUpVariant}>
+        <motion.div className="min-h-[300px] md:h-auto order-1 md:order-2 overflow-hidden flex items-center justify-center" variants={fadeUpVariant}>
           {currentImage && (
             <img
               src={currentImage}
               alt={branch.name}
-              className="w-full h-full object-cover"
-              style={{ objectPosition: 'right center' }}
+              className={`w-full h-full ${branch.id === 'chinnapanahalli' ? 'object-contain p-4' : 'object-cover'}`}
+              style={{ 
+                objectPosition: 'center center',
+                maxHeight: branch.id === 'chinnapanahalli' ? '280px' : 'none'
+              }}
               loading="lazy"
             />
           )}

@@ -68,11 +68,11 @@ const FoodCard = ({ item, index }) => {
   const [loaded, setLoaded] = useState(false);
   return (
     <motion.div
-      className="bg-white/92 border border-white/60 rounded-xl overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.06)] flex flex-col h-full hover:-translate-y-1 hover:shadow-[0_15px_40px_rgba(0,0,0,0.12)] transition-all duration-300"
+      className="bg-white border border-white/60 rounded-xl overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.06)] flex flex-col h-full hover:-translate-y-1 hover:shadow-[0_15px_40px_rgba(0,0,0,0.12)] transition-all duration-300"
       variants={fadeUpVariant}
     >
       {/* Image Section */}
-      <div className="relative h-[240px] overflow-hidden" style={{ backgroundColor: '#fde8d8' }}>
+      <div className="relative h-[240px] overflow-hidden" style={{ backgroundColor: '#ffffff' }}>
         <img
           src={item.image}
           alt={item.name}
@@ -83,8 +83,8 @@ const FoodCard = ({ item, index }) => {
         />
         {/* Shimmer placeholder while loading */}
         {!loaded && (
-          <div className="absolute inset-0 flex items-center justify-center" style={{ background: 'linear-gradient(110deg, #fde8d8 30%, #fff4ec 50%, #fde8d8 70%)', backgroundSize: '200% 100%', animation: 'shimmer 1.5s infinite linear' }}>
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#d8a88a" strokeWidth="1.5" opacity="0.5">
+          <div className="absolute inset-0 flex items-center justify-center" style={{ background: 'linear-gradient(110deg, #ffffff 30%, #f8f8f8 50%, #ffffff 70%)', backgroundSize: '200% 100%', animation: 'shimmer 1.5s infinite linear' }}>
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#e0e0e0" strokeWidth="1.5" opacity="0.8">
               <rect x="3" y="3" width="18" height="18" rx="3" />
               <circle cx="8.5" cy="8.5" r="1.5" />
               <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" />
