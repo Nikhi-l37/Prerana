@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import BranchCard from '../components/BranchCard';
-import logoImg from '../assets/images/logo.webp';
 import { useStoreStatus } from '../hooks/useStoreStatus';
 
 import v1 from '../assets/images/v1.jpg';
@@ -31,45 +30,22 @@ const BranchesList = () => {
 
 
   return (
-    <div className="branch-page pt-[75px]">
-      <div className="back-button-container" style={{ paddingBottom: '0', paddingLeft: '5%', paddingTop: '75px' }}>
-        <button 
-          onClick={() => navigate(-1)} 
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '8px',
-            background: 'none',
-            border: 'none',
-            color: '#d84315',
-            fontWeight: '600',
-            fontSize: '1.1rem',
-            cursor: 'pointer',
-            padding: '8px 0',
-            transition: 'color 0.2s ease',
-          }}
-          onMouseOver={(e) => e.currentTarget.style.color = '#bf360c'}
-          onMouseOut={(e) => e.currentTarget.style.color = '#d84315'}
-        >
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M19 12H5M12 19l-7-7 7-7" />
-          </svg>
-          Back
-        </button>
-      </div>
-
-      <motion.div 
-        className="branch-header-split" style={{ gridTemplateColumns: '1fr', textAlign: 'center', minHeight: 'auto', paddingTop: '1rem', paddingBottom: '2rem', background: 'transparent', boxShadow: 'none' }}
-        initial="hidden"
-        animate="visible"
-        variants={fadeUpVariant}
+    <div className="pt-[75px] px-[5%] pb-8">
+      {/* Back Button */}
+      <button
+        onClick={() => navigate(-1)}
+        className="inline-flex items-center gap-2 bg-transparent border-none font-semibold text-[1.1rem] cursor-pointer py-2 mb-4 transition-colors duration-200"
+        style={{ color: '#d84315' }}
+        onMouseOver={e => e.currentTarget.style.color = '#bf360c'}
+        onMouseOut={e => e.currentTarget.style.color = '#d84315'}
       >
-        <div className="branch-header-content" style={{ padding: '0 2rem' }}>
-          <img src={logoImg} alt="Prerana Firewood Biryani" style={{ height: '220px', width: 'auto', margin: '0 auto', objectFit: 'contain' }} />
-        </div>
-      </motion.div>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M19 12H5M12 19l-7-7 7-7" />
+        </svg>
+        Back
+      </button>
 
-      <section className="locations-section" style={{ padding: '2rem 0', background: 'transparent' }}>
+      <section className="locations-section" style={{ background: 'transparent' }}>
         <motion.div 
           className="grid grid-cols-[repeat(auto-fit,minmax(320px,1fr))] gap-10 w-full px-5 md:px-[5%]"
           variants={staggerContainer}
