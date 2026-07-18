@@ -14,6 +14,14 @@ const Navbar = () => {
     return isHomePage ? 'center' : 'done';
   });
 
+  // Guarantee that the splash flag is saved if we are in 'done' state
+  // This prevents the splash logo from blinking if the navbar ever remounts
+  useEffect(() => {
+    if (splash === 'done' && typeof window !== 'undefined') {
+      sessionStorage.setItem('prerana_splash', '1');
+    }
+  }, [splash]);
+
   useEffect(() => {
     if (splash === 'done') return;
     document.body.style.overflow = 'hidden';
@@ -43,6 +51,13 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Reset navbar states on route change to prevent transitions and blinking glitches
+  useEffect(() => {
+    setIsScrolled(false);
+    setIsNavVisible(true);
+    lastScrollYRef.current = 0;
+  }, [location.pathname]);
+
   const showSplash = splash !== 'done';
 
   return (
@@ -65,7 +80,7 @@ const Navbar = () => {
         className={`fixed w-full top-0 z-[100] px-5 md:px-[5%] py-2 md:py-3 flex justify-between items-center transition-all duration-500 ease-in-out
           ${isScrolled ? 'backdrop-blur-xl border-b border-white/30 shadow-navbar' : 'bg-transparent'}
           ${isNavVisible ? 'translate-y-0' : '-translate-y-full'}`}
-        style={isScrolled ? { background: 'rgba(255, 245, 236, 0.65)', contain: 'layout' } : { contain: 'layout' }}
+        style={isScrolled ? { background: 'rgba(255, 255, 255, 0.35)', contain: 'layout' } : { contain: 'layout' }}
       >
         {/* Logo */}
         <div className="flex items-center">

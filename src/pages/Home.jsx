@@ -63,7 +63,6 @@ const Home = () => {
   const [selectedReview, setSelectedReview] = useState(null);
 
   // Scroll to hash anchor on navigation
-  const initialMount = React.useRef(true);
   useEffect(() => {
     if (hash) {
       setTimeout(() => {
@@ -73,11 +72,7 @@ const Home = () => {
           window.scrollTo({ top: y, behavior: 'smooth' });
         }
       }, 100);
-    } else if (initialMount.current) {
-      // Only scroll to top on initial page load, not when returning from external links
-      window.scrollTo({ top: 0, behavior: 'instant' });
     }
-    initialMount.current = false;
   }, [hash]);
 
   const handleContactSubmit = (e) => {
@@ -108,29 +103,25 @@ const Home = () => {
   return (
     <>
       {/* ── HERO SECTION ─────────────────────────────────────────── */}
-      <header className="product-hero" id="home" style={{ minHeight: '80vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-        <motion.div
+      <header className="product-hero" id="home" style={{ minHeight: '80vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginTop: '4rem' }}>
+        <img
+          src={logoImg}
+          alt="Prerana Firewood Biryani Logo"
+          style={{ width: '70%', maxWidth: '250px', height: 'auto', marginBottom: '2rem' }}
+          loading="eager"
+        />
+        <div
           className="product-hero-content"
-          variants={staggerContainer}
-          initial="hidden"
-          animate="visible"
-          style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', marginTop: '4rem' }}
+          style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}
         >
-          <motion.img
-            src={logoImg}
-            alt="Prerana Firewood Biryani Logo"
-            style={{ width: '70%', maxWidth: '250px', height: 'auto', marginBottom: '2rem' }}
-            variants={fadeUpVariant}
-            loading="lazy"
-          />
-          <motion.p className="product-hero-subtitle" variants={fadeUpVariant}>
+          <p className="product-hero-subtitle">
             Cooked on firewood. Experience the rich, traditional flavors crafted with passion. Discover the authentic taste of true biryani.
-          </motion.p>
-          <motion.div className="hero-actions" variants={fadeUpVariant} style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+          </p>
+          <div className="hero-actions" style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center', flexWrap: 'wrap' }}>
             <Link to="/branches" className="product-hero-btn primary">Find a Branch</Link>
             <Link to="/#contact" className="product-hero-btn secondary">Contact Us</Link>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </header>
 
       {/* ── LOCATIONS SECTION ────────────────────────────────────── */}
