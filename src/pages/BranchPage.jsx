@@ -19,6 +19,8 @@ import new1 from '../assets/images/new1.webp';
 import new2 from '../assets/images/new2.webp';
 import new5 from '../assets/images/new5.webp';
 import new6 from '../assets/images/new6.webp';
+import sNew1 from '../assets/images/s_new_image1..webp';
+import sNew2 from '../assets/images/s_new_image2..ebp.webp';
 
 const fadeUpVariant = {
   hidden: { opacity: 0, y: 40 },
@@ -40,7 +42,7 @@ const BranchPage = () => {
 
   const branchGalleries = {
     marathahalli: [v10, v2, v],
-    chinnapanahalli: [s2, s3, s10],
+    chinnapanahalli: [sNew1, sNew2, s10],
     thanisandra: [new1, new2, new5, new6]
   };
   const galleryImages = branchGalleries[branchId];
