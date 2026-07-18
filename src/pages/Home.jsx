@@ -63,6 +63,7 @@ const Home = () => {
   const [selectedReview, setSelectedReview] = useState(null);
 
   // Scroll to hash anchor on navigation
+  const initialMount = React.useRef(true);
   useEffect(() => {
     if (hash) {
       setTimeout(() => {
@@ -72,9 +73,11 @@ const Home = () => {
           window.scrollTo({ top: y, behavior: 'smooth' });
         }
       }, 100);
-    } else {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (initialMount.current) {
+      // Only scroll to top on initial page load, not when returning from external links
+      window.scrollTo({ top: 0, behavior: 'instant' });
     }
+    initialMount.current = false;
   }, [hash]);
 
   const handleContactSubmit = (e) => {
@@ -86,6 +89,20 @@ const Home = () => {
     const subject = encodeURIComponent(`New Contact Form Submission from ${name}`);
     const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
     window.location.href = `mailto:Preranafirewoodbiryani@gmail.com?subject=${subject}&body=${body}`;
+  };
+
+  const handleOrderRedirect = (e, platform) => {
+    e.preventDefault();
+    
+    let webUrl;
+    if (platform === 'zomato') {
+      webUrl = 'https://www.zomato.com/bangalore/restaurants?q=Prerana+Firewood+Biryani';
+    } else {
+      webUrl = 'https://www.swiggy.com/search?query=Prerana+Firewood+Biryani';
+    }
+    
+    // Open directly in a new tab — fast and reliable on all devices
+    window.open(webUrl, '_blank', 'noopener,noreferrer');
   };
 
   return (
@@ -141,7 +158,7 @@ const Home = () => {
             { images: branch2Images, name: 'Chinnapanahalli Branch', address: 'PRERANA Firewood Biryani - Chinnapanahalli, Bengaluru' },
             { images: branch3Images, name: 'Thanisandra Branch', address: 'PRERANA FIREWOOD BIRYANI, SH 104, Ashwath Nagar, Thanisandra, Bengaluru, Karnataka 560077' },
           ].map((branch) => (
-            <motion.div key={branch.name} variants={fadeUpVariant} whileHover={{ y: -5 }} whileTap={{ scale: 0.98 }}>
+            <motion.div key={branch.name} variants={fadeUpVariant}>
               <div className="branch-card">
                 <ImageSlider images={branch.images} />
                 <div className="branch-card-content">
@@ -189,6 +206,109 @@ const Home = () => {
             </SwiperSlide>
           ))}
         </Swiper>
+      </section>
+
+      {/* ── ORDER ONLINE SECTION ─────────────────────────────────── */}
+      <section className="py-16 border-t border-b border-[#d84315]/10" id="order-online">
+        <div className="max-w-6xl mx-auto px-5 md:px-[5%] text-center">
+          <motion.h2
+            className="text-3xl md:text-4xl font-bold mb-4 text-[#2c1e16] tracking-wide"
+            variants={fadeUpVariant}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-100px' }}
+          >
+            Order Online
+          </motion.h2>
+          <motion.div 
+            className="w-24 h-[3px] bg-gradient-to-r from-transparent via-[#d84315] to-transparent mx-auto mb-8"
+            variants={fadeUpVariant}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-100px' }}
+          />
+          <motion.p
+            className="text-[1.1rem] text-[#5d4a41] max-w-2xl mx-auto mb-12 leading-relaxed"
+            variants={fadeUpVariant}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-100px' }}
+          >
+            Craving our authentic firewood biryani? Get your favorite dishes delivered hot and fresh straight to your doorstep via Zomato or Swiggy.
+          </motion.p>
+
+          <motion.div
+            className="flex flex-col sm:flex-row justify-center items-stretch gap-8 max-w-3xl mx-auto"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-100px' }}
+          >
+            {/* Zomato Card */}
+            <motion.div
+              variants={fadeUpVariant}
+              className="w-full sm:w-1/2 p-8 rounded-2xl bg-white border border-[#E23744]/20 shadow-[0_8px_30px_rgba(226,55,68,0.04)] hover:shadow-[0_15px_35px_rgba(226,55,68,0.08)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between items-center text-center"
+            >
+              <div className="flex flex-col items-center">
+                <div className="w-16 h-16 rounded-full bg-[#E23744]/10 flex items-center justify-center mb-6">
+                  <img 
+                    src="https://cdn.simpleicons.org/zomato/E23744" 
+                    alt="Zomato" 
+                    className="w-8 h-8 object-contain" 
+                  />
+                </div>
+                <h3 className="text-2xl font-bold text-[#2c1e16] mb-3">Zomato</h3>
+                <p className="text-[0.95rem] text-[#5d4a41] leading-relaxed mb-8">
+                  Enjoy super-fast delivery, real-time tracking, and exclusive discounts when ordering through Zomato.
+                </p>
+              </div>
+              <a
+                href="https://www.zomato.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => handleOrderRedirect(e, 'zomato')}
+                className="w-full py-3.5 bg-[#E23744] text-white font-bold rounded-xl hover:bg-[#c82733] transition-colors shadow-[0_4px_20px_rgba(226,55,68,0.25)] flex items-center justify-center gap-2"
+              >
+                Order on Zomato
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </a>
+            </motion.div>
+
+            {/* Swiggy Card */}
+            <motion.div
+              variants={fadeUpVariant}
+              className="w-full sm:w-1/2 p-8 rounded-2xl bg-white border border-[#FC8019]/20 shadow-[0_8px_30px_rgba(252,128,25,0.04)] hover:shadow-[0_15px_35px_rgba(252,128,25,0.08)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between items-center text-center"
+            >
+              <div className="flex flex-col items-center">
+                <div className="w-16 h-16 rounded-full bg-[#FC8019]/10 flex items-center justify-center mb-6">
+                  <img 
+                    src="https://cdn.simpleicons.org/swiggy/FC8019" 
+                    alt="Swiggy" 
+                    className="w-8 h-8 object-contain" 
+                  />
+                </div>
+                <h3 className="text-2xl font-bold text-[#2c1e16] mb-3">Swiggy</h3>
+                <p className="text-[0.95rem] text-[#5d4a41] leading-relaxed mb-8">
+                  Get your favorite biryanis delivered hot from the firewood clay pots straight to your table via Swiggy.
+                </p>
+              </div>
+              <a
+                href="https://www.swiggy.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => handleOrderRedirect(e, 'swiggy')}
+                className="w-full py-3.5 bg-[#FC8019] text-white font-bold rounded-xl hover:bg-[#e46f10] transition-colors shadow-[0_4px_20px_rgba(252,128,25,0.25)] flex items-center justify-center gap-2"
+              >
+                Order on Swiggy
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </a>
+            </motion.div>
+          </motion.div>
+        </div>
       </section>
 
       {/* ── REVIEWS SECTION ──────────────────────────────────────── */}

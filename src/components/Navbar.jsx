@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import logo from '../assets/images/logo.webp';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isNavVisible, setIsNavVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
+  const lastScrollYRef = useRef(0);
   const location = useLocation();
   const isHomePage = location.pathname === '/';
 
@@ -36,12 +36,12 @@ const Navbar = () => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       setIsScrolled(currentScrollY > 100);
-      setIsNavVisible(!(currentScrollY > lastScrollY && currentScrollY > 100));
-      setLastScrollY(currentScrollY);
+      setIsNavVisible(!(currentScrollY > lastScrollYRef.current && currentScrollY > 100));
+      lastScrollYRef.current = currentScrollY;
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollY]);
+  }, []);
 
   const showSplash = splash !== 'done';
 
@@ -63,9 +63,9 @@ const Navbar = () => {
       {/* NAVBAR */}
       <nav
         className={`fixed w-full top-0 z-[100] px-5 md:px-[5%] py-2 md:py-3 flex justify-between items-center transition-all duration-500 ease-in-out
-          ${isScrolled ? 'bg-white/90 backdrop-blur-xl border-b border-white/20 shadow-navbar' : 'bg-transparent'}
+          ${isScrolled ? 'backdrop-blur-xl border-b border-white/30 shadow-navbar' : 'bg-transparent'}
           ${isNavVisible ? 'translate-y-0' : '-translate-y-full'}`}
-        style={{ contain: 'layout' }}
+        style={isScrolled ? { background: 'rgba(255, 245, 236, 0.65)', contain: 'layout' } : { contain: 'layout' }}
       >
         {/* Logo */}
         <div className="flex items-center">
@@ -78,15 +78,15 @@ const Navbar = () => {
           </Link>
         </div>
 
-        {/* Mobile: Branches Button only */}
+        {/* Mobile: Famous Items Button */}
         <div className="md:hidden flex items-center">
           <Link
-            to="/branches"
+            to="/famous-items"
             className="header-branches-btn"
             style={{ opacity: showSplash ? 0 : 1 }}
           >
             <span className="header-branches-btn-border"><span className="header-branches-btn-rotator"></span></span>
-            <span className="header-branches-btn-text">Branches</span>
+            <span className="header-branches-btn-text">Famous Items</span>
           </Link>
         </div>
 
@@ -98,9 +98,14 @@ const Navbar = () => {
             </Link>
           </li>
           <li>
-            <Link to="/branches" className="header-branches-btn header-branches-btn--desktop">
+            <Link to="/famous-items" className="header-branches-btn header-branches-btn--desktop">
               <span className="header-branches-btn-border"><span className="header-branches-btn-rotator"></span></span>
-              <span className="header-branches-btn-text">Our Branches</span>
+              <span className="header-branches-btn-text">Famous Items</span>
+            </Link>
+          </li>
+          <li>
+            <Link to="/#order-online" className="font-semibold text-[0.95rem] text-brown-base no-underline transition-colors duration-200 hover:text-terra-base" style={{ color: '#2c1e16' }}>
+              Order Online
             </Link>
           </li>
           <li>

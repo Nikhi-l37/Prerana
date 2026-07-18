@@ -35,7 +35,7 @@ const BranchesList = () => {
   }, []);
 
   return (
-    <div className="branch-page">
+    <div className="branch-page pt-[75px]">
       <div className="back-button-container" style={{ paddingBottom: '0', paddingLeft: '5%', paddingTop: '75px' }}>
         <button 
           onClick={() => navigate(-1)} 
