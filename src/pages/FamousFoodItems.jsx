@@ -124,9 +124,6 @@ const FoodCard = ({ item, index }) => {
 const FamousFoodItems = () => {
   const navigate = useNavigate();
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   return (
     <div className="pt-[100px] px-[5%] pb-16 min-h-screen">

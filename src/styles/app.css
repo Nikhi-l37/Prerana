@@ -21,14 +21,12 @@ html, #root {
 }
 
 html {
-  background-color: #fed7aa; /* fallback — matches gradient end, no white ever shows */
+  background-color: #fff5ec; /* fallback — matches flat body background */
 }
 
 body {
   font-family: 'Inter', -apple-system, sans-serif;
-  background: linear-gradient(160deg, #fff7ed 0%, #ffedd5 45%, #fed7aa 100%);
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-color: #fff5ec;
   color: #2c1e16;
   overflow-x: hidden;
   min-height: 100%;

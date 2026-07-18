@@ -29,10 +29,6 @@ const BranchesList = () => {
   const isOpen = useStoreStatus();
   const navigate = useNavigate();
 
-  // Scroll to top on mount
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   return (
     <div className="branch-page pt-[75px]">

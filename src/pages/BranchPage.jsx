@@ -45,7 +45,6 @@ const BranchPage = () => {
   };
   const galleryImages = branchGalleries[branchId];
 
-  useEffect(() => { window.scrollTo(0, 0); }, []);
 
   if (!branch) {
     return (
