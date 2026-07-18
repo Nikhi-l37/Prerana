@@ -5,6 +5,7 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import BranchPage from './pages/BranchPage';
 import BranchesList from './pages/BranchesList';
+import FamousFoodItems from './pages/FamousFoodItems';
 import './styles/app.css';
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/branches" element={<BranchesList />} />
+          <Route path="/famous-items" element={<FamousFoodItems />} />
           <Route path="/branch/:branchId" element={<BranchPage />} />
         </Routes>
       </div>

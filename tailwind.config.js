@@ -27,7 +27,7 @@ export default {
           darkest: '#1e130d',   // submit button gradient end
         },
         // Background palette
-        vanilla:   '#fcf8f2',   // page body background
+        vanilla:   '#fff5ec',   // page body background
         splash:    '#1a0a04',   // splash screen background
         hero:      '#3b1c14',   // hero mobile fallback
         // Status colors

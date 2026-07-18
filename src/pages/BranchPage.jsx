@@ -17,6 +17,8 @@ import s3 from '../assets/images/s3.jpg';
 import s10 from '../assets/images/s10.webp';
 import new1 from '../assets/images/new1.webp';
 import new2 from '../assets/images/new2.webp';
+import new5 from '../assets/images/new5.webp';
+import new6 from '../assets/images/new6.webp';
 
 const fadeUpVariant = {
   hidden: { opacity: 0, y: 40 },
@@ -39,7 +41,7 @@ const BranchPage = () => {
   const branchGalleries = {
     marathahalli: [v10, v2, v],
     chinnapanahalli: [s2, s3, s10],
-    thanisandra: [new1, new2]
+    thanisandra: [new1, new2, new5, new6]
   };
   const galleryImages = branchGalleries[branchId];
 
@@ -75,17 +77,17 @@ const BranchPage = () => {
 
       {/* Branch Header — glassmorphism card */}
       <motion.header
-        className="grid grid-cols-1 md:grid-cols-2 items-stretch mb-8 bg-white/75 backdrop-blur-[12px] border border-white/60 rounded-card shadow-card overflow-hidden"
+        className="grid grid-cols-1 md:grid-cols-2 items-stretch mb-8 bg-white border border-white/60 rounded-card shadow-card overflow-hidden"
         initial="hidden"
         animate="visible"
         variants={staggerContainer}
       >
         <motion.div
-          className="flex flex-col justify-center items-start p-8 md:p-16 text-center md:text-left items-center md:items-start"
+          className="flex flex-col justify-center items-center p-8 md:p-16 text-center order-2 md:order-1"
           variants={fadeUpVariant}
         >
           <h1 className="text-3xl md:text-[2.5rem] font-bold mb-4" style={{ color: '#2c1e16' }}>{branch.name}</h1>
-          <p className="text-[1.1rem] mb-6 leading-relaxed" style={{ color: '#5d4a41' }}>{branch.address}</p>
+          <p className="text-[1.1rem] mb-6 leading-relaxed text-center" style={{ color: '#5d4a41' }}>{branch.address}</p>
           <motion.a
             whileTap={{ scale: 0.95 }}
             href={branch.mapLink}
@@ -97,7 +99,7 @@ const BranchPage = () => {
             Open in Google Maps
           </motion.a>
         </motion.div>
-        <motion.div className="min-h-[300px] md:h-auto" variants={fadeUpVariant}>
+        <motion.div className="min-h-[300px] md:h-auto order-1 md:order-2" variants={fadeUpVariant}>
           {currentImage && (
             <img
               src={currentImage}
@@ -130,7 +132,11 @@ const BranchPage = () => {
 
       {/* Gallery Swiper */}
       {galleryImages && galleryImages.length > 0 && (
-        <section className="py-8 pb-16 max-w-[1200px] mx-auto">
+        <section className="py-8 pb-16 max-w-[1200px] mx-auto text-center">
+          <h2 className="text-2xl md:text-3xl font-bold mb-2 text-[#2c1e16]">
+            {`${branch.name} Images`}
+          </h2>
+          <div className="w-16 h-[3px] bg-[#d84315] mx-auto mb-8 rounded-full"></div>
           <Swiper
             breakpoints={{
               0: { slidesPerView: 1, spaceBetween: 15 },
@@ -138,13 +144,13 @@ const BranchPage = () => {
               1024: { slidesPerView: 2.2, spaceBetween: 30 }
             }}
             centeredSlides={true}
-            loop={true}
-            autoplay={{ delay: 2000, disableOnInteraction: false }}
+            loop={false}
+            autoplay={{ delay: 3000, disableOnInteraction: true }}
             modules={[Autoplay]}
             className="branch-gallery-swiper"
             style={{ padding: '20px 0' }}
           >
-            {[...galleryImages, ...galleryImages].map((img, idx) => (
+            {galleryImages.map((img, idx) => (
               <SwiperSlide key={idx} className="review-swiper-slide">
                 <img
                   src={img}

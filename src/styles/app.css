@@ -16,11 +16,22 @@
 /* ── BASE RESET ────────────────────────────────────────────── */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
+html, #root {
+  height: 100%;
+}
+
+html {
+  background-color: #fed7aa; /* fallback — matches gradient end, no white ever shows */
+}
+
 body {
   font-family: 'Inter', -apple-system, sans-serif;
-  background-color: #fcf8f2;
+  background: linear-gradient(160deg, #fff7ed 0%, #ffedd5 45%, #fed7aa 100%);
+  background-repeat: no-repeat;
+  background-size: cover;
   color: #2c1e16;
   overflow-x: hidden;
+  min-height: 100%;
 }
 
 /* ── SPLASH SCREEN ─────────────────────────────────────────── */
@@ -169,13 +180,13 @@ body {
   gap: 2.5rem; width: 100%;
 }
 .branch-card {
-  background: rgba(255,255,255,0.75); backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(255,255,255,0.92);
   border: 1px solid rgba(255,255,255,0.6); border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 15px 35px rgba(160,82,45,0.04), 0 5px 15px rgba(44,30,22,0.03);
   transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), box-shadow 0.4s ease;
   height: 100%; display: flex; flex-direction: column;
+  contain: layout style;
 }
 .branch-card:hover {
   transform: translateY(-8px) scale(1.01);
@@ -347,11 +358,17 @@ body {
 }
 
 /* ── FLIPBOOK 3D FIXES ─────────────────────────────────────── */
-.stf__item, .page, .page-cover {
+.stf__item {
   backface-visibility: hidden !important;
   -webkit-backface-visibility: hidden !important;
-  transform-style: preserve-3d !important;
 }
 .stf__wrapper {
   perspective: 2000px !important;
+  contain: layout style;
+}
+
+/* ── MOBILE PAGE FLIP TRANSITION (replaces framer-motion) ── */
+.mobile-page-flip {
+  transition: transform 0.55s cubic-bezier(0.64, 0.04, 0.35, 1);
+  contain: layout paint;
 }

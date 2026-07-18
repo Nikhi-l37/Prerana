@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Footer = () => (
-  <footer className="bg-white border-t border-gray-100 px-[5%] pt-16 pb-8 text-center">
+  <footer className="border-t border-[#f0dcc8] px-[5%] pt-16 pb-8 text-center bg-transparent">
     <div className="mb-12 flex flex-col items-center">
       <h4 className="text-[#888] tracking-[2px] text-[0.9rem] font-semibold mb-6 uppercase">FOLLOW US</h4>
       <a
