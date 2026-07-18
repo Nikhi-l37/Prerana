@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import BranchCard from '../components/BranchCard';
 import logoImg from '../assets/images/logo.webp';
+import { useStoreStatus } from '../hooks/useStoreStatus';
 
 import v1 from '../assets/images/v1.jpg';
 import s from '../assets/images/s11_rotated.webp';
-import new1 from '../assets/images/new1.webp';
 import new2 from '../assets/images/new2.webp';
 
 const branch1Images = [v1];
@@ -23,31 +23,7 @@ const staggerContainer = {
   visible: { opacity: 1, transition: { staggerChildren: 0.2 } }
 };
 
-const useStoreStatus = () => {
-  const [isOpen, setIsOpen] = useState(false);
 
-  useEffect(() => {
-    const checkStatus = () => {
-      const now = new Date();
-      // Use IST time zone
-      const istTime = new Date(now.toLocaleString("en-US", {timeZone: "Asia/Kolkata"}));
-      const hours = istTime.getHours();
-      
-      // Open from 11:00 AM to 11:00 PM (11 to 23)
-      if (hours >= 11 && hours < 23) {
-        setIsOpen(true);
-      } else {
-        setIsOpen(false);
-      }
-    };
-    
-    checkStatus();
-    const interval = setInterval(checkStatus, 60000);
-    return () => clearInterval(interval);
-  }, []);
-
-  return isOpen;
-};
 
 const BranchesList = () => {
   const isOpen = useStoreStatus();
@@ -59,7 +35,7 @@ const BranchesList = () => {
   }, []);
 
   return (
-    <div className="branch-page">
+    <div className="branch-page pt-[75px]">
       <div className="back-button-container" style={{ paddingBottom: '0', paddingLeft: '5%', paddingTop: '75px' }}>
         <button 
           onClick={() => navigate(-1)} 
@@ -99,7 +75,7 @@ const BranchesList = () => {
 
       <section className="locations-section" style={{ padding: '2rem 0', background: 'transparent' }}>
         <motion.div 
-          className="branches-page-grid px-5 md:px-[5%]"
+          className="grid grid-cols-[repeat(auto-fit,minmax(320px,1fr))] gap-10 w-full px-5 md:px-[5%]"
           variants={staggerContainer}
           initial="hidden"
           animate="visible"
