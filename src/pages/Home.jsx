@@ -107,7 +107,7 @@ const Home = () => {
         <img
           src={logoImg}
           alt="Prerana Firewood Biryani Logo"
-          style={{ width: '70%', maxWidth: '250px', height: 'auto', marginBottom: '2rem' }}
+          className="product-hero-logo"
           loading="eager"
         />
         <div
