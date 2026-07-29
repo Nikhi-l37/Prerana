@@ -179,8 +179,19 @@ const MenuBook = ({ menuData }) => {
       });
     });
 
+    // Pre-calculate total units per category for smart page-break decisions
+    const categoryTotalUnits = {};
+    Object.entries(menuData).forEach(([category, items]) => {
+      const hUnit = isMobile ? 1.5 : 1.8;
+      let total = hUnit;
+      items.forEach(item => {
+        total += isMobile ? 1.0 : (item.name.length > 20 ? 1.7 : 1.0);
+      });
+      categoryTotalUnits[category] = total;
+    });
+
     const paginatedPages = [];
-    const maxUnits = isMobile ? 8 : 9;
+    const maxUnits = isMobile ? 17 : 9;
     
     let currentPageElements = [];
     let currentUnits = 0;
@@ -191,8 +202,19 @@ const MenuBook = ({ menuData }) => {
         headerToInsert = { type: 'header', name: el.category };
       }
 
-      const itemUnit = el.name.length > 20 ? 1.7 : 1.0;
-      const headerUnit = 1.8;
+      const itemUnit = isMobile ? 1.0 : (el.name.length > 20 ? 1.7 : 1.0);
+      const headerUnit = isMobile ? 1.5 : 1.8;
+
+      // Smart page break: only force a new page if the entire new category
+      // won't fit in the remaining space (lets small categories share a page)
+      if (headerToInsert && currentPageElements.length > 0) {
+        const remainingSpace = maxUnits - currentUnits;
+        if (categoryTotalUnits[el.category] > remainingSpace) {
+          paginatedPages.push(currentPageElements);
+          currentPageElements = [];
+          currentUnits = 0;
+        }
+      }
 
       let spaceNeeded = itemUnit;
       if (headerToInsert) {
@@ -308,7 +330,7 @@ const MenuBook = ({ menuData }) => {
 
     const TOC_PAGES = [];
     let currentTocPage = [{ type: 'index-title', name: 'Table of Contents' }];
-    const MAX_TOC_ITEMS = 11; // Safely fits on one page with reduced padding
+    const MAX_TOC_ITEMS = 16; // Fits all Thanisandra categories on one TOC page
     
     tocItems.forEach((item) => {
       if (currentTocPage.length >= MAX_TOC_ITEMS) {
