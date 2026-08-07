@@ -154,7 +154,7 @@ const Home = () => {
                 <ImageSlider images={branch.images} />
                 <div className="branch-card-content">
                   <span className={`branch-badge ${isOpen ? 'active' : 'closed'}`}>
-                    {isOpen ? 'Now Open' : 'Opens at 11:00 AM'}
+                    {isOpen ? 'Now Open' : 'Opens at 11:30 AM'}
                   </span>
                   <h3>{branch.name}</h3>
                   <p>{branch.address}</p>
@@ -188,7 +188,7 @@ const Home = () => {
                 <ImageSlider images={branch.images} />
                 <div className="branch-card-content">
                   <span className={`branch-badge ${isOpen ? 'active' : 'closed'}`}>
-                    {isOpen ? 'Now Open' : 'Opens at 11:00 AM'}
+                    {isOpen ? 'Now Open' : 'Opens at 11:30 AM'}
                   </span>
                   <h3>{branch.name}</h3>
                   <p>{branch.address}</p>
@@ -369,7 +369,7 @@ const Home = () => {
             <h3>Contact Information</h3>
             <p><strong>Email:</strong> Preranafirewoodbiryani@gmail.com</p>
             <p><strong>Phone:</strong> 8884523789, 8886097771</p>
-            <p><strong>Open Hours:</strong> 11:00 AM - 11:00 PM</p>
+            <p><strong>Open Hours:</strong> 11:30 AM - 11:30 PM</p>
           </motion.div>
           <motion.form variants={fadeUpVariant} className="contact-form" onSubmit={handleContactSubmit}>
             <input type="text" name="name" placeholder="Your Name" required />
