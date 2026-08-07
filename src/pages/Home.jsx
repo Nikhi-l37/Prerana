@@ -147,7 +147,7 @@ const Home = () => {
           {[
             { images: branch1Images, name: 'Marathahalli Branch', address: '182, Service Rd, Manjunatha Layout, Marathahalli, Bengaluru, Karnataka 560037' },
             { images: branch2Images, name: 'Chinnapanahalli Branch', address: 'Chinnapanahalli Main Road, Bengaluru' },
-            { images: branch3Images, name: 'Thanisandra Branch', address: 'PRERANA FIREWOOD BIRYANI, SH 104, Ashwath Nagar, Thanisandra, Bengaluru, Karnataka 560077' },
+            { images: branch3Images, name: 'Thanisandra Branch', address: 'SH 104, Ashwath Nagar, Thanisandra, Bengaluru, Karnataka 560077' },
           ].map((branch) => (
             <motion.div key={branch.name} variants={fadeUpVariant}>
               <div className="branch-card">
@@ -181,7 +181,7 @@ const Home = () => {
           {[
             { images: branch1Images, name: 'Marathahalli Branch', address: '182, Service Rd, Manjunatha Layout, Marathahalli' },
             { images: branch2Images, name: 'Chinnapanahalli Branch', address: 'Chinnapanahalli Main Road, Bengaluru' },
-            { images: branch3Images, name: 'Thanisandra Branch', address: 'PRERANA FIREWOOD BIRYANI, SH 104, Ashwath Nagar, Thanisandra' },
+            { images: branch3Images, name: 'Thanisandra Branch', address: 'SH 104, Ashwath Nagar, Thanisandra' },
           ].map((branch) => (
             <SwiperSlide key={branch.name} className="branch-swiper-slide">
               <div className="branch-card" style={{ display: 'flex', flexDirection: 'column', color: 'inherit' }}>
