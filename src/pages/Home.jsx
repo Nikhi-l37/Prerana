@@ -146,7 +146,7 @@ const Home = () => {
         >
           {[
             { images: branch1Images, name: 'Marathahalli Branch', address: '182, Service Rd, Manjunatha Layout, Marathahalli, Bengaluru, Karnataka 560037' },
-            { images: branch2Images, name: 'Chinnapanahalli Branch', address: 'PRERANA Firewood Biryani - Chinnapanahalli, Bengaluru' },
+            { images: branch2Images, name: 'Chinnapanahalli Branch', address: 'Chinnapanahalli Main Road, Bengaluru' },
             { images: branch3Images, name: 'Thanisandra Branch', address: 'PRERANA FIREWOOD BIRYANI, SH 104, Ashwath Nagar, Thanisandra, Bengaluru, Karnataka 560077' },
           ].map((branch) => (
             <motion.div key={branch.name} variants={fadeUpVariant}>
@@ -180,7 +180,7 @@ const Home = () => {
         >
           {[
             { images: branch1Images, name: 'Marathahalli Branch', address: '182, Service Rd, Manjunatha Layout, Marathahalli' },
-            { images: branch2Images, name: 'Chinnapanahalli Branch', address: 'PRERANA Firewood Biryani - Chinnapanahalli' },
+            { images: branch2Images, name: 'Chinnapanahalli Branch', address: 'Chinnapanahalli Main Road, Bengaluru' },
             { images: branch3Images, name: 'Thanisandra Branch', address: 'PRERANA FIREWOOD BIRYANI, SH 104, Ashwath Nagar, Thanisandra' },
           ].map((branch) => (
             <SwiperSlide key={branch.name} className="branch-swiper-slide">
