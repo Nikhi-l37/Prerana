@@ -154,7 +154,7 @@ const Home = () => {
                 <ImageSlider images={branch.images} />
                 <div className="branch-card-content">
                   <span className={`branch-badge ${isOpen ? 'active' : 'closed'}`}>
-                    {isOpen ? 'Now Open' : 'Opens at 11:30 AM'}
+                    {isOpen ? 'Closes at 11:30 PM' : 'Opens at 11:30 AM'}
                   </span>
                   <h3>{branch.name}</h3>
                   <p>{branch.address}</p>
@@ -188,7 +188,7 @@ const Home = () => {
                 <ImageSlider images={branch.images} />
                 <div className="branch-card-content">
                   <span className={`branch-badge ${isOpen ? 'active' : 'closed'}`}>
-                    {isOpen ? 'Now Open' : 'Opens at 11:30 AM'}
+                    {isOpen ? 'Closes at 11:30 PM' : 'Opens at 11:30 AM'}
                   </span>
                   <h3>{branch.name}</h3>
                   <p>{branch.address}</p>
