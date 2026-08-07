@@ -38,7 +38,7 @@ const BranchCard = ({
       <ImageSlider images={images} />
       <div className="flex flex-col flex-grow p-5 md:p-8 text-center md:text-left items-center md:items-start">
         <span className={`inline-block px-4 py-1.5 rounded-full text-xs font-bold mb-3 ${isOpen ? 'bg-green-100 text-green-700' : 'bg-black/10 text-gray-600'}`}>
-          {isOpen ? 'Now Open' : 'Opens at 11:00 AM'}
+          {isOpen ? 'Now Open' : 'Opens at 11:30 AM'}
         </span>
         <h3 className="font-bold text-gray-800 text-xl md:text-2xl mb-2 md:mb-4">{name}</h3>
         <p className="text-gray-600 text-sm md:text-base mb-4 md:mb-6">{address}</p>
