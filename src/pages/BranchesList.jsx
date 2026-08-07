@@ -75,7 +75,7 @@ const BranchesList = () => {
           <motion.div variants={fadeUpVariant}>
             <BranchCard 
               name="Thanisandra Branch"
-              address="PRERANA FIREWOOD BIRYANI, SH 104, Ashwath Nagar, Thanisandra, Bengaluru, Karnataka 560077"
+              address="SH 104, Ashwath Nagar, Thanisandra, Bengaluru, Karnataka 560077"
               images={branch3Images}
               path="/branch/thanisandra"
               isOpen={isOpen}

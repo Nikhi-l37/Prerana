@@ -283,7 +283,7 @@ export const branchData = {
   },
   thanisandra: {
     name: "Thanisandra Branch",
-    address: "PRERANA FIREWOOD BIRYANI, SH 104, Ashwath Nagar, Thanisandra, Bengaluru, Karnataka 560077",
+    address: "SH 104, Ashwath Nagar, Thanisandra, Bengaluru, Karnataka 560077",
     mapEmbedUrl: "https://maps.google.com/maps?q=PRERANA+FIREWOOD+BIRYANI+Thanisandra&t=&z=15&ie=UTF8&iwloc=&output=embed",
     mapLink: "https://www.google.com/maps/search/?api=1&query=PRERANA+FIREWOOD+BIRYANI+Thanisandra"
   }
