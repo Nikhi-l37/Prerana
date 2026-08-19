@@ -77,10 +77,10 @@ const Navbar = () => {
 
       {/* NAVBAR */}
       <nav
-        className={`fixed w-full top-0 z-[100] px-5 md:px-[5%] py-2 md:py-3 flex justify-between items-center transition-all duration-500 ease-in-out
+        className={`fixed w-full top-0 z-[100] px-5 md:px-[5%] pb-2 md:pb-3 flex justify-between items-center transition-all duration-500 ease-in-out
           ${isScrolled ? 'backdrop-blur-xl border-b border-white/30 shadow-navbar' : 'bg-transparent'}
           ${isNavVisible ? 'translate-y-0' : '-translate-y-full'}`}
-        style={isScrolled ? { background: 'rgba(255, 255, 255, 0.35)', contain: 'layout' } : { contain: 'layout' }}
+        style={isScrolled ? { background: 'rgba(255, 255, 255, 0.35)', contain: 'layout', paddingTop: 'max(env(safe-area-inset-top), 0.5rem)' } : { contain: 'layout', paddingTop: 'max(env(safe-area-inset-top), 0.5rem)' }}
       >
         {/* Logo */}
         <div className="flex items-center">

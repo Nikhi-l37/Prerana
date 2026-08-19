@@ -107,7 +107,7 @@ const Home = () => {
         <img
           src={logoImg}
           alt="Prerana Firewood Biryani Logo"
-          style={{ width: '70%', maxWidth: '250px', height: 'auto', marginBottom: '2rem' }}
+          className="product-hero-logo"
           loading="eager"
         />
         <div
@@ -146,15 +146,15 @@ const Home = () => {
         >
           {[
             { images: branch1Images, name: 'Marathahalli Branch', address: '182, Service Rd, Manjunatha Layout, Marathahalli, Bengaluru, Karnataka 560037' },
-            { images: branch2Images, name: 'Chinnapanahalli Branch', address: 'PRERANA Firewood Biryani - Chinnapanahalli, Bengaluru' },
-            { images: branch3Images, name: 'Thanisandra Branch', address: 'PRERANA FIREWOOD BIRYANI, SH 104, Ashwath Nagar, Thanisandra, Bengaluru, Karnataka 560077' },
+            { images: branch2Images, name: 'Chinnapanahalli Branch', address: 'Chinnapanahalli Main Road, Bengaluru' },
+            { images: branch3Images, name: 'Thanisandra Branch', address: 'SH 104, Ashwath Nagar, Thanisandra, Bengaluru, Karnataka 560077' },
           ].map((branch) => (
             <motion.div key={branch.name} variants={fadeUpVariant}>
               <div className="branch-card">
                 <ImageSlider images={branch.images} />
                 <div className="branch-card-content">
                   <span className={`branch-badge ${isOpen ? 'active' : 'closed'}`}>
-                    {isOpen ? 'Now Open' : 'Opens at 11:00 AM'}
+                    {isOpen ? 'Closes at 11:30 PM' : 'Opens at 11:30 AM'}
                   </span>
                   <h3>{branch.name}</h3>
                   <p>{branch.address}</p>
@@ -180,15 +180,15 @@ const Home = () => {
         >
           {[
             { images: branch1Images, name: 'Marathahalli Branch', address: '182, Service Rd, Manjunatha Layout, Marathahalli' },
-            { images: branch2Images, name: 'Chinnapanahalli Branch', address: 'PRERANA Firewood Biryani - Chinnapanahalli' },
-            { images: branch3Images, name: 'Thanisandra Branch', address: 'PRERANA FIREWOOD BIRYANI, SH 104, Ashwath Nagar, Thanisandra' },
+            { images: branch2Images, name: 'Chinnapanahalli Branch', address: 'Chinnapanahalli Main Road, Bengaluru' },
+            { images: branch3Images, name: 'Thanisandra Branch', address: 'SH 104, Ashwath Nagar, Thanisandra' },
           ].map((branch) => (
             <SwiperSlide key={branch.name} className="branch-swiper-slide">
               <div className="branch-card" style={{ display: 'flex', flexDirection: 'column', color: 'inherit' }}>
                 <ImageSlider images={branch.images} />
                 <div className="branch-card-content">
                   <span className={`branch-badge ${isOpen ? 'active' : 'closed'}`}>
-                    {isOpen ? 'Now Open' : 'Opens at 11:00 AM'}
+                    {isOpen ? 'Closes at 11:30 PM' : 'Opens at 11:30 AM'}
                   </span>
                   <h3>{branch.name}</h3>
                   <p>{branch.address}</p>
@@ -369,7 +369,7 @@ const Home = () => {
             <h3>Contact Information</h3>
             <p><strong>Email:</strong> Preranafirewoodbiryani@gmail.com</p>
             <p><strong>Phone:</strong> 8884523789, 8886097771</p>
-            <p><strong>Open Hours:</strong> 11:00 AM - 11:00 PM</p>
+            <p><strong>Open Hours:</strong> 11:30 AM - 11:30 PM</p>
           </motion.div>
           <motion.form variants={fadeUpVariant} className="contact-form" onSubmit={handleContactSubmit}>
             <input type="text" name="name" placeholder="Your Name" required />

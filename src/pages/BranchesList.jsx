@@ -65,7 +65,7 @@ const BranchesList = () => {
           <motion.div variants={fadeUpVariant}>
             <BranchCard 
               name="Chinnapanahalli Branch"
-              address="PRERANA Firewood Biryani - Chinnapanahalli, Bengaluru"
+              address="Chinnapanahalli Main Road, Bengaluru"
               images={branch2Images}
               path="/branch/chinnapanahalli"
               isOpen={isOpen}
@@ -75,7 +75,7 @@ const BranchesList = () => {
           <motion.div variants={fadeUpVariant}>
             <BranchCard 
               name="Thanisandra Branch"
-              address="PRERANA FIREWOOD BIRYANI, SH 104, Ashwath Nagar, Thanisandra, Bengaluru, Karnataka 560077"
+              address="SH 104, Ashwath Nagar, Thanisandra, Bengaluru, Karnataka 560077"
               images={branch3Images}
               path="/branch/thanisandra"
               isOpen={isOpen}
