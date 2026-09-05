@@ -8,8 +8,7 @@ const BranchCard = ({
   images, 
   path, 
   isOpen, 
-  isComingSoon = false,
-  isMobile = false
+  isComingSoon = false
 }) => {
   const cardClass = "bg-white rounded-xl overflow-hidden shadow-[0_8px_20px_rgba(44,30,22,0.05)] border border-[#f5e6db] flex flex-col h-full border-t-4 border-t-[#d84315] transition-all duration-300";
 

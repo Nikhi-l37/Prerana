@@ -99,17 +99,7 @@ body {
   display: flex; align-items: center; justify-content: center;
   padding: 0 5%; overflow: hidden;
 }
-.hero-background-wrapper {
-  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-  z-index: -2; overflow: hidden;
-}
-.hero-swiper, .hero-swiper-slide { width: 100%; height: 100%; }
-.product-hero-media { width: 100%; height: 100%; object-fit: cover; object-position: center center; }
-.product-hero-overlay {
-  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-  background: linear-gradient(135deg, rgba(17,17,17,0.95) 0%, rgba(17,17,17,0.3) 100%);
-  z-index: 1;
-}
+
 .product-hero-content {
   position: relative; z-index: 2;
   display: flex; flex-direction: column; align-items: center; text-align: center;
@@ -129,20 +119,6 @@ body {
   margin-bottom: 0rem;
 }
 
-/* Hero Badge */
-.hero-badge {
-  display: inline-block; padding: 0.5rem 1.2rem;
-  background: rgba(216, 67, 21, 0.2); color: #ff7043;
-  border: 1px solid rgba(216, 67, 21, 0.4); border-radius: 50px;
-  font-weight: 700; font-size: 0.9rem; text-transform: uppercase;
-  letter-spacing: 2px; margin-bottom: 1.5rem;
-}
-
-/* Hero Title & Subtitle */
-.product-hero-title {
-  font-size: clamp(3rem, 6vw, 5rem); color: #111111;
-  margin-bottom: 1.5rem; line-height: 1.1; font-weight: 900;
-}
 .product-hero-subtitle {
   font-size: clamp(1.1rem, 2.5vw, 1.4rem); color: #444444;
   margin-bottom: 3rem; line-height: 1.6; max-width: 600px;
@@ -178,7 +154,7 @@ body {
   background: rgba(216, 67, 21, 0.1); transform: translateY(-2px);
 }
 
-/* ── LOCATIONS & BRANCH CARDS ──────────────────────────────── */
+/* ── LOCATIONS & MARQUEES ─────────────────────────────────── */
 .locations-section {
   padding: 5rem 0;
   display: flex; flex-direction: column; align-items: center;
@@ -243,37 +219,6 @@ body {
 .marquee-container:active .marquee-group-gallery {
   animation-play-state: paused;
 }
-.locations-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 2.5rem; width: 100%;
-}
-.branch-card {
-  background: rgba(255,255,255,0.92);
-  border: 1px solid rgba(255,255,255,0.6); border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 15px 35px rgba(160,82,45,0.04), 0 5px 15px rgba(44,30,22,0.03);
-  transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), box-shadow 0.4s ease;
-  height: 100%; display: flex; flex-direction: column;
-  contain: layout style;
-}
-.branch-card:hover {
-  transform: translateY(-8px) scale(1.01);
-  box-shadow: 0 20px 45px rgba(160,82,45,0.08), 0 10px 20px rgba(44,30,22,0.05);
-}
-.branch-card-content {
-  padding: 2rem; display: flex; flex-direction: column; align-items: flex-start; width: 100%;
-}
-.branch-card h3 { font-size: 1.5rem; margin-bottom: 1rem; color: #2c1e16; }
-.branch-card p  { color: #5d4a41; line-height: 1.6; margin-bottom: 1.5rem; }
-.branch-badge {
-  padding: 0.4rem 1rem; border-radius: 50px;
-  font-size: 0.85rem; font-weight: 700; margin-bottom: 1.5rem;
-  text-transform: uppercase; letter-spacing: 0.5px;
-}
-.branch-badge.active { background: rgba(46,125,50,0.1); color: #2e7d32; }
-.branch-badge.closed { background: rgba(17,17,17,0.1); color: #555; }
-.branch-badge.soon   { background: rgba(216,67,21,0.1); color: #d84315; }
 
 /* Image slider inside cards */
 .slider-container { position: relative; width: 100%; height: 190px; overflow: hidden; background: #fff5ec; }
@@ -284,28 +229,10 @@ body {
 .slider-dot.active { background: #d84315; transform: scale(1.3); }
 .image-placeholder { width: 100%; height: 190px; background: #fff5ec; border-radius: 12px 12px 0 0; display: flex; align-items: center; justify-content: center; color: #888; }
 
-/* View branch button */
-.view-branch-btn {
-  margin-top: auto; padding: 0.8rem 1.5rem;
-  background: transparent; border: 2px solid #d84315; color: #d84315;
-  font-weight: 600; border-radius: 100px; cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.view-branch-btn:hover { background: #d84315; color: #fff; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(216,67,21,0.3); }
-
 /* Clickable card link wrapper */
 .clickable-card { display: flex; flex-direction: column; text-decoration: none; color: inherit; cursor: pointer; height: 100%; }
 .clickable-card .slider-container { pointer-events: none; }
 .clickable-card .slider-dots { pointer-events: auto; }
-
-/* ── SWIPER OVERRIDES ──────────────────────────────────────── */
-.mobile-only { display: none !important; }
-.branches-swiper { width: 100%; padding-top: 20px; padding-bottom: 50px; }
-.branch-swiper-slide { width: 75%; max-width: 450px; height: auto; }
-.reviews-swiper { width: 100%; padding: 20px 0 40px; }
-.review-swiper-slide { opacity: 0.5; transform: scale(0.9); transition: all 0.4s ease; height: auto; }
-.review-swiper-slide.swiper-slide-active { opacity: 1; transform: scale(1); }
-.swiper-pagination-bullet-active { background: #d84315 !important; }
 
 /* ── REVIEWS SECTION ───────────────────────────────────────── */
 .reviews-section {
@@ -315,10 +242,6 @@ body {
   align-items: center;
   width: 100%;
   overflow: hidden;
-}
-.reviews-grid {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem; padding: 0 5%; max-width: 1200px; margin: 0 auto;
 }
 .section-title { font-size: clamp(2rem, 3vw, 3rem); margin-bottom: 3rem; color: #2c1e16; text-align: center; }
 .review-card { background: #f8f9fa; padding: 2rem; border-radius: 12px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.03); height: 100%; display: flex; flex-direction: column; }
@@ -353,7 +276,7 @@ body {
 }
 .submit-btn:hover { background: linear-gradient(135deg, #e65100 0%, #bf360c 100%); box-shadow: 0 6px 20px rgba(0,0,0,0.2); }
 
-/* ── "OUR BRANCHES" BUTTON (Rotating Border — CSS mask trick) ── */
+/* ── "FAMOUS ITEMS" / BRANCHES BUTTON (Rotating Border) ── */
 .header-branches-btn {
   display: inline-block; padding: 0.6rem 1.5rem;
   font-size: 1.05rem; font-weight: 600; color: #fff !important;
@@ -384,16 +307,9 @@ body {
 
 /* ── MOBILE RESPONSIVENESS ─────────────────────────────────── */
 @media (max-width: 768px) {
-  .mobile-only { display: block !important; }
-  .locations-grid, .reviews-grid { display: none !important; }
-
   .product-hero { min-height: 80vh; align-items: flex-end; padding-bottom: 1.5rem; }
-  .product-hero-overlay {
-    background: linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.1) 30%, rgba(0,0,0,0.6) 60%, rgba(0,0,0,0.92) 100%);
-  }
   .product-hero-content { align-items: center; text-align: center; margin-top: 0; width: 100%; }
   .product-hero-logo { margin-top: 0; margin-bottom: 2rem; }
-  .product-hero-title { font-size: clamp(2.2rem, 9vw, 3rem); margin-bottom: 0.8rem; }
   .product-hero-subtitle { font-size: 1rem; margin-bottom: 2rem; }
   .hero-actions { flex-direction: column; width: 100%; gap: 0.9rem; }
   .product-hero-btn.primary {
@@ -406,18 +322,6 @@ body {
 
   .locations-section { padding: 2.5rem 0 2rem; align-items: center; text-align: center; }
   .locations-title { font-size: 2.2rem; margin-bottom: 1.2rem; }
-  .branches-swiper { padding-top: 10px !important; padding-bottom: 30px !important; }
-  .branch-swiper-slide { width: 88% !important; max-width: 400px; }
-  .branch-swiper-slide .slider-container { height: 220px; }
-  .branch-swiper-slide .branch-card-content { padding: 1.2rem 1.4rem; align-items: center; text-align: center; }
-  .branch-swiper-slide .branch-card-content h3 { font-size: 1.2rem; margin-bottom: 0.3rem; }
-  .branch-swiper-slide .branch-card-content p  { font-size: 0.88rem; color: #666; margin-bottom: 0.8rem; }
-  .branch-swiper-slide .branch-badge { margin-bottom: 0.6rem; font-size: 0.75rem; padding: 0.3rem 0.9rem; }
-  .branch-swiper-slide .view-branch-btn {
-    font-size: 0.9rem; padding: 0.6rem 1.6rem;
-    background: linear-gradient(135deg, #ff6b35 0%, #d84315 100%);
-    color: #fff; border: none; box-shadow: 0 4px 15px rgba(216,67,21,0.3);
-  }
 
   .reviews-section { padding: 3rem 0; }
   .contact-section { padding: 4rem 5%; }
@@ -444,7 +348,7 @@ body {
   contain: layout style;
 }
 
-/* ── MOBILE PAGE FLIP TRANSITION (replaces framer-motion) ── */
+/* ── MOBILE PAGE FLIP TRANSITION ───────────────────────────── */
 .mobile-page-flip {
   transition: transform 0.55s cubic-bezier(0.64, 0.04, 0.35, 1);
   contain: layout paint;

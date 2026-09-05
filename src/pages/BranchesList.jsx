@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import BranchCard from '../components/BranchCard';
@@ -22,12 +22,9 @@ const staggerContainer = {
   visible: { opacity: 1, transition: { staggerChildren: 0.2 } }
 };
 
-
-
 const BranchesList = () => {
   const isOpen = useStoreStatus();
   const navigate = useNavigate();
-
 
   return (
     <div className="pt-[85px] sm:pt-[90px] px-[5%] pb-8">

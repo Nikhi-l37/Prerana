@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { useLocation, Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
-import ImageSlider from '../components/ImageSlider';
 import BranchCard from '../components/BranchCard';
 import { useStoreStatus } from '../hooks/useStoreStatus';
 import { REVIEWS } from '../data/reviews';
@@ -11,7 +10,6 @@ import { REVIEWS } from '../data/reviews';
 import v1 from '../assets/images/v1.jpg';
 import s from '../assets/images/s11_rotated.webp';
 import new2 from '../assets/images/new2.webp';
-import s10 from '../assets/images/s10.webp';
 import logoImg from '../assets/images/logo.webp';
 
 const branch1Images = [v1];
@@ -76,23 +74,15 @@ const ReviewCard = ({ review, onMoreClick }) => {
 // ── Home Page ─────────────────────────────────────────────────────
 const Home = () => {
   const isOpen = useStoreStatus();
-  const { hash } = useLocation();
   const [selectedReview, setSelectedReview] = useState(null);
-  const [activeBranchIndex, setActiveBranchIndex] = useState(0);
-  const activeBranch = BRANCHES_DATA[activeBranchIndex] || BRANCHES_DATA[0];
 
-  // Scroll to hash anchor on navigation
-  useEffect(() => {
-    if (hash) {
-      setTimeout(() => {
-        const element = document.getElementById(hash.replace('#', ''));
-        if (element) {
-          const y = element.getBoundingClientRect().top + window.scrollY - 80;
-          window.scrollTo({ top: y, behavior: 'smooth' });
-        }
-      }, 100);
+  const scrollToSection = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      const y = element.getBoundingClientRect().top + window.scrollY - 80;
+      window.scrollTo({ top: y, behavior: 'smooth' });
     }
-  }, [hash]);
+  };
 
   const handleContactSubmit = (e) => {
     e.preventDefault();
@@ -124,7 +114,13 @@ const Home = () => {
           </p>
           <div className="hero-actions" style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center', flexWrap: 'wrap' }}>
             <Link to="/branches" className="product-hero-btn primary">Find a Branch</Link>
-            <Link to="/#contact" className="product-hero-btn secondary">Contact Us</Link>
+            <button
+              type="button"
+              onClick={() => scrollToSection('contact')}
+              className="product-hero-btn secondary"
+            >
+              Contact Us
+            </button>
           </div>
         </div>
       </header>

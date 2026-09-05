@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://preranafirewoodbiryani.com/sitemap.xml
+Sitemap: https://www.preranafirewoodbiryani.com/sitemap.xml

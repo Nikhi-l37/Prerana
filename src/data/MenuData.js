@@ -284,8 +284,8 @@ export const branchData = {
     address: "Chinnapanahalli Main Road, Bengaluru",
     phone: "8886097771",
     timing: "11:30 AM – 11:30 PM",
-    mapEmbedUrl: "https://maps.google.com/maps?q=PRERANA+Firewood+Biryani+Chinnapanahalli&t=&z=15&ie=UTF8&iwloc=&output=embed",
-    mapLink: "https://www.google.com/maps/vet=10CAAQoqAOahcKEwiohPqcn6mVAxUAAAAAHQAAAAAQGw..i&pvq=Cg0vZy8xMXhtbGpwOWt3Ih4KGHByZXJhbmEgZmlyZXdvb2QgYmlyeWFuaRACGAM&lqi=ChhwcmVyYW5hIGZpcmV3b29kIGJpcnlhbmlIu8yqqM68gIAIWiYQABABEAIYABgBGAIiGHByZXJhbmEgZmlyZXdvb2QgYmlyeWFuaZIBCnJlc3RhdXJhbnQ&fvr=1&cs=1&um=1&ie=UTF-8&fb=1&gl=in&sa=X&ftid=0x3bae11005479e7e7:0x428adb32d20415d5"
+    mapEmbedUrl: "https://maps.google.com/maps?q=12.9724469,77.7067629&t=&z=15&ie=UTF8&iwloc=&output=embed",
+    mapLink: "https://www.google.com/maps/place/PRERANA+Firewood+Biryani+-+Chinnapanahalli/@12.9724469,77.7067629,17z/data=!3m1!4b1!4m6!3m5!1s0x3bae11005479e7e7:0x428adb32d20415d5!8m2!3d12.9724469!4d77.7067629!16s%2Fg%2F11xmljp9kw"
   },
   thanisandra: {
     id: "thanisandra",
