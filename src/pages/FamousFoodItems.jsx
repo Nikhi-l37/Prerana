@@ -126,39 +126,35 @@ const FamousFoodItems = () => {
 
 
   return (
-    <div className="pt-[100px] px-[5%] pb-16 min-h-screen">
+    <div className="pt-[85px] sm:pt-[90px] px-[5%] pb-16 min-h-screen">
       {/* Shimmer keyframe */}
       <style>{`@keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }`}</style>
 
-      {/* Back Button */}
-      <button
-        onClick={() => navigate(-1)}
-        className="inline-flex items-center gap-2 bg-transparent border-none font-semibold text-[1.1rem] cursor-pointer py-2 mb-8 transition-colors duration-200"
-        style={{ color: '#d84315' }}
-        onMouseOver={e => e.currentTarget.style.color = '#bf360c'}
-        onMouseOut={e => e.currentTarget.style.color = '#d84315'}
-      >
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M19 12H5M12 19l-7-7 7-7" />
-        </svg>
-        Back
-      </button>
+      {/* Top Header Navigation & Title */}
+      <div className="flex items-center gap-3.5 mb-4 mt-1">
+        <button
+          onClick={() => navigate(-1)}
+          aria-label="Go back"
+          className="w-10 h-10 rounded-full flex items-center justify-center bg-white border border-[#f0ded4] text-[#d84315] hover:bg-[#fff5ec] hover:border-[#d84315]/40 shadow-sm active:scale-95 transition-all duration-200 cursor-pointer shrink-0"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M19 12H5M12 19l-7-7 7-7" />
+          </svg>
+        </button>
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#2c1e16] tracking-tight">
+          Famous <span className="text-[#d84315]">Food Items</span>
+        </h1>
+      </div>
 
-      {/* Header Section */}
-      <motion.div 
-        className="text-center mb-16 max-w-[800px] mx-auto"
+      {/* Subtitle Description */}
+      <motion.p 
+        className="text-[1.05rem] md:text-[1.15rem] text-[#5d4a41] leading-relaxed mb-10 max-w-[800px]"
         initial="hidden"
         animate="visible"
         variants={fadeUpVariant}
       >
-        <h1 className="text-3xl md:text-[3rem] font-black tracking-tight mb-4 text-[#2c1e16]">
-          Famous <span className="text-[#d84315]">Food Items</span>
-        </h1>
-        <div className="w-24 h-[4px] bg-[#d84315] mx-auto mb-6 rounded-full"></div>
-        <p className="text-[1.1rem] md:text-[1.2rem] text-[#5d4a41] leading-relaxed">
-          Discover our most-celebrated signature dishes. Hand-crafted with authentic spices, fresh ingredients, and time-honored recipes that make every bite unforgettable.
-        </p>
-      </motion.div>
+        Discover our most-celebrated signature dishes. Hand-crafted with authentic spices, fresh ingredients, and time-honored recipes that make every bite unforgettable.
+      </motion.p>
 
       {/* Grid List */}
       <motion.div 

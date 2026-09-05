@@ -98,7 +98,6 @@ const Navbar = () => {
           <Link
             to="/famous-items"
             className="header-branches-btn"
-            style={{ opacity: showSplash ? 0 : 1 }}
           >
             <span className="header-branches-btn-border"><span className="header-branches-btn-rotator"></span></span>
             <span className="header-branches-btn-text">Famous Items</span>

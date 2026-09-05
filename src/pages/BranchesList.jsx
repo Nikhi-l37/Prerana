@@ -30,20 +30,22 @@ const BranchesList = () => {
 
 
   return (
-    <div className="pt-[75px] px-[5%] pb-8">
-      {/* Back Button */}
-      <button
-        onClick={() => navigate(-1)}
-        className="inline-flex items-center gap-2 bg-transparent border-none font-semibold text-[1.1rem] cursor-pointer py-2 mb-4 transition-colors duration-200"
-        style={{ color: '#d84315' }}
-        onMouseOver={e => e.currentTarget.style.color = '#bf360c'}
-        onMouseOut={e => e.currentTarget.style.color = '#d84315'}
-      >
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M19 12H5M12 19l-7-7 7-7" />
-        </svg>
-        Back
-      </button>
+    <div className="pt-[85px] sm:pt-[90px] px-[5%] pb-8">
+      {/* Top Header Navigation & Title */}
+      <div className="flex items-center gap-3.5 mb-8 mt-1">
+        <button
+          onClick={() => navigate(-1)}
+          aria-label="Go back"
+          className="w-10 h-10 rounded-full flex items-center justify-center bg-white border border-[#f0ded4] text-[#d84315] hover:bg-[#fff5ec] hover:border-[#d84315]/40 shadow-sm active:scale-95 transition-all duration-200 cursor-pointer shrink-0"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M19 12H5M12 19l-7-7 7-7" />
+          </svg>
+        </button>
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#2c1e16] tracking-tight">
+          Our Branches
+        </h1>
+      </div>
 
       <section className="locations-section" style={{ background: 'transparent' }}>
         <motion.div 
