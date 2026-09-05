@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import logo from '../assets/images/logo.webp';
 
 const Navbar = () => {
@@ -7,7 +7,27 @@ const Navbar = () => {
   const [isNavVisible, setIsNavVisible] = useState(true);
   const lastScrollYRef = useRef(0);
   const location = useLocation();
+  const navigate = useNavigate();
   const isHomePage = location.pathname === '/';
+
+  const scrollToSection = (id) => {
+    if (isHomePage) {
+      const el = document.getElementById(id);
+      if (el) {
+        const y = el.getBoundingClientRect().top + window.scrollY - 80;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }
+    } else {
+      navigate('/');
+      setTimeout(() => {
+        const el = document.getElementById(id);
+        if (el) {
+          const y = el.getBoundingClientRect().top + window.scrollY - 80;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+      }, 150);
+    }
+  };
 
   const [splash, setSplash] = useState(() => {
     if (typeof window !== 'undefined' && sessionStorage.getItem('prerana_splash')) return 'done';
@@ -98,7 +118,6 @@ const Navbar = () => {
           <Link
             to="/famous-items"
             className="header-branches-btn"
-            style={{ opacity: showSplash ? 0 : 1 }}
           >
             <span className="header-branches-btn-border"><span className="header-branches-btn-rotator"></span></span>
             <span className="header-branches-btn-text">Famous Items</span>
@@ -119,19 +138,28 @@ const Navbar = () => {
             </Link>
           </li>
           <li>
-            <Link to="/#order-online" className="font-semibold text-[0.95rem] text-brown-base no-underline transition-colors duration-200 hover:text-terra-base" style={{ color: '#2c1e16' }}>
+            <button
+              onClick={() => scrollToSection('order-online')}
+              className="font-semibold text-[0.95rem] text-[#2c1e16] bg-transparent border-none cursor-pointer transition-colors duration-200 hover:text-[#d84315] p-0 font-sans"
+            >
               Order Online
-            </Link>
+            </button>
           </li>
           <li>
-            <Link to="/#reviews" className="font-semibold text-[0.95rem] text-brown-base no-underline transition-colors duration-200 hover:text-terra-base" style={{ color: '#2c1e16' }}>
+            <button
+              onClick={() => scrollToSection('reviews')}
+              className="font-semibold text-[0.95rem] text-[#2c1e16] bg-transparent border-none cursor-pointer transition-colors duration-200 hover:text-[#d84315] p-0 font-sans"
+            >
               Reviews
-            </Link>
+            </button>
           </li>
           <li>
-            <Link to="/#contact" className="font-semibold text-[0.95rem] text-brown-base no-underline transition-colors duration-200 hover:text-terra-base" style={{ color: '#2c1e16' }}>
+            <button
+              onClick={() => scrollToSection('contact')}
+              className="font-semibold text-[0.95rem] text-[#2c1e16] bg-transparent border-none cursor-pointer transition-colors duration-200 hover:text-[#d84315] p-0 font-sans"
+            >
               Contact
-            </Link>
+            </button>
           </li>
         </ul>
       </nav>

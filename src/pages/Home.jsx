@@ -1,13 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { useLocation, Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Pagination, EffectCreative } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/effect-creative';
-import 'swiper/css/pagination';
 
-import ImageSlider from '../components/ImageSlider';
+import BranchCard from '../components/BranchCard';
 import { useStoreStatus } from '../hooks/useStoreStatus';
 import { REVIEWS } from '../data/reviews';
 
@@ -15,12 +10,32 @@ import { REVIEWS } from '../data/reviews';
 import v1 from '../assets/images/v1.jpg';
 import s from '../assets/images/s11_rotated.webp';
 import new2 from '../assets/images/new2.webp';
-import s10 from '../assets/images/s10.webp';
 import logoImg from '../assets/images/logo.webp';
 
 const branch1Images = [v1];
 const branch2Images = [s];
 const branch3Images = [new2];
+
+const BRANCHES_DATA = [
+  { 
+    name: 'Marathahalli Branch', 
+    address: '182, Service Rd, Manjunatha Layout, Marathahalli, Bengaluru, Karnataka 560037', 
+    images: branch1Images, 
+    path: '/branch/marathahalli' 
+  },
+  { 
+    name: 'Chinnapanahalli Branch', 
+    address: 'Chinnapanahalli Main Road, Bengaluru', 
+    images: branch2Images, 
+    path: '/branch/chinnapanahalli' 
+  },
+  { 
+    name: 'Thanisandra Branch', 
+    address: 'SH 104, Ashwath Nagar, Thanisandra, Bengaluru, Karnataka 560077', 
+    images: branch3Images, 
+    path: '/branch/thanisandra' 
+  },
+];
 
 // ── Animation Variants ────────────────────────────────────────────
 const fadeUpVariant = {
@@ -59,21 +74,15 @@ const ReviewCard = ({ review, onMoreClick }) => {
 // ── Home Page ─────────────────────────────────────────────────────
 const Home = () => {
   const isOpen = useStoreStatus();
-  const { hash } = useLocation();
   const [selectedReview, setSelectedReview] = useState(null);
 
-  // Scroll to hash anchor on navigation
-  useEffect(() => {
-    if (hash) {
-      setTimeout(() => {
-        const element = document.getElementById(hash.replace('#', ''));
-        if (element) {
-          const y = element.getBoundingClientRect().top + window.scrollY - 80;
-          window.scrollTo({ top: y, behavior: 'smooth' });
-        }
-      }, 100);
+  const scrollToSection = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      const y = element.getBoundingClientRect().top + window.scrollY - 80;
+      window.scrollTo({ top: y, behavior: 'smooth' });
     }
-  }, [hash]);
+  };
 
   const handleContactSubmit = (e) => {
     e.preventDefault();
@@ -84,20 +93,6 @@ const Home = () => {
     const subject = encodeURIComponent(`New Contact Form Submission from ${name}`);
     const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
     window.location.href = `mailto:Preranafirewoodbiryani@gmail.com?subject=${subject}&body=${body}`;
-  };
-
-  const handleOrderRedirect = (e, platform) => {
-    e.preventDefault();
-    
-    let webUrl;
-    if (platform === 'zomato') {
-      webUrl = 'https://www.zomato.com/bangalore/restaurants?q=Prerana+Firewood+Biryani';
-    } else {
-      webUrl = 'https://www.swiggy.com/search?query=Prerana+Firewood+Biryani';
-    }
-    
-    // Open directly in a new tab — fast and reliable on all devices
-    window.open(webUrl, '_blank', 'noopener,noreferrer');
   };
 
   return (
@@ -119,13 +114,19 @@ const Home = () => {
           </p>
           <div className="hero-actions" style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center', flexWrap: 'wrap' }}>
             <Link to="/branches" className="product-hero-btn primary">Find a Branch</Link>
-            <Link to="/#contact" className="product-hero-btn secondary">Contact Us</Link>
+            <button
+              type="button"
+              onClick={() => scrollToSection('contact')}
+              className="product-hero-btn secondary"
+            >
+              Contact Us
+            </button>
           </div>
         </div>
       </header>
 
       {/* ── LOCATIONS SECTION ────────────────────────────────────── */}
-      <section className="locations-section" id="locations">
+      <section className="locations-section" id="locations" style={{ overflow: 'hidden', width: '100%' }}>
         <motion.h2
           className="locations-title"
           variants={fadeUpVariant}
@@ -133,74 +134,48 @@ const Home = () => {
           whileInView="visible"
           viewport={{ once: true, margin: '-100px' }}
         >
-          Find Us
+          Our Branches
         </motion.h2>
 
-        {/* Desktop Grid */}
-        <motion.div
-          className="locations-grid"
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-100px' }}
-        >
-          {[
-            { images: branch1Images, name: 'Marathahalli Branch', address: '182, Service Rd, Manjunatha Layout, Marathahalli, Bengaluru, Karnataka 560037' },
-            { images: branch2Images, name: 'Chinnapanahalli Branch', address: 'Chinnapanahalli Main Road, Bengaluru' },
-            { images: branch3Images, name: 'Thanisandra Branch', address: 'SH 104, Ashwath Nagar, Thanisandra, Bengaluru, Karnataka 560077' },
-          ].map((branch) => (
-            <motion.div key={branch.name} variants={fadeUpVariant}>
-              <div className="branch-card">
-                <ImageSlider images={branch.images} />
-                <div className="branch-card-content">
-                  <span className={`branch-badge ${isOpen ? 'active' : 'closed'}`}>
-                    {isOpen ? 'Closes at 11:30 PM' : 'Opens at 11:30 AM'}
-                  </span>
-                  <h3>{branch.name}</h3>
-                  <p>{branch.address}</p>
-                </div>
+        {/* Seamless Zero-Lag Dual-Track Marquee */}
+        <div className="marquee-container py-4">
+          <div className="marquee-group-branches">
+            {[...BRANCHES_DATA, ...BRANCHES_DATA].map((branch, idx) => (
+              <div 
+                key={`b1-${branch.name}-${idx}`} 
+                className="w-[320px] sm:w-[350px] md:w-[370px] flex-shrink-0"
+              >
+                <BranchCard 
+                  name={branch.name}
+                  address={branch.address}
+                  images={branch.images}
+                  path={branch.path}
+                  isOpen={isOpen}
+                />
               </div>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        {/* Mobile Swiper */}
-        <Swiper
-          effect="creative"
-          centeredSlides={true}
-          slidesPerView="auto"
-          loop={false}
-          creativeEffect={{
-            limitProgress: 2,
-            prev: { translate: ['-75%', 0, -200], opacity: 0.35 },
-            next: { translate: ['75%', 0, -200], opacity: 0.35 },
-          }}
-          modules={[EffectCreative, Pagination]}
-          className="branches-swiper mobile-only"
-        >
-          {[
-            { images: branch1Images, name: 'Marathahalli Branch', address: '182, Service Rd, Manjunatha Layout, Marathahalli' },
-            { images: branch2Images, name: 'Chinnapanahalli Branch', address: 'Chinnapanahalli Main Road, Bengaluru' },
-            { images: branch3Images, name: 'Thanisandra Branch', address: 'SH 104, Ashwath Nagar, Thanisandra' },
-          ].map((branch) => (
-            <SwiperSlide key={branch.name} className="branch-swiper-slide">
-              <div className="branch-card" style={{ display: 'flex', flexDirection: 'column', color: 'inherit' }}>
-                <ImageSlider images={branch.images} />
-                <div className="branch-card-content">
-                  <span className={`branch-badge ${isOpen ? 'active' : 'closed'}`}>
-                    {isOpen ? 'Closes at 11:30 PM' : 'Opens at 11:30 AM'}
-                  </span>
-                  <h3>{branch.name}</h3>
-                  <p>{branch.address}</p>
-                </div>
+            ))}
+          </div>
+          <div className="marquee-group-branches" aria-hidden="true">
+            {[...BRANCHES_DATA, ...BRANCHES_DATA].map((branch, idx) => (
+              <div 
+                key={`b2-${branch.name}-${idx}`} 
+                className="w-[320px] sm:w-[350px] md:w-[370px] flex-shrink-0"
+              >
+                <BranchCard 
+                  name={branch.name}
+                  address={branch.address}
+                  images={branch.images}
+                  path={branch.path}
+                  isOpen={isOpen}
+                />
               </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* ── ORDER ONLINE SECTION ─────────────────────────────────── */}
-      <section className="py-16 border-t border-b border-[#d84315]/10" id="order-online">
+      <section className="py-16" id="order-online">
         <div className="max-w-6xl mx-auto px-5 md:px-[5%] text-center">
           <motion.h2
             className="text-3xl md:text-4xl font-bold mb-4 text-[#2c1e16] tracking-wide"
@@ -211,13 +186,6 @@ const Home = () => {
           >
             Order Online
           </motion.h2>
-          <motion.div 
-            className="w-24 h-[3px] bg-gradient-to-r from-transparent via-[#d84315] to-transparent mx-auto mb-8"
-            variants={fadeUpVariant}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-100px' }}
-          />
           <motion.p
             className="text-[1.1rem] text-[#5d4a41] max-w-2xl mx-auto mb-12 leading-relaxed"
             variants={fadeUpVariant}
@@ -254,10 +222,9 @@ const Home = () => {
                 </p>
               </div>
               <a
-                href="https://www.zomato.com/"
+                href="https://www.zomato.com/bangalore/prerana-firewood-biryani-marathahalli-bangalore"
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={(e) => handleOrderRedirect(e, 'zomato')}
                 className="w-full py-3.5 bg-[#E23744] text-white font-bold rounded-xl hover:bg-[#c82733] transition-colors shadow-[0_4px_20px_rgba(226,55,68,0.25)] flex items-center justify-center gap-2"
               >
                 Order on Zomato
@@ -286,10 +253,9 @@ const Home = () => {
                 </p>
               </div>
               <a
-                href="https://www.swiggy.com/"
+                href="https://www.swiggy.com/city/bangalore/prerana-firewood-biryani-geddalahalli-rest1400739"
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={(e) => handleOrderRedirect(e, 'swiggy')}
                 className="w-full py-3.5 bg-[#FC8019] text-white font-bold rounded-xl hover:bg-[#e46f10] transition-colors shadow-[0_4px_20px_rgba(252,128,25,0.25)] flex items-center justify-center gap-2"
               >
                 Order on Swiggy
@@ -303,7 +269,7 @@ const Home = () => {
       </section>
 
       {/* ── REVIEWS SECTION ──────────────────────────────────────── */}
-      <section className="reviews-section" id="reviews">
+      <section className="reviews-section" id="reviews" style={{ overflow: 'hidden', width: '100%' }}>
         <motion.h2
           className="section-title"
           variants={fadeUpVariant}
@@ -314,37 +280,29 @@ const Home = () => {
           What Our Customers Say
         </motion.h2>
 
-        {/* Desktop Grid */}
-        <motion.div
-          className="reviews-grid"
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-100px' }}
-        >
-          {REVIEWS.map((review, idx) => (
-            <motion.div key={idx} variants={fadeUpVariant} style={{ height: '100%' }}>
-              <ReviewCard review={review} onMoreClick={setSelectedReview} />
-            </motion.div>
-          ))}
-        </motion.div>
-
-        {/* Mobile Swiper */}
-        <Swiper
-          slidesPerView={1.3}
-          centeredSlides={true}
-          loop={true}
-          spaceBetween={20}
-          autoplay={{ delay: 2000, disableOnInteraction: false }}
-          modules={[Autoplay]}
-          className="reviews-swiper mobile-only"
-        >
-          {REVIEWS.map((review, idx) => (
-            <SwiperSlide key={idx} className="review-swiper-slide">
-              <ReviewCard review={review} onMoreClick={setSelectedReview} />
-            </SwiperSlide>
-          ))}
-        </Swiper>
+        {/* Seamless Zero-Lag Dual-Track Marquee for Reviews */}
+        <div className="marquee-container py-4">
+          <div className="marquee-group-reviews">
+            {REVIEWS.map((review, idx) => (
+              <div 
+                key={`r1-${review.author}-${idx}`} 
+                className="w-[290px] sm:w-[320px] md:w-[350px] flex-shrink-0"
+              >
+                <ReviewCard review={review} onMoreClick={setSelectedReview} />
+              </div>
+            ))}
+          </div>
+          <div className="marquee-group-reviews" aria-hidden="true">
+            {REVIEWS.map((review, idx) => (
+              <div 
+                key={`r2-${review.author}-${idx}`} 
+                className="w-[290px] sm:w-[320px] md:w-[350px] flex-shrink-0"
+              >
+                <ReviewCard review={review} onMoreClick={setSelectedReview} />
+              </div>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* ── CONTACT SECTION ──────────────────────────────────────── */}
